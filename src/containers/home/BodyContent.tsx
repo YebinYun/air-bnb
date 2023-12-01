@@ -1,10 +1,10 @@
-import Card from "@/components/card/Card";
+import CardWrap from "@/components/card/CardWrap";
 import React from "react";
 
 const BodyContent = () => {
   return (
     <>
-      <Card />
+      <CardWrap />
     </>
   );
 };

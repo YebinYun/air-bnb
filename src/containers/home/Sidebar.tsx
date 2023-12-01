@@ -1,32 +1,51 @@
 import React from "react";
 import { Icon } from "@iconify/react";
+import { Box, Button, Stack } from "@mui/material";
+import styled from "@emotion/styled";
+import Background from "@/layout/Background";
 
 const Sidebar = () => {
   return (
-    <>
-      {/* left */}
-      <div className="buttonWrap">
-        <Icon icon="ep:arrow-left-bold" />
-      </div>
+    <Background>
+      <Stack
+        spacing={2}
+        direction="row"
+        alignItems={"center"}
+        justifyContent={"space-between"}
+      >
+        {/* left */}
+        <ArrowButton>
+          <Icon icon="ep:arrow-left-bold" />
+        </ArrowButton>
 
-      {/* filterCard  */}
-      <div>
-        <Icon icon="icon-park-outline:camp" />
-        <span>캠핑장</span>
-      </div>
+        {/* filterCard  */}
+        <Button
+          sx={{ display: "flex", flexDirection: "column", color: "black" }}
+        >
+          <Icon icon="icon-park-outline:camp" width={"25px"} />
+          <span>캠핑장</span>
+        </Button>
 
-      {/* right */}
-      <div className="buttonWrap">
-        <Icon icon="ep:arrow-left-bold" rotate={2} />
-      </div>
+        {/* right */}
+        <Button>
+          <Icon icon="ep:arrow-left-bold" rotate={2} />
+        </Button>
 
-      {/* filterButton  */}
-      <div>
-        <Icon icon="mi:filter" />
-        <span>필터</span>
-      </div>
-    </>
+        {/* filterButton  */}
+        <Button variant="contained">
+          <Icon icon="mi:filter" />
+          <span>필터</span>
+        </Button>
+      </Stack>
+    </Background>
   );
 };
 
 export default Sidebar;
+
+const ArrowButton = styled(Button)`
+  width: 15px;
+  border: solid 1px lightgray;
+  border-radius: 25px;
+  padding: 10px 0;
+`;
