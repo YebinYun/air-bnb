@@ -12,9 +12,10 @@ const Navbar = () => {
         direction="row"
         alignItems={"center"}
         justifyContent={"space-between"}
+        margin={"10px 0"}
       >
         {/* 로고 */}
-        <Box>
+        <Box sx={{ paddingRight: "6rem" }}>
           <Icon icon="logos:airbnb" width={"102px"} />
         </Box>
 

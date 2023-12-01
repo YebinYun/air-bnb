@@ -4,7 +4,12 @@ import React from "react";
 const Background = ({ children }) => {
   return (
     <>
-      <Box sx={{ padding: "0 5%", borderBottom: "solid 1px lightgray" }}>
+      <Box
+        sx={{
+          padding: "0 5%",
+          borderBottom: "solid 1px lightgray",
+        }}
+      >
         {children}
       </Box>
     </>
