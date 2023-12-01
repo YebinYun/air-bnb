@@ -1,20 +1,33 @@
 import React from "react";
 import { Icon } from "@iconify/react";
-import { Box, Card } from "@mui/material";
+import { Box, Button, Card, Stack } from "@mui/material";
 import styled from "@emotion/styled";
 
 const Navbar = () => {
   return (
-    <BoxWrap>
+    <Stack
+      spacing={2}
+      direction="row"
+      alignItems={"center"}
+      justifyContent={"space-between"}
+    >
       {/* 로고 */}
       <Box>
         <Icon icon="logos:airbnb" width={"102px"} />
       </Box>
 
       {/* 예약창 */}
-      <FlexCard>
+      <Button
+        sx={{
+          display: "flex",
+          padding: "10px 20px",
+          boxShadow: "1px 1px 1px 1px lightgray",
+          borderRadius: "25px",
+          color: "black",
+        }}
+      >
         <Box>
-          <ReservationText>언제든지</ReservationText>
+          <ReservationText>어디든지</ReservationText>
           <ReservationCenterText>언제든 일주일</ReservationCenterText>
           <ReservationText>게스트 추가</ReservationText>
         </Box>
@@ -33,47 +46,43 @@ const Navbar = () => {
         >
           <Icon icon="ri:search-line" color="white" width={"15px"} />
         </Box>
-      </FlexCard>
+      </Button>
 
       {/* 검색창 */}
-      <FlexBox className="searchWrap">
-        <Box>
-          <span>당신의 공간을 에어비앤비하세요.</span>
+      <Stack spacing={2} direction="row">
+        <Stack spacing={4} direction="row">
+          <ReservationText>당신의 공간을 에어비앤비하세요.</ReservationText>
           <Icon icon="pajamas:earth" />
-        </Box>
-        <Box>
+        </Stack>
+        <Button
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            padding: "5px 10px",
+            boxShadow: "1px 1px 1px 1px lightgray",
+            borderRadius: "25px",
+            color: "black",
+          }}
+        >
           <Icon icon="ic:round-menu" />
-          <Icon icon="ph:user-thin" color="#777" />
-        </Box>
-      </FlexBox>
-    </BoxWrap>
+          <Box
+            sx={{
+              background: "gray",
+              width: "30px",
+              height: "30px",
+              marginLeft: "5px",
+              borderRadius: "25px",
+            }}
+          >
+            <Icon icon="ph:user-thin" color="#777" />
+          </Box>
+        </Button>
+      </Stack>
+    </Stack>
   );
 };
 
 export default Navbar;
-
-const FlexBox = styled(Box)`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-`;
-
-const FlexCard = styled(Card)`
-  height: 3rem;
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 25px;
-  &:hover {
-    box-shadow: 2px 2px 2px 2px gray;
-  }
-`;
-
-const BoxWrap = styled(FlexBox)`
-  justify-content: space-between;
-`;
 
 const ReservationText = styled.span`
   font-size: 0.8rem;
