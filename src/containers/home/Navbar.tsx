@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Icon } from "@iconify/react";
-import { Avatar, Box, Button, Stack, Card } from "@mui/material";
+import { Avatar, Box, Button, Stack } from "@mui/material";
 import styled from "@emotion/styled";
 import Background from "@/layout/Background";
 import UserButton from "@/components/modal/DropDown";
@@ -8,7 +8,6 @@ import Slidebar from "./Slidebar";
 
 const Navbar = () => {
   const [showDropDown, setShowDropDown] = useState<boolean>(false);
-
   const toggleDropDown = () => {
     setShowDropDown(!showDropDown);
   };
@@ -23,12 +22,9 @@ const Navbar = () => {
         margin={"2rem 0"}
         zIndex={99999}
       >
-        {/* 로고 */}
         <Box sx={{ paddingRight: "6rem" }}>
           <Icon icon="logos:airbnb" width={"102px"} />
         </Box>
-
-        {/* 예약창 */}
         <Button
           sx={{
             display: "flex",
@@ -59,8 +55,6 @@ const Navbar = () => {
             <Icon icon="ri:search-line" color="white" width={"15px"} />
           </Box>
         </Button>
-
-        {/* 검색창 */}
         <SearchContainer>
           <Stack spacing={4} direction="row" marginRight={"2rem"}>
             <ReservationText>당신의 공간을 에어비앤비하세요</ReservationText>
