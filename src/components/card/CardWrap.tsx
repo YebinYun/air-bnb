@@ -14,7 +14,7 @@ const CardWrap = () => {
         spacing={{ xs: 2, md: 3 }}
         columns={{ xs: 4, sm: 8, md: 8 }}
       >
-        {Array.from(data).map((value, index) => (
+        {data.map((value, index) => (
           <Grid key={index}>
             <CardImg img={value.img} />
             <CardText

@@ -1,54 +1,67 @@
 import React from "react";
+import styled from "@emotion/styled";
+import Background from "@/layout/Background";
+import { iconData } from "../../utils/dummy/Icon";
+import { Box, Stack } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
-import { Icon } from "@iconify/react";
-import { Box, Button, IconButton, Stack } from "@mui/material";
-import styled from "@emotion/styled";
-import Background from "@/layout/Background";
 
 const Sidebar = () => {
   return (
     <Background>
       <Stack direction="row" alignItems={"center"}>
-        <Stack
-          width={"100%"}
-          direction="row"
-          alignItems={"center"}
-          justifyContent={"space-between"}
-        >
+        <Container>
           {/* left */}
           <ArrowButton>
             <ArrowBackIosIcon fontSize={"small"} />
           </ArrowButton>
 
           {/* filterCard  */}
-          <Button
-            sx={{ display: "flex", flexDirection: "column", color: "black" }}
+          <Grid
+            height={"7rem"}
+            justifyContent={"space-between"}
+            container
+            spacing={{ xs: 2, md: 3 }}
+            columns={{ xs: 4, sm: 8, md: 8 }}
           >
-            <Icon icon="icon-park-outline:camp" width={"25px"} />
-            <span>캠핑장</span>
-          </Button>
+            {iconData.map((value, index) => (
+              <IconContainer key={index}>
+                {value.icon}
+                <CategoryText>{value.location}</CategoryText>
+              </IconContainer>
+            ))}
+          </Grid>
 
           {/* right */}
           <ArrowButton>
             <ArrowForwardIosIcon fontSize={"small"} />
           </ArrowButton>
-        </Stack>
+        </Container>
 
         {/* filterButton  */}
-        <Stack>
-          <Stack direction={"row"}>
-            <FilterListIcon />
-            <Box width={"35px"}>필터</Box>
-          </Stack>
-        </Stack>
+        <FilterButton>
+          <FilterListIcon />
+          <Box width={"35px"} marginLeft={"0.7rem"}>
+            필터
+          </Box>
+        </FilterButton>
       </Stack>
     </Background>
   );
 };
 
 export default Sidebar;
+
+const Container = styled(Stack)`
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 2rem;
+`;
 
 const ArrowButton = styled(Box)`
   display: flex;
@@ -61,5 +74,28 @@ const ArrowButton = styled(Box)`
   color: black;
   border-radius: 25px;
   padding-left: 1rem;
+  cursor: pointer;
+`;
+
+const IconContainer = styled(Stack)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem 1rem;
+  color: #444;
+  cursor: pointer;
+`;
+
+const CategoryText = styled.span`
+  font-size: 0.7rem;
+  margin: 0.5rem 0;
+`;
+
+const FilterButton = styled(Stack)`
+  display: flex;
+  flex-direction: row;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  padding: 0.5rem;
   cursor: pointer;
 `;
