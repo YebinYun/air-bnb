@@ -1,19 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { iconData } from "../../utils/dummy/Icon";
 import { Box, Stack, Tabs, Tab } from "@mui/material";
 import FilterListIcon from "@material-ui/icons/FilterList";
 
 const Slidebar = () => {
-  const sideRef = useRef<HTMLDivElement>(null);
-  const [slideScroll, setSlideScroll] = useState<boolean>(false);
-
-  const sideButtonClick = () => {
-    sideRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const [value, setValue] = React.useState(0);
-
+  const [value, setValue] = useState(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -29,7 +21,6 @@ const Slidebar = () => {
             scrollButtons="auto"
             aria-label="scrollable auto tabs example"
           >
-            {/* filterCard  */}
             {iconData.map((value, index) => (
               <IconContainer
                 key={index}
@@ -39,8 +30,6 @@ const Slidebar = () => {
             ))}
           </Tabs>
         </Container>
-
-        {/* filterButton  */}
         <FilterButton>
           <FilterListIcon />
           <Box width={"2rem"} marginLeft={"0.7rem"}>
@@ -61,7 +50,6 @@ const Container = styled(Stack)`
   flex-direction: row;
   align-items: center;
   margin-right: 2rem;
-  /* overflow: auto; */
 `;
 
 const ArrowButton = styled(Box)`
