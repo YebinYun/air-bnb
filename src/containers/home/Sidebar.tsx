@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 import Background from "@/layout/Background";
 import { iconData } from "../../utils/dummy/Icon";
 import { Box, Stack } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
@@ -19,20 +18,14 @@ const Sidebar = () => {
           </ArrowButton>
 
           {/* filterCard  */}
-          <Grid
-            height={"7rem"}
-            justifyContent={"space-between"}
-            container
-            spacing={{ xs: 2, md: 3 }}
-            columns={{ xs: 4, sm: 8, md: 8 }}
-          >
+          <Container width={"100%"}>
             {iconData.map((value, index) => (
               <IconContainer key={index}>
                 {value.icon}
                 <CategoryText>{value.location}</CategoryText>
               </IconContainer>
             ))}
-          </Grid>
+          </Container>
 
           {/* right */}
           <ArrowButton>
@@ -61,6 +54,8 @@ const Container = styled(Stack)`
   flex-direction: row;
   align-items: center;
   margin-right: 2rem;
+  overflow: auto;
+  z-index: 1;
 `;
 
 const ArrowButton = styled(Box)`
@@ -81,7 +76,7 @@ const IconContainer = styled(Stack)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 2rem 1rem;
+  padding: 2rem 1.5rem;
   color: #444;
   cursor: pointer;
 `;
@@ -89,6 +84,7 @@ const IconContainer = styled(Stack)`
 const CategoryText = styled.span`
   font-size: 0.7rem;
   margin: 0.5rem 0;
+  white-space: nowrap;
 `;
 
 const FilterButton = styled(Stack)`
