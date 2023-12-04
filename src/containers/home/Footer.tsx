@@ -1,6 +1,5 @@
 import Background from "@/layout/Background";
 import { Stack, Container } from "@mui/material";
-import { deepPurple } from "@mui/material/colors";
 import React from "react";
 
 const Footer = () => {
@@ -9,7 +8,7 @@ const Footer = () => {
       <Container
         sx={{
           background: "#FFF8F6",
-          position: "fixed",
+          position: "absolute",
           left: 0,
           bottom: "0",
           borderTop: "1px solid lightgray",

@@ -1,61 +1,67 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import styled from "@emotion/styled";
-import Background from "@/layout/Background";
 import { iconData } from "../../utils/dummy/Icon";
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, Tabs, Tab } from "@mui/material";
 import FilterListIcon from "@material-ui/icons/FilterList";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
-const Sidebar = () => {
+const Slidebar = () => {
+  const sideRef = useRef<HTMLDivElement>(null);
+  const [slideScroll, setSlideScroll] = useState<boolean>(false);
+
+  const sideButtonClick = () => {
+    sideRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
+
   return (
-    <Background>
+    <>
       <Stack direction="row" alignItems={"center"}>
         <Container>
-          {/* left */}
-          <ArrowButton>
-            <ArrowBackIosIcon fontSize={"small"} />
-          </ArrowButton>
-
-          {/* filterCard  */}
-          <Container width={"100%"}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            variant="scrollable"
+            scrollButtons="auto"
+            aria-label="scrollable auto tabs example"
+          >
+            {/* filterCard  */}
             {iconData.map((value, index) => (
-              <IconContainer key={index}>
-                {value.icon}
-                <CategoryText>{value.location}</CategoryText>
-              </IconContainer>
+              <IconContainer
+                key={index}
+                label={value.location}
+                icon={value.icon}
+              />
             ))}
-          </Container>
-
-          {/* right */}
-          <ArrowButton>
-            <ArrowForwardIosIcon fontSize={"small"} />
-          </ArrowButton>
+          </Tabs>
         </Container>
 
         {/* filterButton  */}
         <FilterButton>
           <FilterListIcon />
-          <Box width={"35px"} marginLeft={"0.7rem"}>
+          <Box width={"2rem"} marginLeft={"0.7rem"}>
             필터
           </Box>
         </FilterButton>
       </Stack>
-    </Background>
+    </>
   );
 };
 
-export default Sidebar;
+export default Slidebar;
 
 const Container = styled(Stack)`
   width: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-right: 2rem;
-  overflow: auto;
-  z-index: 1;
+  /* overflow: auto; */
 `;
 
 const ArrowButton = styled(Box)`
@@ -72,7 +78,7 @@ const ArrowButton = styled(Box)`
   cursor: pointer;
 `;
 
-const IconContainer = styled(Stack)`
+const IconContainer = styled(Tab)`
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,4 +1,4 @@
-import { Box, Stack } from "@mui/material";
+import { Box } from "@mui/material";
 import React from "react";
 
 const Background = ({ children }) => {
@@ -7,7 +7,6 @@ const Background = ({ children }) => {
       <Box
         sx={{
           padding: "0 5%",
-          borderBottom: "solid 1px lightgray",
         }}
       >
         {children}

@@ -1,18 +1,25 @@
-import BodyContent from "@/containers/home/BodyContent";
 import Footer from "@/containers/home/Footer";
-import Navbar from "@/containers/home/Navbar";
-import Sidebar from "@/containers/home/Sidebar";
 import React from "react";
+import { Card } from "@mui/material";
+import styled from "@emotion/styled";
+import CardWrap from "@/containers/home/CardWrap";
+import Navbar from "@/containers/home/Navbar";
 
 const UserLayout = () => {
   return (
-    <>
+    <PageContainer>
       <Navbar />
-      <Sidebar />
-      <BodyContent />
-      <Footer />
-    </>
+      <CardWrap />
+      {/* <Footer /> */}
+    </PageContainer>
   );
 };
 
 export default UserLayout;
+
+const PageContainer = styled(Card)`
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+`;

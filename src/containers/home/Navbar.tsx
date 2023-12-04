@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Icon } from "@iconify/react";
-import { Avatar, Box, Button, Card, Stack } from "@mui/material";
+import { Avatar, Box, Button, Stack, Card } from "@mui/material";
 import styled from "@emotion/styled";
 import Background from "@/layout/Background";
+import UserButton from "@/components/modal/DropDown";
+import Slidebar from "./Slidebar";
 
 const Navbar = () => {
+  const [showDropDown, setShowDropDown] = useState<boolean>(false);
+
+  const toggleDropDown = () => {
+    setShowDropDown(!showDropDown);
+  };
+
   return (
     <Background>
       <Stack
@@ -12,7 +20,8 @@ const Navbar = () => {
         direction="row"
         alignItems={"center"}
         justifyContent={"space-between"}
-        margin={"10px 0"}
+        margin={"2rem 0"}
+        zIndex={99999}
       >
         {/* 로고 */}
         <Box sx={{ paddingRight: "6rem" }}>
@@ -52,12 +61,13 @@ const Navbar = () => {
         </Button>
 
         {/* 검색창 */}
-        <Stack spacing={2} direction="row" alignItems={"center"}>
-          <Stack spacing={4} direction="row">
+        <SearchContainer>
+          <Stack spacing={4} direction="row" marginRight={"2rem"}>
             <ReservationText>당신의 공간을 에어비앤비하세요</ReservationText>
             <Icon icon="pajamas:earth" />
           </Stack>
           <Button
+            onClick={toggleDropDown}
             sx={{
               display: "flex",
               alignItems: "center",
@@ -72,8 +82,10 @@ const Navbar = () => {
               <Icon icon="ph:user-fill" color="white" />
             </Avatar>
           </Button>
-        </Stack>
+          {showDropDown && <UserButton />}
+        </SearchContainer>
       </Stack>
+      <Slidebar />
     </Background>
   );
 };
@@ -93,4 +105,11 @@ const ReservationCenterText = styled(ReservationText)`
   margin: 0 1rem;
   border-left: 1px solid gray;
   border-right: 1px solid gray;
+`;
+
+const SearchContainer = styled(Stack)`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
 `;
