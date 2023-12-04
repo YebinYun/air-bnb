@@ -3,12 +3,12 @@ import { Icon } from "@iconify/react";
 import { Avatar, Box, Button, Stack } from "@mui/material";
 import styled from "@emotion/styled";
 import Background from "@/layout/Background";
-import UserButton from "@/components/modal/DropDown";
+import LoginDropDown from "@/components/modal/LoginDropDown";
 import Slidebar from "./Slidebar";
 
 const Navbar = () => {
   const [showDropDown, setShowDropDown] = useState<boolean>(false);
-  const toggleDropDown = () => {
+  const onDropDownHandler = () => {
     setShowDropDown(!showDropDown);
   };
 
@@ -61,7 +61,9 @@ const Navbar = () => {
             <Icon icon="pajamas:earth" />
           </Stack>
           <Button
-            onClick={toggleDropDown}
+            onClick={() => {
+              onDropDownHandler();
+            }}
             sx={{
               display: "flex",
               alignItems: "center",
@@ -76,7 +78,9 @@ const Navbar = () => {
               <Icon icon="ph:user-fill" color="white" />
             </Avatar>
           </Button>
-          {showDropDown && <UserButton />}
+          {showDropDown && (
+            <LoginDropDown onDropDownHandler={onDropDownHandler} />
+          )}
         </SearchContainer>
       </Stack>
       <Slidebar />
