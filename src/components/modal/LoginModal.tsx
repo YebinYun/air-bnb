@@ -17,24 +17,29 @@ const LoginModal = ({
   loginModal,
 }: props) => {
   const LOGIN_CHOICE = `${loginModal ? "로그인" : "회원가입"}하기`;
-  // const OauthLogin = [
-  //   {
-  //     site: "네이버",
-  //   },
-  //   {
-  //     site: "카카오",
-  //   },
-  //   {
-  //     site: "구글",
-  //   },
-  // ];
 
-  const onChangeHandler = (e) => {
-    console.log("e", e.target.name, e.target.value);
+  const [userName, setUserName] = useState<string>("");
+  const [userId, setUserId] = useState<string>("");
+  const [userPassword, setUserPw] = useState<string>("");
+
+  const saveUserNameHandler = (e) => {
+    setUserName(e.target.value);
+  };
+  const saveUserIdHandler = (e) => {
+    setUserId(e.target.value);
+  };
+  const saveUserPwHandler = (e) => {
+    setUserPw(e.target.value);
   };
 
   const onSubmitHandler = () => {
-    alert("입력된 값 출력될수 있게~~");
+    alert(
+      `
+      이름: [ ${userName} ]
+      아이디: [ ${userId} ] 
+      비밀번호: [ ${userPassword} ]`
+    );
+    console.log({ userName, userId, userPassword });
   };
 
   return (
@@ -103,7 +108,7 @@ const LoginModal = ({
                   label="이름"
                   name="userName"
                   variant="outlined"
-                  onChange={onChangeHandler}
+                  onChange={saveUserNameHandler}
                   sx={{ width: "25rem", marginBottom: "1rem" }}
                 />
               )}
@@ -112,16 +117,16 @@ const LoginModal = ({
                 label="아이디"
                 name="userId"
                 variant="outlined"
-                onChange={onChangeHandler}
+                onChange={saveUserIdHandler}
                 sx={{ width: "25rem", marginBottom: "1rem" }}
               />
               <TextField
                 id="outlined-basic"
                 label="비밀번호"
                 type="password"
-                name="password"
+                name="userPassword"
                 variant="outlined"
-                onChange={onChangeHandler}
+                onChange={saveUserPwHandler}
                 sx={{ width: "25rem", marginBottom: "1rem" }}
               />
               <ButtonContainer
@@ -131,6 +136,7 @@ const LoginModal = ({
                   width: "25rem",
                   padding: "1rem 0",
                 }}
+                onClick={onSubmitHandler}
               >
                 {LOGIN_CHOICE}
               </ButtonContainer>
@@ -173,13 +179,6 @@ const LoginModal = ({
               <ButtonContainer>카카오 {LOGIN_CHOICE}</ButtonContainer>
               <ButtonContainer>구글 {LOGIN_CHOICE}</ButtonContainer>
             </Box>
-            {/* <Box>
-              {OauthLogin.map((oauth, index) => {
-                <ButtonContainer key={index}>
-                  {oauth.site} {LOGIN_CHOICE}
-                </ButtonContainer>;
-              })}
-            </Box> */}
           </Box>
         </ModalContainer>
       </ModalBackground>
