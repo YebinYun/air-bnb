@@ -62,7 +62,6 @@ const LoginDropDown = ({ toggleDropDownHandler, closeDropDownMenu }: props) => {
       {(isLoginModal || isSignupModal) && (
         <LoginModal
           loginModalHandler={loginModalHandler}
-          signupModalHandler={signupModalHandler}
           closeModalHandler={closeModalHandler}
           loginModal={isLoginModal}
         />

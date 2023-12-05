@@ -5,14 +5,12 @@ import { Box, TextField, IconButton, Button, Link } from "@mui/material";
 
 interface props {
   loginModalHandler: () => void;
-  signupModalHandler: () => void;
   closeModalHandler: () => void;
   loginModal: boolean;
 }
 
 const LoginModal = ({
   loginModalHandler,
-  signupModalHandler,
   closeModalHandler,
   loginModal,
 }: props) => {
@@ -154,14 +152,14 @@ const LoginModal = ({
                     component="button"
                     sx={{ marginLeft: "0.5rem" }}
                     onClick={() => {
-                      signupModalHandler();
+                      loginModalHandler();
                     }}
                   >
                     회원가입
                   </Link>
                 </Box>
               ) : (
-                <Box>
+                <Box sx={{ marginTop: "1rem" }}>
                   이미 가입하셨나요?
                   <Link
                     component="button"
