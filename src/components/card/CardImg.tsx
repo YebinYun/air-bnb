@@ -8,11 +8,14 @@ interface props {
 
 const CardImg = ({ img }: props) => {
   return (
-    <Card sx={{ position: "relative", margin: "10px 0" }}>
+    <Card
+      sx={{
+        position: "relative",
+      }}
+    >
       {/* 이미지 */}
       <Box
         sx={{
-          background: "red",
           width: "15rem",
           height: "15rem",
         }}
