@@ -4,18 +4,32 @@ import styled from "@emotion/styled";
 import LoginModal from "./LoginModal";
 
 interface props {
-  onDropDownHandler: () => void;
+  toggleDropDownHandler: () => void;
+  closeDropDownMenu: () => void;
 }
 
-const LoginDropDown = ({ onDropDownHandler }: props) => {
-  const [showModal, setShowModal] = useState<boolean>(false);
-  const onModalHandler = () => {
-    console.log("@@showModal 1", showModal);
-    setShowModal(!showModal);
-    // onDropDownHandler();
-    console.log("@@showModal 2", showModal);
+const LoginDropDown = ({ toggleDropDownHandler, closeDropDownMenu }: props) => {
+  const [isLoginModal, setIsLoginModal] = useState<boolean>(false);
+  const [isSignupModal, setIsSignupModal] = useState<boolean>(false);
+
+  const loginModalHandler = () => {
+    setIsLoginModal(!isLoginModal);
   };
-  console.log("@@showModal 3", showModal);
+  const signupModalHandler = () => {
+    setIsSignupModal(!isSignupModal);
+  };
+  const closeModalHandler = () => {
+    setIsLoginModal(false);
+    setIsSignupModal(false);
+  };
+
+  // 혹시나... 클릭시 동시 발생되어서 안되나 싶어 만든 함수.. // 역시나 안됨..
+  // const clickLoginHandler = () => {
+  //   toggleDropDownHandler();
+  //   setTimeout(() => {
+  //     onModalHandler();
+  //   }, 200);
+  // };
 
   return (
     <DropdownContainer>
@@ -26,14 +40,33 @@ const LoginDropDown = ({ onDropDownHandler }: props) => {
         </ButtonItem>
       </ButtonWrap>
       <ButtonWrap>
-        <ButtonItem>회원가입</ButtonItem>
-        <ButtonItem onClick={onModalHandler}>로그인</ButtonItem>
+        <ButtonItem
+          onClick={() => {
+            signupModalHandler();
+          }}
+        >
+          회원가입
+        </ButtonItem>
+        <ButtonItem
+          onClick={() => {
+            loginModalHandler();
+          }}
+        >
+          로그인
+        </ButtonItem>
       </ButtonWrap>
       <ButtonWrap>
         <ButtonItem>당신의 공간을 에어비앤비하세요.</ButtonItem>
         <ButtonItem>도움말 센터</ButtonItem>
       </ButtonWrap>
-      {showModal && <LoginModal onModalHandler={onModalHandler} />}
+      {(isLoginModal || isSignupModal) && (
+        <LoginModal
+          loginModalHandler={loginModalHandler}
+          signupModalHandler={signupModalHandler}
+          closeModalHandler={closeModalHandler}
+          loginModal={isLoginModal}
+        />
+      )}
     </DropdownContainer>
   );
 };

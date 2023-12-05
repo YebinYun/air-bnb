@@ -7,9 +7,14 @@ import LoginDropDown from "@/components/modal/LoginDropDown";
 import Slidebar from "./Slidebar";
 
 const Navbar = () => {
-  const [showDropDown, setShowDropDown] = useState<boolean>(false);
-  const onDropDownHandler = () => {
-    setShowDropDown(!showDropDown);
+  const [toggleDropDown, setToggleDropDown] = useState<boolean>(false);
+
+  const toggleDropDownHandler = () => {
+    setToggleDropDown(!toggleDropDown);
+  };
+
+  const closeDropDownMenu = () => {
+    setToggleDropDown(false);
   };
 
   return (
@@ -20,7 +25,6 @@ const Navbar = () => {
         alignItems={"center"}
         justifyContent={"space-between"}
         margin={"2rem 0"}
-        zIndex={99999}
       >
         <Box sx={{ paddingRight: "6rem" }}>
           <Icon icon="logos:airbnb" width={"102px"} />
@@ -62,7 +66,7 @@ const Navbar = () => {
           </Stack>
           <Button
             onClick={() => {
-              onDropDownHandler();
+              toggleDropDownHandler();
             }}
             sx={{
               display: "flex",
@@ -78,8 +82,11 @@ const Navbar = () => {
               <Icon icon="ph:user-fill" color="white" />
             </Avatar>
           </Button>
-          {showDropDown && (
-            <LoginDropDown onDropDownHandler={onDropDownHandler} />
+          {toggleDropDown && (
+            <LoginDropDown
+              toggleDropDownHandler={toggleDropDownHandler}
+              closeDropDownMenu={closeDropDownMenu}
+            />
           )}
         </SearchContainer>
       </Stack>
