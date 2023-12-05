@@ -48,17 +48,22 @@ const LoginModal = ({
         <ModalContainer>
           <Box
             sx={{
+              position: "sticky",
+              top: "0",
+              right: "0",
+              background: "white",
               borderBottom: "1px solid lightgray",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              zIndex: 3,
             }}
           >
             <IconButton
+              sx={{ position: "absolute", right: " 1.5rem" }}
               onClick={() => {
                 closeModalHandler();
               }}
-              sx={{ position: "absolute", top: "1.5rem", right: "1.5rem" }}
             >
               <CloseIcon />
             </IconButton>
@@ -77,6 +82,8 @@ const LoginModal = ({
 
           <Box
             sx={{
+              width: "100%",
+              position: "absolute",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
