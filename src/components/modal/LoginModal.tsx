@@ -1,7 +1,15 @@
 import React, { useState, useRef } from "react";
 import { styled } from "@mui/system";
 import CloseIcon from "@mui/icons-material/Close";
-import { Box, TextField, IconButton, Button, Link } from "@mui/material";
+import {
+  Box,
+  TextField,
+  IconButton,
+  Button,
+  Link,
+  FormControlLabel,
+  Radio,
+} from "@mui/material";
 import { useKeywordHandler } from "./useKeywordHandler";
 
 // Handler를useHook으로 만들어보세요~
@@ -34,7 +42,7 @@ const LoginModal = ({
       loginModal
         ? `
       아이디: [ ${userData.userId} ] 
-      비밀번호: [ ${userData} ]`
+      비밀번호: [ ${userData.password} ]`
         : `
       이름: [ ${userData.userName} ]
       아이디: [ ${userData.userId} ] 
@@ -102,11 +110,16 @@ const LoginModal = ({
 
             {setting ? (
               <Box display={"flex"} flexDirection={"column"}>
+                {/* 인풋 텍스트*/}
                 <TextField label="이름" />
-                <TextField label="이름" />
-                <TextField label="이름" />
-                <TextField label="이름" />
-                <TextField label="이름" />
+                {/* 인풋 비밀번호 */}
+                <TextField type="password" label="비밀번호" />
+                {/* 셀렉트 */}
+                <TextField type="select" label="생년월일" />
+                {/* 체크박스 버튼 */}
+                <TextField label="성별" />
+                {/* 라디오 버튼 */}
+                <FormControlLabel control={<Radio />} label="개인정보 동의" />
               </Box>
             ) : (
               <Box

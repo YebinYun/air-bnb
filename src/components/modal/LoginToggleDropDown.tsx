@@ -49,8 +49,7 @@ const LoginToggleDropDown = ({
               settingModalHandler();
             }}
           >
-            겨울 업그레이드 기능
-            <Box>새소식</Box>
+            개인정보 입력하기
           </ButtonItem>
         </ButtonWrap>
         <ButtonWrap>
