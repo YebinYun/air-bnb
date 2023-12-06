@@ -23,7 +23,7 @@ const CardImg = ({ img }: props) => {
         <img
           src={img}
           alt="숙소 사진"
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          style={{ height: "100%", objectFit: "cover" }}
         />
       </Box>
 
