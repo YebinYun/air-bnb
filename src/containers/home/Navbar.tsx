@@ -97,7 +97,7 @@ const Navbar = () => {
 
 export default Navbar;
 
-const ReservationText = styled.span`
+const ReservationText = styled("span")`
   font-size: 0.8rem;
   font-weight: bold;
   &:last-child {

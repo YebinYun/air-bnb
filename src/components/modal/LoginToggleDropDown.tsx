@@ -22,9 +22,14 @@ const LoginToggleDropDown = ({
   const signupModalHandler = () => {
     setIsSignupModal(!isSignupModal);
   };
+  const settingModalHandler = () => {
+    setIsSetting(!isSetting);
+  };
+
   const closeModalHandler = () => {
     setIsLoginModal(false);
     setIsSignupModal(false);
+    setIsSetting(false);
   };
 
   // 혹시나... 클릭시 동시 발생되어서 안되나 싶어 만든 함수.. // 역시나 안됨..
@@ -39,7 +44,11 @@ const LoginToggleDropDown = ({
     <>
       <DropdownContainer>
         <ButtonWrap>
-          <ButtonItem>
+          <ButtonItem
+            onClick={() => {
+              settingModalHandler();
+            }}
+          >
             겨울 업그레이드 기능
             <Box>새소식</Box>
           </ButtonItem>
@@ -66,12 +75,13 @@ const LoginToggleDropDown = ({
           <ButtonItem>도움말 센터</ButtonItem>
         </ButtonWrap>
       </DropdownContainer>
-      {(isLoginModal || isSignupModal) && (
+      {(isLoginModal || isSignupModal || isSetting) && (
         <LoginModal
           loginModalHandler={loginModalHandler}
           signupModalHandler={signupModalHandler}
           closeModalHandler={closeModalHandler}
           loginModal={isLoginModal}
+          setting={isSetting}
         />
       )}
     </>

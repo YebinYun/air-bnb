@@ -39,7 +39,7 @@ const CardText = ({ location, score, view, day, price }: props) => {
 
 export default CardText;
 
-const Text = styled.span`
+const Text = styled("span")`
   font-size: 0.8rem;
 `;
 const BoldText = styled(Text)`

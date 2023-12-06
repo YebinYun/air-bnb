@@ -10,6 +10,7 @@ interface props {
   signupModalHandler: () => void;
   closeModalHandler: () => void;
   loginModal: boolean;
+  setting: boolean;
 }
 
 const LoginModal = ({
@@ -17,9 +18,12 @@ const LoginModal = ({
   signupModalHandler,
   closeModalHandler,
   loginModal,
+  setting,
 }: props) => {
   const { userData, handleOnChange } = useKeywordHandler();
-  const LOGIN_CHOICE = `${loginModal ? "로그인" : "회원가입"}하기`;
+  const LOGIN_CHOICE = `${
+    loginModal ? "로그인" : setting ? "개인정보 입력" : "회원가입"
+  }하기`;
   const loginChangeHandler = () => {
     "회원가입" && loginModalHandler();
     "로그인" && signupModalHandler();
@@ -95,83 +99,99 @@ const LoginModal = ({
             >
               에어비앤비에 오신 것을 환영합니다.
             </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                borderBottom: "1px solid lightgray",
-                paddingBottom: "2rem",
-              }}
-            >
-              {loginModal ? (
-                ""
-              ) : (
+
+            {setting ? (
+              <Box display={"flex"} flexDirection={"column"}>
+                <TextField label="이름" />
+                <TextField label="이름" />
+                <TextField label="이름" />
+                <TextField label="이름" />
+                <TextField label="이름" />
+              </Box>
+            ) : (
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  borderBottom: "1px solid lightgray",
+                  paddingBottom: "2rem",
+                }}
+              >
+                {loginModal ? (
+                  ""
+                ) : (
+                  <TextField
+                    id="outlined-basic"
+                    label="이름"
+                    name="userName"
+                    value={userData.userName}
+                    variant="outlined"
+                    onChange={handleOnChange}
+                    sx={{ width: "25rem", marginBottom: "1rem" }}
+                  />
+                )}
                 <TextField
                   id="outlined-basic"
-                  label="이름"
-                  name="userName"
-                  value={userData.userName}
+                  label="아이디"
+                  name="userId"
                   variant="outlined"
+                  value={userData.userId}
                   onChange={handleOnChange}
                   sx={{ width: "25rem", marginBottom: "1rem" }}
                 />
-              )}
-              <TextField
-                id="outlined-basic"
-                label="아이디"
-                name="userId"
-                variant="outlined"
-                value={userData.userId}
-                onChange={handleOnChange}
-                sx={{ width: "25rem", marginBottom: "1rem" }}
-              />
-              <TextField
-                id="outlined-basic"
-                label="비밀번호"
-                type="password"
-                name="password"
-                variant="outlined"
-                value={userData.password}
-                onChange={handleOnChange}
-                sx={{ width: "25rem", marginBottom: "1rem" }}
-              />
-              <ButtonContainer
-                sx={{
-                  border: "1px solid lightgray",
-                  background: "lightBlue",
-                  width: "25rem",
-                  padding: "1rem 0",
-                }}
-                onClick={onSubmitHandler}
-              >
-                {LOGIN_CHOICE}
-              </ButtonContainer>
-
-              <Box sx={{ marginTop: "1rem" }}>
-                {loginModal ? "계정이 없으신가요?" : "이미 가입하셨나요?"}
-                <Link
-                  component="button"
-                  sx={{ marginLeft: "0.5rem" }}
-                  onClick={() => {
-                    loginChangeHandler();
+                <TextField
+                  id="outlined-basic"
+                  label="비밀번호"
+                  type="password"
+                  name="password"
+                  variant="outlined"
+                  value={userData.password}
+                  onChange={handleOnChange}
+                  sx={{ width: "25rem", marginBottom: "1rem" }}
+                />
+                <ButtonContainer
+                  sx={{
+                    border: "1px solid lightgray",
+                    background: "lightBlue",
+                    width: "25rem",
+                    padding: "1rem 0",
                   }}
+                  onClick={onSubmitHandler}
                 >
-                  {loginModal ? "회원가입" : "로그인"}
-                </Link>
+                  {LOGIN_CHOICE}
+                </ButtonContainer>
+
+                <Box sx={{ marginTop: "1rem" }}>
+                  {loginModal ? "계정이 없으신가요?" : "이미 가입하셨나요?"}
+                  <Link
+                    component="button"
+                    sx={{ marginLeft: "0.5rem" }}
+                    onClick={() => {
+                      loginChangeHandler();
+                    }}
+                  >
+                    {loginModal ? "회원가입" : "로그인"}
+                  </Link>
+                </Box>
               </Box>
-            </Box>
-            <Box
-              sx={{
-                padding: "2rem 0",
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <ButtonContainer>네이버 {LOGIN_CHOICE}</ButtonContainer>
-              <ButtonContainer>카카오 {LOGIN_CHOICE}</ButtonContainer>
-              <ButtonContainer>구글 {LOGIN_CHOICE}</ButtonContainer>
-            </Box>
+            )}
+
+            {setting ? (
+              ""
+            ) : (
+              <Box
+                sx={{
+                  padding: "2rem 0",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <ButtonContainer>네이버 {LOGIN_CHOICE}</ButtonContainer>
+                <ButtonContainer>카카오 {LOGIN_CHOICE}</ButtonContainer>
+                <ButtonContainer>구글 {LOGIN_CHOICE}</ButtonContainer>
+              </Box>
+            )}
           </Box>
         </ModalContainer>
       </ModalBackground>
