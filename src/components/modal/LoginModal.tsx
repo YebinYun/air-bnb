@@ -5,12 +5,14 @@ import { Box, TextField, IconButton, Button, Link } from "@mui/material";
 
 interface props {
   loginModalHandler: () => void;
+  signupModalHandler: () => void;
   closeModalHandler: () => void;
   loginModal: boolean;
 }
 
 const LoginModal = ({
   loginModalHandler,
+  signupModalHandler,
   closeModalHandler,
   loginModal,
 }: props) => {
@@ -19,6 +21,11 @@ const LoginModal = ({
   const [userName, setUserName] = useState<string>("");
   const [userId, setUserId] = useState<string>("");
   const [userPassword, setUserPw] = useState<string>("");
+
+  const loginChangeHandler = () => {
+    "회원가입" && loginModalHandler();
+    "로그인" && signupModalHandler();
+  };
 
   const saveUserNameHandler = (e) => {
     setUserName(e.target.value);
@@ -32,12 +39,15 @@ const LoginModal = ({
 
   const onSubmitHandler = () => {
     alert(
-      `
+      loginModal
+        ? `
+      아이디: [ ${userId} ] 
+      비밀번호: [ ${userPassword} ]`
+        : `
       이름: [ ${userName} ]
       아이디: [ ${userId} ] 
       비밀번호: [ ${userPassword} ]`
     );
-    console.log({ userName, userId, userPassword });
   };
 
   return (
@@ -145,33 +155,19 @@ const LoginModal = ({
               >
                 {LOGIN_CHOICE}
               </ButtonContainer>
-              {loginModal ? (
-                <Box sx={{ marginTop: "1rem" }}>
-                  계정이 없으신가요?
-                  <Link
-                    component="button"
-                    sx={{ marginLeft: "0.5rem" }}
-                    onClick={() => {
-                      loginModalHandler();
-                    }}
-                  >
-                    회원가입
-                  </Link>
-                </Box>
-              ) : (
-                <Box sx={{ marginTop: "1rem" }}>
-                  이미 가입하셨나요?
-                  <Link
-                    component="button"
-                    sx={{ marginLeft: "0.5rem" }}
-                    onClick={() => {
-                      loginModalHandler();
-                    }}
-                  >
-                    로그인
-                  </Link>
-                </Box>
-              )}
+
+              <Box sx={{ marginTop: "1rem" }}>
+                {loginModal ? "계정이 없으신가요?" : "이미 가입하셨나요?"}
+                <Link
+                  component="button"
+                  sx={{ marginLeft: "0.5rem" }}
+                  onClick={() => {
+                    loginChangeHandler();
+                  }}
+                >
+                  {loginModal ? "회원가입" : "로그인"}
+                </Link>
+              </Box>
             </Box>
             <Box
               sx={{
@@ -209,7 +205,7 @@ const ModalContainer = styled(Box)`
   top: 50%;
   transform: translate(-50%, -50%);
   width: 40%;
-  height: 80%;
+  height: 90%;
   overflow-y: auto;
   background: white;
 `;
