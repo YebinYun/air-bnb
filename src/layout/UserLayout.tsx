@@ -2,8 +2,8 @@ import Footer from "@/containers/home/Footer";
 import React from "react";
 import { Card } from "@mui/material";
 import { styled } from "@mui/system";
-import CardWrap from "@/containers/home/CardWrap";
-import Navbar from "@/containers/home/Navbar";
+import CardWrap from "@/containers/CardWrap";
+import Navbar from "@/containers/Navbar";
 
 const UserLayout = () => {
   return (

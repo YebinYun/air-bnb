@@ -9,15 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.1",
     "@mui/icons-material": "^5.14.19",
     "@mui/material": "^5.14.19",
     "@mui/styled-engine-sc": "^6.0.0-alpha.7",
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18",
-    "react-hook-form": "^7.48.2",
-    "styled-components": "^6.1.1"
+    "react-hook-form": "^7.48.2"
   },
   "devDependencies": {
     "@iconify/react": "^4.1.1",

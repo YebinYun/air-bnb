@@ -1,8 +1,8 @@
 import React from "react";
 import Background from "@/layout/Background";
-import CardImg from "../../components/card/CardImg";
-import CardText from "../../components/card/CardText";
-import { data } from "../../utils/dummy/location";
+import CardImg from "../components/card/CardImg";
+import CardText from "../components/card/CardText";
+import { data } from "../utils/dummy/location";
 import { Card, Box } from "@mui/material";
 import { styled } from "@mui/system";
 

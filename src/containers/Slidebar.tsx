@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { styled } from "@mui/system";
-import { iconData } from "../../utils/dummy/Icon";
+import { iconData } from "../utils/dummy/Icon";
 import { Box, Stack, Tabs, Tab } from "@mui/material";
 import FilterListIcon from "@mui/icons-material/FilterList";
 
