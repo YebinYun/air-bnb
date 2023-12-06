@@ -33,7 +33,7 @@ const CardImg = ({ img }: props) => {
         sx={{
           position: "absolute",
           top: "0.5rem",
-          left: "11rem",
+          right: "0",
           color: "black",
         }}>
         <Icon icon="ph:heart-duotone" width={"1.5rem"} />
