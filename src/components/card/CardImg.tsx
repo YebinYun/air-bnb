@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { Box, Button, Card } from "@mui/material";
 import { Icon } from "@iconify/react";
 
@@ -11,19 +12,19 @@ const CardImg = ({ img }: props) => {
     <Card
       sx={{
         position: "relative",
-      }}
-    >
+      }}>
       {/* 이미지 */}
       <Box
         sx={{
           width: "15rem",
           height: "15rem",
-        }}
-      >
-        <img
+        }}>
+        <Image
           src={img}
           alt="숙소 사진"
-          style={{ height: "100%", objectFit: "cover" }}
+          width={300}
+          height={300}
+          style={{ objectFit: "cover" }}
         />
       </Box>
 
@@ -34,8 +35,7 @@ const CardImg = ({ img }: props) => {
           top: "0.5rem",
           left: "11rem",
           color: "black",
-        }}
-      >
+        }}>
         <Icon icon="ph:heart-duotone" width={"1.5rem"} />
         {/* <Icon icon="ph:heart-fill" width={"1.5rem"} /> */}
       </Button>
