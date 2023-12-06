@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Icon } from "@iconify/react";
 import { Avatar, Box, Button, Stack } from "@mui/material";
-import styled from "@emotion/styled";
+import { styled } from "@mui/system";
 import Background from "@/layout/Background";
 import LoginToggleDropDown from "@/components/modal/LoginToggleDropDown";
 import Slidebar from "./Slidebar";

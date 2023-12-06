@@ -4,7 +4,7 @@ import CardImg from "../../components/card/CardImg";
 import CardText from "../../components/card/CardText";
 import { data } from "../../utils/dummy/location";
 import { Card, Box } from "@mui/material";
-import styled from "@emotion/styled";
+import { styled } from "@mui/system";
 
 const CardWrap = () => {
   return (

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, Button } from "@mui/material";
-import styled from "@emotion/styled";
+import { styled } from "@mui/system";
 import LoginModal from "./LoginModal";
 
 interface props {
@@ -14,6 +14,7 @@ const LoginToggleDropDown = ({
 }: props) => {
   const [isLoginModal, setIsLoginModal] = useState<boolean>(false);
   const [isSignupModal, setIsSignupModal] = useState<boolean>(false);
+  const [isSetting, setIsSetting] = useState<boolean>(false);
 
   const loginModalHandler = () => {
     setIsLoginModal(!isLoginModal);

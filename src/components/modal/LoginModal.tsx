@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useState, useRef } from "react";
+import { styled } from "@mui/system";
 import CloseIcon from "@mui/icons-material/Close";
 import { Box, TextField, IconButton, Button, Link } from "@mui/material";
+import { useKeywordHandler } from "./useKeywordHandler";
 
+// Handler를useHook으로 만들어보세요~
 interface props {
   loginModalHandler: () => void;
   signupModalHandler: () => void;
@@ -16,38 +18,25 @@ const LoginModal = ({
   closeModalHandler,
   loginModal,
 }: props) => {
+  const { userData, handleOnChange } = useKeywordHandler();
   const LOGIN_CHOICE = `${loginModal ? "로그인" : "회원가입"}하기`;
-
-  const [userName, setUserName] = useState<string>("");
-  const [userId, setUserId] = useState<string>("");
-  const [userPassword, setUserPw] = useState<string>("");
-
   const loginChangeHandler = () => {
     "회원가입" && loginModalHandler();
     "로그인" && signupModalHandler();
-  };
-
-  const saveUserNameHandler = (e) => {
-    setUserName(e.target.value);
-  };
-  const saveUserIdHandler = (e) => {
-    setUserId(e.target.value);
-  };
-  const saveUserPwHandler = (e) => {
-    setUserPw(e.target.value);
   };
 
   const onSubmitHandler = () => {
     alert(
       loginModal
         ? `
-      아이디: [ ${userId} ] 
-      비밀번호: [ ${userPassword} ]`
+      아이디: [ ${userData.userId} ] 
+      비밀번호: [ ${userData} ]`
         : `
-      이름: [ ${userName} ]
-      아이디: [ ${userId} ] 
-      비밀번호: [ ${userPassword} ]`
+      이름: [ ${userData.userName} ]
+      아이디: [ ${userData.userId} ] 
+      비밀번호: [ ${userData.password} ]`
     );
+    return;
   };
 
   return (
@@ -122,8 +111,9 @@ const LoginModal = ({
                   id="outlined-basic"
                   label="이름"
                   name="userName"
+                  value={userData.userName}
                   variant="outlined"
-                  onChange={saveUserNameHandler}
+                  onChange={handleOnChange}
                   sx={{ width: "25rem", marginBottom: "1rem" }}
                 />
               )}
@@ -132,16 +122,18 @@ const LoginModal = ({
                 label="아이디"
                 name="userId"
                 variant="outlined"
-                onChange={saveUserIdHandler}
+                value={userData.userId}
+                onChange={handleOnChange}
                 sx={{ width: "25rem", marginBottom: "1rem" }}
               />
               <TextField
                 id="outlined-basic"
                 label="비밀번호"
                 type="password"
-                name="userPassword"
+                name="password"
                 variant="outlined"
-                onChange={saveUserPwHandler}
+                value={userData.password}
+                onChange={handleOnChange}
                 sx={{ width: "25rem", marginBottom: "1rem" }}
               />
               <ButtonContainer

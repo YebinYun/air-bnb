@@ -1,7 +1,7 @@
 import Footer from "@/containers/home/Footer";
 import React from "react";
 import { Card } from "@mui/material";
-import styled from "@emotion/styled";
+import { styled } from "@mui/system";
 import CardWrap from "@/containers/home/CardWrap";
 import Navbar from "@/containers/home/Navbar";
 
