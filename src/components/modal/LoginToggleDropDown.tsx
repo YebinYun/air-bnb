@@ -5,10 +5,13 @@ import LoginModal from "./LoginModal";
 
 interface props {
   toggleDropDownHandler: () => void;
-  closeDropDownMenu: () => void;
+  closeDropDownHandler: () => void;
 }
 
-const LoginDropDown = ({ toggleDropDownHandler, closeDropDownMenu }: props) => {
+const LoginToggleDropDown = ({
+  toggleDropDownHandler,
+  closeDropDownHandler,
+}: props) => {
   const [isLoginModal, setIsLoginModal] = useState<boolean>(false);
   const [isSignupModal, setIsSignupModal] = useState<boolean>(false);
 
@@ -32,33 +35,36 @@ const LoginDropDown = ({ toggleDropDownHandler, closeDropDownMenu }: props) => {
   // };
 
   return (
-    <DropdownContainer>
-      <ButtonWrap>
-        <ButtonItem>
-          겨울 업그레이드 기능
-          <Box>새소식</Box>
-        </ButtonItem>
-      </ButtonWrap>
-      <ButtonWrap>
-        <ButtonItem
-          onClick={() => {
-            signupModalHandler();
-          }}
-        >
-          회원가입
-        </ButtonItem>
-        <ButtonItem
-          onClick={() => {
-            loginModalHandler();
-          }}
-        >
-          로그인
-        </ButtonItem>
-      </ButtonWrap>
-      <ButtonWrap>
-        <ButtonItem>당신의 공간을 에어비앤비하세요.</ButtonItem>
-        <ButtonItem>도움말 센터</ButtonItem>
-      </ButtonWrap>
+    <>
+      <DropdownContainer>
+        <ButtonWrap>
+          <ButtonItem>
+            겨울 업그레이드 기능
+            <Box>새소식</Box>
+          </ButtonItem>
+        </ButtonWrap>
+        <ButtonWrap>
+          <ButtonItem
+            onClick={() => {
+              signupModalHandler();
+            }}
+          >
+            회원가입
+          </ButtonItem>
+          <ButtonItem
+            onClick={() => {
+              loginModalHandler();
+              // closeDropDownHandler();
+            }}
+          >
+            로그인
+          </ButtonItem>
+        </ButtonWrap>
+        <ButtonWrap>
+          <ButtonItem>당신의 공간을 에어비앤비하세요.</ButtonItem>
+          <ButtonItem>도움말 센터</ButtonItem>
+        </ButtonWrap>
+      </DropdownContainer>
       {(isLoginModal || isSignupModal) && (
         <LoginModal
           loginModalHandler={loginModalHandler}
@@ -67,18 +73,18 @@ const LoginDropDown = ({ toggleDropDownHandler, closeDropDownMenu }: props) => {
           loginModal={isLoginModal}
         />
       )}
-    </DropdownContainer>
+    </>
   );
 };
 
-export default LoginDropDown;
+export default LoginToggleDropDown;
 
 const DropdownContainer = styled(Box)`
   width: 16rem;
   background: white;
   position: absolute;
-  top: 2.5rem;
-  right: 0;
+  top: 5rem;
+  right: 5%;
   display: flex;
   flex-direction: column;
   border: 1px solid lightgray;
@@ -104,3 +110,29 @@ const ButtonItem = styled(Button)`
     padding-left: 0.5rem;
   }
 `;
+
+// Pages - 초기 상태값 받는 용도로만 사용하고..\
+// <NewsHead  />
+// <NewsBodyContainer  />
+
+// Container - UI제외 모든 ~
+// export const NewsHeadContainer = () => {
+// const [ isLoading, setIsLoading ] = useState(false)
+// const toggler = () => { setIsLoading(!isLoading )}
+// return (
+// <div>
+//    <NewsHeadComponent toggler={toggler} />
+//  </div)
+//  }
+
+// Component - UI만 담당하는 폴더
+//
+// export const NewsHeadComponent = ({ toggler }) => {
+//  return (
+//    <div>
+
+//    </div>
+//  )
+// }
+
+// code splitting!

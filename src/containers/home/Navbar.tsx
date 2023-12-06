@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react";
 import { Avatar, Box, Button, Stack } from "@mui/material";
 import styled from "@emotion/styled";
 import Background from "@/layout/Background";
-import LoginDropDown from "@/components/modal/LoginDropDown";
+import LoginToggleDropDown from "@/components/modal/LoginToggleDropDown";
 import Slidebar from "./Slidebar";
 
 const Navbar = () => {
@@ -13,7 +13,7 @@ const Navbar = () => {
     setToggleDropDown(!toggleDropDown);
   };
 
-  const closeDropDownMenu = () => {
+  const closeDropDownHandler = () => {
     setToggleDropDown(false);
   };
 
@@ -82,15 +82,15 @@ const Navbar = () => {
               <Icon icon="ph:user-fill" color="white" />
             </Avatar>
           </Button>
-          {toggleDropDown && (
-            <LoginDropDown
-              toggleDropDownHandler={toggleDropDownHandler}
-              closeDropDownMenu={closeDropDownMenu}
-            />
-          )}
         </SearchContainer>
       </Stack>
       <Slidebar />
+      {toggleDropDown && (
+        <LoginToggleDropDown
+          toggleDropDownHandler={toggleDropDownHandler}
+          closeDropDownHandler={closeDropDownHandler}
+        />
+      )}
     </Background>
   );
 };
