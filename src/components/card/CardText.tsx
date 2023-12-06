@@ -12,7 +12,7 @@ interface props {
 
 const CardText = ({ location, score, view, day, price }: props) => {
   return (
-    <Stack>
+    <Stack sx={{ margin: "0.8rem 0.2rem" }}>
       {/* 나라+지역 / 별점 */}
       <SpacingStack spacing={"auto"} direction={"row"}>
         <BoldText> {location} </BoldText>
