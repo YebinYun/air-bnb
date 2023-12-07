@@ -5,7 +5,6 @@ import { Box, TextField, IconButton, Button, Link } from "@mui/material";
 import { inputContainer } from "./userData";
 import { useKeywordHandler } from "./useKeywordHandler";
 
-// Handler를useHook으로 만들어보세요~
 interface props {
   loginModalHandler: () => void;
   signupModalHandler: () => void;

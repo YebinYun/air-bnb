@@ -32,9 +32,9 @@ interface KeywordHandlerProps {
 }
 
 interface UserDataProps {
-  userId: string;
+  userId?: string;
   userName?: string;
-  password?: string;
+  password: string;
   userTel?: string;
   userDate?: string;
   userEmail?: string;
@@ -62,6 +62,20 @@ export const useKeywordHandler = ({
       ...userData,
       [e.target.name]: [e.target.value],
     });
+
+    // if(e.target.type !== "checkbox") {
+    //   return {
+    //     setUserData({
+    //       ...userData,
+    //       [e.target.name]: [e.target.value],
+    //     });u
+    //   }
+    // } else {
+    //   if(e.target.checked) {
+    //     set ----[e.target.name] = true
+    //   } else
+    //   false
+    // }
   };
 
   const onSubmitHandler = () => {
@@ -90,6 +104,7 @@ export const useKeywordHandler = ({
           비밀번호:  ${userData.password} 
         `
         );
+    handleOnChange("");
   };
   return { userData, handleOnChange, onSubmitHandler };
 };

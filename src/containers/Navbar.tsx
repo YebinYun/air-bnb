@@ -5,6 +5,7 @@ import { styled } from "@mui/system";
 import Background from "@/layout/Background";
 import LoginToggleDropDown from "@/components/modal/LoginToggleDropDown";
 import Slidebar from "./Slidebar";
+import Fun from "./Fun";
 
 const Navbar = () => {
   const [toggleDropDown, setToggleDropDown] = useState<boolean>(false);
@@ -26,9 +27,10 @@ const Navbar = () => {
         justifyContent={"space-between"}
         margin={"2rem 0"}
       >
-        <Box sx={{ paddingRight: "6rem" }}>
-          <Icon icon="logos:airbnb" width={"102px"} />
+        <Box>
+          <Fun />
         </Box>
+
         <Button
           sx={{
             display: "flex",
