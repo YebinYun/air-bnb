@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Box, Button } from "@mui/material";
 import { styled } from "@mui/system";
 import LoginModal from "./LoginModal";
-
 interface props {
   toggleDropDownHandler: () => void;
   closeDropDownHandler: () => void;

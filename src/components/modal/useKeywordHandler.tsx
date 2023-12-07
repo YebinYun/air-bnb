@@ -1,6 +1,4 @@
-import { TextField } from "@mui/material";
 import React, { useState } from "react";
-
 // type NameType = string
 // type AgeType = number
 
@@ -28,19 +26,35 @@ import React, { useState } from "react";
 
 // console.log('list', list)
 
+interface KeywordHandlerProps {
+  loginModal: boolean;
+  setting: boolean;
+}
+
 interface UserDataProps {
   userId: string;
   userName?: string;
-  password: string;
+  password?: string;
+  userTel?: string;
+  userDate?: string;
+  userEmail?: string;
+  userCheck: boolean;
 }
 
 const initUserData = {
   userId: "",
   userName: "",
+  userTel: "",
+  userDate: "",
+  userEmail: "",
   password: "",
+  userCheck: false,
 };
 
-export const useKeywordHandler = () => {
+export const useKeywordHandler = ({
+  loginModal,
+  setting,
+}: KeywordHandlerProps) => {
   const [userData, setUserData] = useState<UserDataProps>(initUserData);
 
   const handleOnChange = (e: any) => {
@@ -50,7 +64,34 @@ export const useKeywordHandler = () => {
     });
   };
 
-  return { userData, handleOnChange };
+  const onSubmitHandler = () => {
+    loginModal
+      ? alert(
+          `
+        아이디:  ${userData.userId} 
+        비밀번호:  ${userData.password} 
+      `
+        )
+      : setting
+      ? alert(
+          `
+      이름:  ${userData.userName} 
+      연락처: ${userData.userTel}
+      생년월일: ${userData.userDate}
+      이메일: ${userData.userEmail}
+      비밀번호:  ${userData.password} 
+      개인정보 동의: ${userData.userCheck ? "YES" : "NO"}
+    `
+        )
+      : alert(
+          `
+          이름:  ${userData.userName}
+          아이디:  ${userData.userId} 
+          비밀번호:  ${userData.password} 
+        `
+        );
+  };
+  return { userData, handleOnChange, onSubmitHandler };
 };
 
 // keylogger ==> 키 입력값을 저장.. => localStorage, sessionStorage =>

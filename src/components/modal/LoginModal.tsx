@@ -1,15 +1,8 @@
 import React, { useState, useRef } from "react";
 import { styled } from "@mui/system";
 import CloseIcon from "@mui/icons-material/Close";
-import {
-  Box,
-  TextField,
-  IconButton,
-  Button,
-  Link,
-  FormControlLabel,
-  Radio,
-} from "@mui/material";
+import { Box, TextField, IconButton, Button, Link } from "@mui/material";
+import { inputContainer } from "./userData";
 import { useKeywordHandler } from "./useKeywordHandler";
 
 // Handler를useHook으로 만들어보세요~
@@ -28,27 +21,22 @@ const LoginModal = ({
   loginModal,
   setting,
 }: props) => {
-  const { userData, handleOnChange } = useKeywordHandler();
+  const { userData, handleOnChange, onSubmitHandler } = useKeywordHandler({
+    loginModal,
+    setting,
+  });
+
   const LOGIN_CHOICE = `${
-    loginModal ? "로그인" : setting ? "개인정보 입력" : "회원가입"
+    loginModal ? "로그인" : setting ? "내 정보 입력" : "회원가입"
   }하기`;
   const loginChangeHandler = () => {
     "회원가입" && loginModalHandler();
     "로그인" && signupModalHandler();
   };
 
-  const onSubmitHandler = () => {
-    alert(
-      loginModal
-        ? `
-      아이디: [ ${userData.userId} ] 
-      비밀번호: [ ${userData.password} ]`
-        : `
-      이름: [ ${userData.userName} ]
-      아이디: [ ${userData.userId} ] 
-      비밀번호: [ ${userData.password} ]`
-    );
-    return;
+  const [userInformation, setUserInformation] = useState();
+  const userInputHandler = (e: any) => {
+    setUserInformation(e.target.value);
   };
 
   return (
@@ -109,17 +97,37 @@ const LoginModal = ({
             </Box>
 
             {setting ? (
-              <Box display={"flex"} flexDirection={"column"}>
-                {/* 인풋 텍스트*/}
-                <TextField label="이름" />
-                {/* 인풋 비밀번호 */}
-                <TextField type="password" label="비밀번호" />
-                {/* 셀렉트 */}
-                <TextField type="select" label="생년월일" />
-                {/* 체크박스 버튼 */}
-                <TextField label="성별" />
-                {/* 라디오 버튼 */}
-                <FormControlLabel control={<Radio />} label="개인정보 동의" />
+              <Box>
+                <Box
+                  display={"flex"}
+                  flexDirection={"column"}
+                  width={"30vw"}
+                  marginBottom={"2rem"}
+                  padding={"0 2rem"}
+                >
+                  {inputContainer.map((item, index) => (
+                    <InputBox key={index}>
+                      <InputTitle>{item.title}</InputTitle>
+                      <TextField
+                        onChange={handleOnChange}
+                        type={item.type}
+                        name={item.prop}
+                        sx={{ width: "100%", marginTop: "0.5rem" }}
+                      />
+                    </InputBox>
+                  ))}
+                  <Button
+                    sx={{
+                      margin: "1rem",
+                      padding: "1rem",
+                      border: "1px solid lightgray",
+                      background: "lightblue",
+                    }}
+                    onClick={onSubmitHandler}
+                  >
+                    저장하기
+                  </Button>
+                </Box>
               </Box>
             ) : (
               <Box
@@ -242,4 +250,13 @@ const ButtonContainer = styled(Button)`
   font-weight: bold;
   border: 1px solid lightgray;
   margin: 0.5rem 0;
+`;
+
+const InputBox = styled(Box)`
+  margin: 1rem;
+`;
+
+const InputTitle = styled("span")`
+  font-size: 1rem;
+  font-weight: bold;
 `;
