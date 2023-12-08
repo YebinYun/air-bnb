@@ -27,9 +27,9 @@ const Navbar = () => {
         justifyContent={"space-between"}
         margin={"2rem 0"}
       >
-        <Box>
+        <Logo>
           <Fun />
-        </Box>
+        </Logo>
 
         <Button
           sx={{
@@ -40,26 +40,13 @@ const Navbar = () => {
             color: "black",
           }}
         >
-          <Box>
-            <ReservationText>어디든지</ReservationText>
-            <ReservationCenterText>언제든 일주일</ReservationCenterText>
-            <ReservationText>게스트 추가</ReservationText>
-          </Box>
-          <Box
-            sx={{
-              background: "red",
-              borderRadius: "100%",
-              padding: "0.2rem",
-              width: "25px",
-              height: "25px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              marginLeft: "1rem",
-            }}
-          >
+          <ReservationText>어디든지</ReservationText>
+          <ReservationCenterText>언제든 일주일</ReservationCenterText>
+          <ReservationText>게스트 추가</ReservationText>
+
+          <SearchButton>
             <Icon icon="ri:search-line" color="white" width={"15px"} />
-          </Box>
+          </SearchButton>
         </Button>
         <SearchContainer>
           <Stack spacing={4} direction="row" marginRight={"2rem"}>
@@ -84,22 +71,28 @@ const Navbar = () => {
               <Icon icon="ph:user-fill" color="white" />
             </Avatar>
           </Button>
+          <OnLoginToggleDropDown
+            toggleDropDownHandler={toggleDropDownHandler}
+            closeDropDownHandler={closeDropDownHandler}
+          />
         </SearchContainer>
       </Stack>
+
       <Slidebar />
-      {toggleDropDown && (
+
+      {/* {toggleDropDown && (
         <LoginToggleDropDown
           toggleDropDownHandler={toggleDropDownHandler}
           closeDropDownHandler={closeDropDownHandler}
         />
-      )}
+      )} */}
     </Background>
   );
 };
 
 export default Navbar;
 
-const ReservationText = styled("span")`
+const ReservationText = styled(Box)`
   font-size: 0.8rem;
   font-weight: bold;
   &:last-child {
@@ -119,4 +112,24 @@ const SearchContainer = styled(Stack)`
   flex-direction: row;
   align-items: center;
   position: relative;
+`;
+
+const Logo = styled(Box)`
+  height: 2rem;
+`;
+
+const SearchButton = styled(Box)`
+  background: red;
+  border-radius: 100%;
+  padding: 0.2rem;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1rem;
+`;
+
+const OnLoginToggleDropDown = styled(LoginToggleDropDown)`
+  display: none;
 `;

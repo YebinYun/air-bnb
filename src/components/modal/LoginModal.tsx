@@ -42,19 +42,7 @@ const LoginModal = ({
     <>
       <ModalBackground>
         <ModalContainer>
-          <Box
-            sx={{
-              position: "sticky",
-              top: "0",
-              right: "0",
-              background: "white",
-              borderBottom: "1px solid lightgray",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              zIndex: 3,
-            }}
-          >
+          <TitleText>
             <IconButton
               sx={{ position: "absolute", right: " 1.5rem" }}
               onClick={() => {
@@ -74,7 +62,7 @@ const LoginModal = ({
             >
               {LOGIN_CHOICE}
             </Box>
-          </Box>
+          </TitleText>
 
           <Box
             sx={{
@@ -201,11 +189,9 @@ const LoginModal = ({
               ""
             ) : (
               <Box
-                sx={{
-                  padding: "2rem 0",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
+                display={"flex"}
+                flexDirection={"column"}
+                alignContent={"center"}
               >
                 <ButtonContainer>네이버 {LOGIN_CHOICE}</ButtonContainer>
                 <ButtonContainer>카카오 {LOGIN_CHOICE}</ButtonContainer>
@@ -240,6 +226,18 @@ const ModalContainer = styled(Box)`
   height: 90%;
   overflow-y: auto;
   background: white;
+`;
+
+const TitleText = styled(Box)`
+  position: sticky;
+  top: 0;
+  right: 0;
+  background: white;
+  border-bottom: 1px solid lightgray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
 `;
 
 const ButtonContainer = styled(Button)`

@@ -31,14 +31,6 @@ const LoginToggleDropDown = ({
     setIsSetting(false);
   };
 
-  // 혹시나... 클릭시 동시 발생되어서 안되나 싶어 만든 함수.. // 역시나 안됨..
-  // const clickLoginHandler = () => {
-  //   toggleDropDownHandler();
-  //   setTimeout(() => {
-  //     onModalHandler();
-  //   }, 200);
-  // };
-
   return (
     <>
       <DropdownContainer>
@@ -62,7 +54,6 @@ const LoginToggleDropDown = ({
           <ButtonItem
             onClick={() => {
               loginModalHandler();
-              // closeDropDownHandler();
             }}
           >
             로그인
@@ -92,9 +83,9 @@ const DropdownContainer = styled(Box)`
   width: 16rem;
   background: white;
   position: absolute;
-  top: 5rem;
-  right: 5%;
-  display: flex;
+  top: 2.5rem;
+  right: 0rem;
+  display: block;
   flex-direction: column;
   border: 1px solid lightgray;
   border-radius: 15px;
