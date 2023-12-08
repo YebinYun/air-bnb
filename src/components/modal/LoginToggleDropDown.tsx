@@ -2,15 +2,9 @@ import React, { useState } from "react";
 import { Box, Button } from "@mui/material";
 import { styled } from "@mui/system";
 import LoginModal from "./LoginModal";
-interface props {
-  toggleDropDownHandler: () => void;
-  closeDropDownHandler: () => void;
-}
+interface props {}
 
-const LoginToggleDropDown = ({
-  toggleDropDownHandler,
-  closeDropDownHandler,
-}: props) => {
+const LoginToggleDropDown = () => {
   const [isLoginModal, setIsLoginModal] = useState<boolean>(false);
   const [isSignupModal, setIsSignupModal] = useState<boolean>(false);
   const [isSetting, setIsSetting] = useState<boolean>(false);
@@ -85,7 +79,7 @@ const DropdownContainer = styled(Box)`
   position: absolute;
   top: 2.5rem;
   right: 0rem;
-  display: block;
+  display: flex;
   flex-direction: column;
   border: 1px solid lightgray;
   border-radius: 15px;

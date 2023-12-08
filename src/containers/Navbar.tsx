@@ -8,16 +8,6 @@ import Slidebar from "./Slidebar";
 import Fun from "./Fun";
 
 const Navbar = () => {
-  const [toggleDropDown, setToggleDropDown] = useState<boolean>(false);
-
-  const toggleDropDownHandler = () => {
-    setToggleDropDown(!toggleDropDown);
-  };
-
-  const closeDropDownHandler = () => {
-    setToggleDropDown(false);
-  };
-
   return (
     <Background>
       <Stack
@@ -54,9 +44,6 @@ const Navbar = () => {
             <Icon icon="pajamas:earth" />
           </Stack>
           <Button
-            onClick={() => {
-              toggleDropDownHandler();
-            }}
             sx={{
               display: "flex",
               alignItems: "center",
@@ -70,22 +57,12 @@ const Navbar = () => {
             <Avatar sx={{ marginLeft: "1rem", width: "25px", height: "25px" }}>
               <Icon icon="ph:user-fill" color="white" />
             </Avatar>
+            <LoginToggleDropDown />
           </Button>
-          <OnLoginToggleDropDown
-            toggleDropDownHandler={toggleDropDownHandler}
-            closeDropDownHandler={closeDropDownHandler}
-          />
         </SearchContainer>
       </Stack>
 
       <Slidebar />
-
-      {/* {toggleDropDown && (
-        <LoginToggleDropDown
-          toggleDropDownHandler={toggleDropDownHandler}
-          closeDropDownHandler={closeDropDownHandler}
-        />
-      )} */}
     </Background>
   );
 };
@@ -112,6 +89,9 @@ const SearchContainer = styled(Stack)`
   flex-direction: row;
   align-items: center;
   position: relative;
+  > Button:hover {
+    display: block;
+  }
 `;
 
 const Logo = styled(Box)`
@@ -128,8 +108,4 @@ const SearchButton = styled(Box)`
   justify-content: center;
   align-items: center;
   margin-left: 1rem;
-`;
-
-const OnLoginToggleDropDown = styled(LoginToggleDropDown)`
-  display: none;
 `;
