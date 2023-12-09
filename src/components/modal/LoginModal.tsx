@@ -47,8 +47,7 @@ const LoginModal = ({
               sx={{ position: "absolute", right: " 1.5rem" }}
               onClick={() => {
                 closeModalHandler();
-              }}
-            >
+              }}>
               <CloseIcon />
             </IconButton>
             <Box
@@ -58,8 +57,7 @@ const LoginModal = ({
                 padding: "2rem 0",
                 width: "100%",
                 justifyContent: "center",
-              }}
-            >
+              }}>
               {LOGIN_CHOICE}
             </Box>
           </TitleText>
@@ -71,27 +69,25 @@ const LoginModal = ({
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-            }}
-          >
+            }}>
             <Box
               sx={{
                 fontSize: "1.5rem",
                 fontWeight: "bold",
                 margin: "3rem 0 ",
-              }}
-            >
+              }}>
               에어비앤비에 오신 것을 환영합니다.
             </Box>
 
             {setting ? (
               <Box>
                 <Box
-                  display={"flex"}
-                  flexDirection={"column"}
-                  width={"30vw"}
-                  marginBottom={"2rem"}
-                  padding={"0 2rem"}
-                >
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: "30vw",
+                    marginBottom: "2rem",padding:"0 2rem"
+                  }}>
                   {inputContainer.map((item, index) => (
                     <InputBox key={index}>
                       <InputTitle>{item.title}</InputTitle>
@@ -110,8 +106,7 @@ const LoginModal = ({
                       border: "1px solid lightgray",
                       background: "lightblue",
                     }}
-                    onClick={onSubmitHandler}
-                  >
+                    onClick={onSubmitHandler}>
                     저장하기
                   </Button>
                 </Box>
@@ -124,8 +119,7 @@ const LoginModal = ({
                   alignItems: "center",
                   borderBottom: "1px solid lightgray",
                   paddingBottom: "2rem",
-                }}
-              >
+                }}>
                 {loginModal ? (
                   ""
                 ) : (
@@ -165,8 +159,7 @@ const LoginModal = ({
                     width: "25rem",
                     padding: "1rem 0",
                   }}
-                  onClick={onSubmitHandler}
-                >
+                  onClick={onSubmitHandler}>
                   {LOGIN_CHOICE}
                 </ButtonContainer>
 
@@ -177,8 +170,7 @@ const LoginModal = ({
                     sx={{ marginLeft: "0.5rem" }}
                     onClick={() => {
                       loginChangeHandler();
-                    }}
-                  >
+                    }}>
                     {loginModal ? "회원가입" : "로그인"}
                   </Link>
                 </Box>
@@ -191,8 +183,7 @@ const LoginModal = ({
               <Box
                 display={"flex"}
                 flexDirection={"column"}
-                alignContent={"center"}
-              >
+                alignContent={"center"}>
                 <ButtonContainer>네이버 {LOGIN_CHOICE}</ButtonContainer>
                 <ButtonContainer>카카오 {LOGIN_CHOICE}</ButtonContainer>
                 <ButtonContainer>구글 {LOGIN_CHOICE}</ButtonContainer>

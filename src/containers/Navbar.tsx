@@ -5,7 +5,7 @@ import { styled } from "@mui/system";
 import Background from "@/layout/Background";
 import LoginToggleDropDown from "@/components/modal/LoginToggleDropDown";
 import Slidebar from "./Slidebar";
-import Fun from "./Fun";
+// import Fun from "./Fun";
 
 const Navbar = () => {
   return (
@@ -18,7 +18,7 @@ const Navbar = () => {
         margin={"2rem 0"}
       >
         <Logo>
-          <Fun />
+          {/* <Fun /> */}
         </Logo>
 
         <Button
