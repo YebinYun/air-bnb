@@ -1,4 +1,3 @@
-import Footer from "@/containers/home/Footer";
 import React from "react";
 import { Card } from "@mui/material";
 import { styled } from "@mui/system";
@@ -10,7 +9,6 @@ const UserLayout = () => {
     <PageContainer>
       <Navbar />
       <CardWrap />
-      {/* <Footer /> */}
     </PageContainer>
   );
 };
