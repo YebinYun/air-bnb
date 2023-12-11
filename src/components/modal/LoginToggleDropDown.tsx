@@ -7,7 +7,7 @@ const DropdownContainer = styled(Box)<{ hover: boolean }>`
   width: 16rem;
   background: white;
   position: absolute;
-  top: 2.5rem;
+  top: 2.2rem;
   right: 0rem;
   display: ${(props) => (props.hover ? "flex" : "none")};
   flex-direction: column;
@@ -23,6 +23,9 @@ const ButtonWrap = styled(Box)`
   border-bottom: 1px solid lightgray;
   &:first-child {
     flex-direction: row;
+  }
+  &:last-child {
+    border-bottom: none;
   }
 `;
 

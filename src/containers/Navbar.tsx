@@ -88,6 +88,7 @@ const Navbar = () => {
             sx={{
               display: "flex",
               alignItems: "center",
+              padding: "5px 10px",
               boxShadow: "1px 1px 1px 1px lightgray",
               borderRadius: "25px",
               color: "black",
