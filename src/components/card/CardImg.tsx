@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { Box, Button, Card } from "@mui/material";
+import { Box, Stack, Card } from "@mui/material";
 import { Icon } from "@iconify/react";
 import { styled } from "@mui/system";
 
@@ -41,11 +41,11 @@ const CardImg = ({ img }: props) => {
       </ImageBox>
 
       {/* 좋아요 */}
-      <Button
+      <Stack
         sx={{
           position: "absolute",
-          top: "0.5rem",
-          right: "0",
+          top: "1rem",
+          right: "1rem",
           color: "black",
         }}
         onClick={() => {
@@ -56,7 +56,7 @@ const CardImg = ({ img }: props) => {
           icon={isLike ? "ph:heart-fill" : "ph:heart-duotone"}
           width={"1.5rem"}
         />
-      </Button>
+      </Stack>
     </Card>
   );
 };
