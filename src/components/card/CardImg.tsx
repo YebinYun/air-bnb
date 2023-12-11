@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { Box, Button, Card } from "@mui/material";
 import { Icon } from "@iconify/react";
@@ -11,13 +11,18 @@ interface props {
 const ImageBox = styled(Box)`
   width: 15rem;
   height: 15rem;
-  transition: transform 1s ease;
+  transition: transform 0.8s ease;
   &:hover {
     transform: scale(1.2);
   }
 `;
 
 const CardImg = ({ img }: props) => {
+  const [isLike, setIsLike] = useState(false);
+  const OnChangeLikeHandler = () => {
+    setIsLike(!isLike);
+  };
+
   return (
     <Card
       sx={{
@@ -43,9 +48,14 @@ const CardImg = ({ img }: props) => {
           right: "0",
           color: "black",
         }}
+        onClick={() => {
+          OnChangeLikeHandler();
+        }}
       >
-        <Icon icon="ph:heart-duotone" width={"1.5rem"} />
-        {/* <Icon icon="ph:heart-fill" width={"1.5rem"} /> */}
+        <Icon
+          icon={isLike ? "ph:heart-fill" : "ph:heart-duotone"}
+          width={"1.5rem"}
+        />
       </Button>
     </Card>
   );
