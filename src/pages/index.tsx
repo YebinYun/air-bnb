@@ -1,14 +1,8 @@
-import Head from "next/head";
-import Image from "next/image";
 import { Inter } from "next/font/google";
 import UserLayout from "@/layout/UserLayout";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  return (
-    <>
-      <UserLayout />
-    </>
-  );
+  return <UserLayout />;
 }

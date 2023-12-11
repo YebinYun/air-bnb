@@ -50,14 +50,15 @@ const Navbar = () => {
   return (
     <Background>
       <Stack
+        width={"100%"}
         spacing={2}
         direction="row"
         alignItems={"center"}
         justifyContent={"space-between"}
-        margin={"2rem 0"}
+        padding={"1rem 0"}
       >
         <Logo>
-          <Icon icon="logos:airbnb" width="8rem" />
+          <Icon icon="logos:airbnb" width="6rem" />
         </Logo>
 
         <Button
@@ -102,7 +103,6 @@ const Navbar = () => {
           </Button>
         </SearchContainer>
       </Stack>
-
       <Slidebar />
     </Background>
   );

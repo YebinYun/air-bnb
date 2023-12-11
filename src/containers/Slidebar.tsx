@@ -11,7 +11,13 @@ const Slidebar = () => {
   };
 
   return (
-    <Stack direction="row" alignItems={"center"}>
+    <Stack
+      direction="row"
+      alignItems={"center"}
+      margin={"0 -6%"}
+      padding={"0 6%"}
+      boxShadow={"0 1px 5px lightgray;"}
+    >
       <Container>
         <Tabs
           value={value}
@@ -50,33 +56,13 @@ const Container = styled(Stack)`
   margin-right: 2rem;
 `;
 
-const ArrowButton = styled(Box)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 30px;
-  height: 30px;
-  padding: 10px;
-  box-shadow: 1px 1px 1px 1px lightgray;
-  color: black;
-  border-radius: 25px;
-  padding-left: 1rem;
-  cursor: pointer;
-`;
-
 const IconContainer = styled(Tab)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem 1.5rem;
+  padding: 0 1.5rem;
   color: #444;
   cursor: pointer;
-`;
-
-const CategoryText = styled("span")`
-  font-size: 0.7rem;
-  margin: 0.5rem 0;
-  white-space: nowrap;
 `;
 
 const FilterButton = styled(Stack)`
