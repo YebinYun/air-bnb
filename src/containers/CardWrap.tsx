@@ -3,8 +3,7 @@ import Background from "@/layout/Background";
 import CardImg from "../components/card/CardImg";
 import CardText from "../components/card/CardText";
 import { data } from "../utils/dummy/location";
-import { Card, Box } from "@mui/material";
-import { styled } from "@mui/system";
+import { Box } from "@mui/material";
 
 const CardWrap = () => {
   return (
@@ -46,10 +45,3 @@ const CardWrap = () => {
 };
 
 export default CardWrap;
-
-const MainContainer = styled(Card)`
-  position: absolute;
-  width: 90%;
-  top: 17rem;
-  overflow: visible;
-`;
