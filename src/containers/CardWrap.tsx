@@ -8,7 +8,7 @@ import { styled } from "@mui/system";
 
 const CardWrap = () => {
   return (
-    <>
+    <Background>
       <Box
         sx={{
           width: "100%",
@@ -17,6 +17,7 @@ const CardWrap = () => {
           gridTemplateColumns: "repeat(auto-fill, minmax(15rem, 1fr))",
           rowGap: "2rem",
           columnGap: "2rem",
+          cursor: "pointer",
         }}
       >
         {data.map((value, index) => (
@@ -40,7 +41,7 @@ const CardWrap = () => {
           </Box>
         ))}
       </Box>
-    </>
+    </Background>
   );
 };
 
