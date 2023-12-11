@@ -11,33 +11,31 @@ const Slidebar = () => {
   };
 
   return (
-    <>
-      <Stack direction="row" alignItems={"center"}>
-        <Container>
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            variant="scrollable"
-            scrollButtons="auto"
-            aria-label="scrollable auto tabs example"
-          >
-            {iconData.map((value, index) => (
-              <IconContainer
-                key={index}
-                label={value.location}
-                icon={value.icon}
-              />
-            ))}
-          </Tabs>
-        </Container>
-        <FilterButton>
-          <FilterListIcon />
-          <Box width={"2rem"} marginLeft={"0.7rem"}>
-            필터
-          </Box>
-        </FilterButton>
-      </Stack>
-    </>
+    <Stack direction="row" alignItems={"center"}>
+      <Container>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          variant="scrollable"
+          scrollButtons="auto"
+          aria-label="scrollable auto tabs example"
+        >
+          {iconData.map((value, index) => (
+            <IconContainer
+              key={index}
+              label={value.location}
+              icon={value.icon}
+            />
+          ))}
+        </Tabs>
+      </Container>
+      <FilterButton>
+        <FilterListIcon />
+        <Box width={"2rem"} marginLeft={"0.7rem"}>
+          필터
+        </Box>
+      </FilterButton>
+    </Stack>
   );
 };
 
