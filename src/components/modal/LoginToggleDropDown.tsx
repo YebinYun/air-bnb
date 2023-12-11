@@ -58,33 +58,38 @@ const LoginToggleDropDown = ({ hover }: { hover: boolean }) => {
   };
 
   return (
-    <DropdownContainer hover={hover}>
-      <ButtonWrap>
-        <ButtonItem
-          onClick={() => {
-            settingModalHandler();
-          }}>
-          개인정보 입력하기
-        </ButtonItem>
-      </ButtonWrap>
-      <ButtonWrap>
-        <ButtonItem
-          onClick={() => {
-            signupModalHandler();
-          }}>
-          회원가입
-        </ButtonItem>
-        <ButtonItem
-          onClick={() => {
-            loginModalHandler();
-          }}>
-          로그인
-        </ButtonItem>
-      </ButtonWrap>
-      <ButtonWrap>
-        <ButtonItem>당신의 공간을 에어비앤비하세요.</ButtonItem>
-        <ButtonItem>도움말 센터</ButtonItem>
-      </ButtonWrap>
+    <>
+      <DropdownContainer hover={hover}>
+        <ButtonWrap>
+          <ButtonItem
+            onClick={() => {
+              settingModalHandler();
+            }}
+          >
+            개인정보 입력하기
+          </ButtonItem>
+        </ButtonWrap>
+        <ButtonWrap>
+          <ButtonItem
+            onClick={() => {
+              signupModalHandler();
+            }}
+          >
+            회원가입
+          </ButtonItem>
+          <ButtonItem
+            onClick={() => {
+              loginModalHandler();
+            }}
+          >
+            로그인
+          </ButtonItem>
+        </ButtonWrap>
+        <ButtonWrap>
+          <ButtonItem>당신의 공간을 에어비앤비하세요.</ButtonItem>
+          <ButtonItem>도움말 센터</ButtonItem>
+        </ButtonWrap>
+      </DropdownContainer>
       {(isLoginModal || isSignupModal || isSetting) && (
         <LoginModal
           loginModalHandler={loginModalHandler}
@@ -94,7 +99,7 @@ const LoginToggleDropDown = ({ hover }: { hover: boolean }) => {
           setting={isSetting}
         />
       )}
-    </DropdownContainer>
+    </>
   );
 };
 
