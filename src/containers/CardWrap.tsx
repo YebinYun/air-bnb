@@ -27,7 +27,7 @@ const options = {
     children_ages: "5,0",
   },
   headers: {
-    "X-RapidAPI-Key": "d2b478c8b7msh712b669c816fac1p19b693jsn306c854564e9",
+    // "X-RapidAPI-Key": "d2b478c8b7msh712b669c816fac1p19b693jsn306c854564e9",
     "X-RapidAPI-Host": "booking-com.p.rapidapi.com",
   },
 };

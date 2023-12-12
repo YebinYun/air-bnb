@@ -9,9 +9,10 @@ interface props {
 }
 
 const ImageBox = styled(Box)`
-  width: 15rem;
+  width: 100%;
   height: 15rem;
   transition: transform 0.8s ease;
+  object-fit: fill;
   &:hover {
     transform: scale(1.2);
   }
@@ -32,13 +33,7 @@ const CardImg = ({ img }: props) => {
       {/* 이미지 */}
       <Box>
         <ImageBox>
-          <img
-            src={img}
-            alt="숙소 사진"
-            width="300px"
-            height="300px"
-            style={{ objectFit: "cover" }}
-          />
+          <Image alt="숙소 사진" src={img} fill />
         </ImageBox>
 
         {/* 좋아요 */}
