@@ -1,37 +1,45 @@
 import React from "react";
-import { Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { styled } from "@mui/system";
 
 interface props {
   location: string;
   score: string;
-  view: string;
+  hotelName: string;
   day: string;
-  price: string;
+  price: number;
 }
 
-const CardText = ({ location, score, view, day, price }: props) => {
+const CardText = ({ location, score, hotelName, day, price }: props) => {
   return (
-    <Stack sx={{ margin: "0.8rem 0.2rem" }}>
-      {/* 나라+지역 / 별점 */}
-      <SpacingStack spacing={"auto"} direction={"row"}>
-        <BoldText> {location} </BoldText>
-        <Text> {`★ ${score}`} </Text>
+    <Stack sx={{ margin: "0.8rem 0.2rem", padding: "0.5rem" }}>
+      {/* 호텔이름 / 별점 */}
+      <SpacingStack>
+        <BoldText> {hotelName} </BoldText>
       </SpacingStack>
 
-      {/* 전망 정보 */}
+      {/* ~시 지역 */}
       <SpacingStack>
-        <Text>{`${view} 전망`}</Text>
+        <Text>{location}</Text>
       </SpacingStack>
 
-      {/* 숙박 일정 */}
-      <SpacingStack>
-        <Text>{day}</Text>
+      {/* 호텔이름 / 별점 */}
+      <SpacingStack spacing={1} direction={"row"} alignItems={"center"}>
+        <Text> {day} </Text>
+        <Box>
+          <Text> {`★`} </Text>
+          <BoldText>{score}</BoldText>
+          <Text> {`/ 10`} </Text>
+        </Box>
       </SpacingStack>
 
       {/* 1박 가격 */}
       <SpacingStack>
-        <BoldText>{`￦${price} /박`}</BoldText>
+        <Box>
+          <Text> {`￦`} </Text>
+          <BoldText>{Math.trunc(price).toLocaleString()}</BoldText>
+          <Text> {`/ 1 Day `} </Text>
+        </Box>
       </SpacingStack>
     </Stack>
   );

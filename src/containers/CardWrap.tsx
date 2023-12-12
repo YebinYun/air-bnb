@@ -1,10 +1,15 @@
 import React, { Suspense, useState, useEffect } from "react";
 import CardImg from "../components/card/CardImg";
 import CardText from "../components/card/CardText";
-import { locationData } from "../utils/dummy/location";
 import { Box } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+
+// const query = useQuery({ queryKey: [], queryFn: fetchData });
+
+// Key는 []로
+// Fn 함수는 get을 해야하므로 axios로 만든 함수르 사용
+// option 기능에는 데이터가 있을때만 커리 요청하도록
 
 const options = {
   method: "GET",
@@ -27,81 +32,86 @@ const options = {
     children_ages: "5,0",
   },
   headers: {
-    // "X-RapidAPI-Key": "d2b478c8b7msh712b669c816fac1p19b693jsn306c854564e9",
+    "X-RapidAPI-Key": process.env.NEXT_PUBLIC_X_RAPIDAPI_KEY,
     "X-RapidAPI-Host": "booking-com.p.rapidapi.com",
   },
 };
 
+const fetchData = ({ setData, hotelData, options }: any) => {
+  axios
+    .request(options)
+    .then((res) => {
+      if (res.status === 200) {
+        return setData(res?.data);
+      } else if (res.status === 429) {
+        return alert("429 에러...");
+      }
+    })
+    .catch((err) => window.alert("에러 발생"));
+
+  return hotelData;
+};
+
 const CardWrap = () => {
-  const [data, setData] = useState("");
+  const [hotelData, setData] = useState("");
 
-  // useEffect(() => {
-  //   const fetchData = () => {
-  //     axios
-  //       .get("/api/hello")
-  //       .then((res) => {
-  //         console.log("res", res);
-  //         setData(res.data);
-  //       })
-  //       .catch((err) => console.log("err===========>", err));
-  //   };
-
-  //   fetchData();
-  // }, []);
-
-  useEffect(() => {
-    const fetchData = () => {
-      axios
-        .request(options)
-        .then((res) => setData(res?.data))
-        .catch((err) => console.log("err===========>", err));
-    };
-    if (!data) {
-      fetchData();
-    }
-  }, []);
-
-  console.log("data", data);
-  // try {
-  //   const response = axios.request(options).then((res) => setData(res?.data));
-  // } catch (error) {
-  //   console.error(error);
-  // }
+  const { data, isLoading } = useQuery({
+    queryKey: ["getHotelList"],
+    queryFn: () => {
+      return fetchData({ setData, hotelData, options });
+    },
+  });
 
   return (
     <Suspense fallback={<div>Loading......</div>}>
-      <Box
-        sx={{
-          width: "100%",
-          padding: "2rem 0",
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(15rem, 1fr))",
-          rowGap: "2rem",
-          columnGap: "2rem",
-          cursor: "pointer",
-        }}
-      >
-        {data?.result?.map((value, index) => (
-          <Box
-            key={index}
-            sx={{
-              width: "100%",
-              border: "1px solid lightgray",
-              borderRadius: "5px",
-              rowGap: "4",
-            }}
-          >
-            <CardImg img={value?.max_photo_url} />
-            <CardText
-              location={value.address}
-              score={value.score}
-              view={value.review_score}
-              day={value.day}
-              price={value.min_total_price}
-            />
-          </Box>
-        ))}
-      </Box>
+      {!isLoading ? (
+        <Box
+          sx={{
+            width: "100%",
+            padding: "2rem 0",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(15rem, 1fr))",
+            rowGap: "2rem",
+            columnGap: "2rem",
+            cursor: "pointer",
+          }}
+        >
+          {data?.result?.map(
+            (
+              value: {
+                max_photo_url: string;
+                hotel_name: string;
+                review_score: string;
+                city: string;
+                review_score_word: string;
+                min_total_price: number;
+              },
+              index: React.Key
+            ) => (
+              <Box
+                key={index}
+                sx={{
+                  width: "100%",
+                  border: "1px solid lightgray",
+                  borderRadius: "5px",
+                  rowGap: "4",
+                }}
+              >
+                <CardImg img={value?.max_photo_url} />
+                <CardText
+                  hotelName={value.hotel_name}
+                  score={value.review_score}
+                  location={value.city}
+                  day={value.review_score_word}
+                  price={value.min_total_price}
+                />
+              </Box>
+            )
+          )}
+        </Box>
+      ) : (
+        "Loading이요..."
+      )}
     </Suspense>
   );
 };
