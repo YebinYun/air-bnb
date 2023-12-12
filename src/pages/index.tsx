@@ -1,8 +1,13 @@
-import { Inter } from "next/font/google";
 import UserLayout from "@/layout/UserLayout";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import App from "./_app";
 
-const inter = Inter({ subsets: ["latin"] });
+const queryClient = new QueryClient();
 
 export default function Home() {
-  return <UserLayout />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <App />
+    </QueryClientProvider>
+  );
 }

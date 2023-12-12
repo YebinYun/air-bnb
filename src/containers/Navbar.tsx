@@ -48,7 +48,7 @@ const Navbar = () => {
   const [hover, setHover] = useState(false);
 
   return (
-    <Background>
+    <>
       <Stack
         width={"100%"}
         spacing={2}
@@ -83,7 +83,7 @@ const Navbar = () => {
             <ReservationText>당신의 공간을 에어비앤비하세요</ReservationText>
             <Icon icon="pajamas:earth" />
           </Stack>
-          <Button
+          <Box
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
             sx={{
@@ -100,11 +100,11 @@ const Navbar = () => {
               <Icon icon="ph:user-fill" color="white" />
             </Avatar>
             <LoginToggleDropDown hover={hover} />
-          </Button>
+          </Box>
         </SearchContainer>
       </Stack>
       <Slidebar />
-    </Background>
+    </>
   );
 };
 
