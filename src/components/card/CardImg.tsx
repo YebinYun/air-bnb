@@ -30,33 +30,35 @@ const CardImg = ({ img }: props) => {
       }}
     >
       {/* 이미지 */}
-      <ImageBox>
-        <Image
-          src={img}
-          alt="숙소 사진"
-          width={300}
-          height={300}
-          style={{ objectFit: "cover" }}
-        />
-      </ImageBox>
+      <Box>
+        <ImageBox>
+          <img
+            src={img}
+            alt="숙소 사진"
+            width="300px"
+            height="300px"
+            style={{ objectFit: "cover" }}
+          />
+        </ImageBox>
 
-      {/* 좋아요 */}
-      <Stack
-        sx={{
-          position: "absolute",
-          top: "1rem",
-          right: "1rem",
-          color: "black",
-        }}
-        onClick={() => {
-          OnChangeLikeHandler();
-        }}
-      >
-        <Icon
-          icon={isLike ? "ph:heart-fill" : "ph:heart-duotone"}
-          width={"1.5rem"}
-        />
-      </Stack>
+        {/* 좋아요 */}
+        <Stack
+          sx={{
+            position: "absolute",
+            top: "1rem",
+            right: "1rem",
+            color: "black",
+          }}
+          onClick={() => {
+            OnChangeLikeHandler();
+          }}
+        >
+          <Icon
+            icon={isLike ? "ph:heart-fill" : "ph:heart-duotone"}
+            width={"1.5rem"}
+          />
+        </Stack>
+      </Box>
     </Card>
   );
 };

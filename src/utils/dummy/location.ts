@@ -1,6 +1,6 @@
 import { PUBLIC_IMAGE } from "../../asset/images/images";
 
-export const data = [
+export const locationData = [
   {
     img: PUBLIC_IMAGE.img1,
     location: "한국 용산구",

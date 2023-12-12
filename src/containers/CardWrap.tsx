@@ -1,29 +1,73 @@
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, useState, useEffect } from "react";
 import CardImg from "../components/card/CardImg";
 import CardText from "../components/card/CardText";
-import { data } from "../utils/dummy/location";
+import { locationData } from "../utils/dummy/location";
 import { Box } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const options = {
-  method: "POST",
-  url: "https://hotels4.p.rapidapi.com/properties/v2/detail",
-  headers: {
-    "content-type": "application/json",
-    "X-RapidAPI-Key": "2f28c72b93msh6c1971733cd905ap1991cajsn7120b77e2368",
-    "X-RapidAPI-Host": "hotels4.p.rapidapi.com",
+  method: "GET",
+  url: "https://booking-com.p.rapidapi.com/v1/hotels/search-by-coordinates",
+  params: {
+    filter_by_currency: "AED",
+    locale: "en-gb",
+    room_number: "1",
+    checkin_date: "2024-01-18",
+    checkout_date: "2024-01-20",
+    longitude: "126.9203894",
+    adults_number: "2",
+    latitude: "37.5533232",
+    order_by: "popularity",
+    units: "metric",
+    categories_filter_ids: "class::2,class::4,free_cancellation::1",
+    include_adjacency: "true",
+    page_number: "0",
+    children_number: "2",
+    children_ages: "5,0",
   },
-  data: {
-    currency: "USD",
-    eapid: 1,
-    locale: "en_US",
-    siteId: 300000001,
-    propertyId: "9209612",
+  headers: {
+    "X-RapidAPI-Key": "d2b478c8b7msh712b669c816fac1p19b693jsn306c854564e9",
+    "X-RapidAPI-Host": "booking-com.p.rapidapi.com",
   },
 };
 
 const CardWrap = () => {
+  const [data, setData] = useState("");
+
+  // useEffect(() => {
+  //   const fetchData = () => {
+  //     axios
+  //       .get("/api/hello")
+  //       .then((res) => {
+  //         console.log("res", res);
+  //         setData(res.data);
+  //       })
+  //       .catch((err) => console.log("err===========>", err));
+  //   };
+
+  //   fetchData();
+  // }, []);
+
+  useEffect(() => {
+    const fetchData = () => {
+      axios
+        .request(options)
+        .then((res) => setData(res?.data))
+        .catch((err) => console.log("err===========>", err));
+    };
+    if (!data) {
+      fetchData();
+    }
+  }, []);
+
+  console.log("data", data);
+  // try {
+  //   const response = axios.request(options).then((res) => setData(res?.data));
+  // } catch (error) {
+  //   console.error(error);
+  // }
+
   return (
     <Suspense fallback={<div>Loading......</div>}>
       <Box
@@ -37,7 +81,7 @@ const CardWrap = () => {
           cursor: "pointer",
         }}
       >
-        {data.map((value, index) => (
+        {data?.result?.map((value, index) => (
           <Box
             key={index}
             sx={{
@@ -47,13 +91,13 @@ const CardWrap = () => {
               rowGap: "4",
             }}
           >
-            <CardImg img={value.img} />
+            <CardImg img={value?.max_photo_url} />
             <CardText
-              location={value.location}
+              location={value.address}
               score={value.score}
-              view={value.view}
+              view={value.review_score}
               day={value.day}
-              price={value.price}
+              price={value.min_total_price}
             />
           </Box>
         ))}
