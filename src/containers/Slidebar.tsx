@@ -11,39 +11,37 @@ const Slidebar = () => {
   };
 
   return (
-    <>
-      <Box
-        direction="row"
-        alignItems={"center"}
-        margin={"0 -6%"}
-        padding={"0 6%"}
-        boxShadow={"0 1px 5px lightgray;"}
-      >
-        <Container>
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            variant="scrollable"
-            scrollButtons="auto"
-            aria-label="scrollable auto tabs example"
-          >
-            {iconData.map((value, index) => (
-              <IconContainer
-                key={index}
-                label={value.location}
-                icon={value.icon}
-              />
-            ))}
-          </Tabs>
-        </Container>
-        <FilterButton>
-          <FilterListIcon />
-          <Box width={"2rem"} marginLeft={"0.7rem"}>
-            필터
-          </Box>
-        </FilterButton>
-      </Box>
-    </>
+    <Stack
+      direction="row"
+      alignItems={"center"}
+      margin={"0 -6%"}
+      padding={"0 6%"}
+      boxShadow={"0 1px 5px lightgray;"}
+    >
+      <Container>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          variant="scrollable"
+          scrollButtons="auto"
+          aria-label="scrollable auto tabs example"
+        >
+          {iconData.map((value, index) => (
+            <IconContainer
+              key={index}
+              label={value.location}
+              icon={value.icon}
+            />
+          ))}
+        </Tabs>
+      </Container>
+      <FilterButton>
+        <FilterListIcon />
+        <Box width={"2rem"} marginLeft={"0.7rem"}>
+          필터
+        </Box>
+      </FilterButton>
+    </Stack>
   );
 };
 
