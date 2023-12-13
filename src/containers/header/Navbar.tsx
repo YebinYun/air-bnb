@@ -103,7 +103,6 @@ const Navbar = () => {
           </Box>
         </SearchContainer>
       </Stack>
-      <Slidebar />
     </>
   );
 };

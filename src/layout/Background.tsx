@@ -7,7 +7,8 @@ const Background: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <Box
         sx={{
           padding: "0 5%",
-        }}>
+        }}
+      >
         {children}
       </Box>
     </>

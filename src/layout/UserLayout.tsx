@@ -1,12 +1,12 @@
 import React from "react";
 import CardWrap from "@/containers/CardWrap";
-import Navbar from "@/containers/Navbar";
 import Background from "./Background";
+import Header from "@/containers/header/Header";
 
 const UserLayout = () => {
   return (
     <Background>
-      <Navbar />
+      <Header />
       <CardWrap />
     </Background>
   );

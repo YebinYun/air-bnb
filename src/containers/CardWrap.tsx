@@ -55,13 +55,15 @@ const CardWrap = () => {
       {!isLoading ? (
         <Box
           sx={{
-            width: "100%",
+            width: "90%",
             padding: "2rem 0",
             display: "grid",
             gridTemplateColumns: "repeat(auto-fill, minmax(15rem, 1fr))",
             rowGap: "2rem",
             columnGap: "2rem",
             cursor: "pointer",
+            position: "absolute",
+            top: "10rem",
           }}
         >
           {data?.result?.map(
