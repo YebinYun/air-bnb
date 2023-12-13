@@ -12,11 +12,15 @@ const Slidebar = () => {
 
   return (
     <Stack
+      position={"absolute"}
+      top={"4.8rem"}
+      left={"-6%"}
+      width={"112%"}
+      padding={"0 5%"}
       direction="row"
       alignItems={"center"}
-      margin={"0 -6%"}
-      padding={"0 6%"}
       boxShadow={"0 1px 5px lightgray;"}
+      sx={{ background: "white" }}
     >
       <Container>
         <Tabs

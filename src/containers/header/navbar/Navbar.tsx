@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { Icon } from "@iconify/react";
-import { Avatar, Box, Button, Stack } from "@mui/material";
+import { Avatar, Box, Button, Modal, Stack } from "@mui/material";
 import { styled } from "@mui/system";
-import Background from "@/layout/Background";
 import LoginToggleDropDown from "@/components/modal/LoginToggleDropDown";
-import Slidebar from "./Slidebar";
+import NavbarModal from "./NavbarModal";
 // import Fun from "./Fun";
+
+interface props {
+  onNavInfoModal: boolean;
+  loginModalHandler: () => void;
+}
 
 const ReservationText = styled(Box)`
   font-size: 0.8rem;
@@ -44,18 +48,20 @@ const SearchButton = styled(Box)`
   margin-left: 1rem;
 `;
 
-const Navbar = () => {
-  const [hover, setHover] = useState(false);
+const Navbar = ({ onNavInfoModal, loginModalHandler }: props) => {
+  const [hover, setHover] = useState<boolean>(false);
 
   return (
     <>
       <Stack
+        position={"absolute"}
         width={"100%"}
         spacing={2}
         direction="row"
         alignItems={"center"}
         justifyContent={"space-between"}
         padding={"1rem 0"}
+        sx={{ background: "white" }}
       >
         <Logo>
           <Icon icon="logos:airbnb" width="6rem" />
@@ -68,6 +74,9 @@ const Navbar = () => {
             boxShadow: "1px 1px 1px 1px lightgray",
             borderRadius: "25px",
             color: "black",
+          }}
+          onClick={() => {
+            loginModalHandler();
           }}
         >
           <ReservationText>어디든지</ReservationText>
@@ -103,6 +112,12 @@ const Navbar = () => {
           </Box>
         </SearchContainer>
       </Stack>
+      {onNavInfoModal && (
+        <NavbarModal
+          onNavInfoModal={onNavInfoModal}
+          loginModalHandler={loginModalHandler}
+        />
+      )}
     </>
   );
 };

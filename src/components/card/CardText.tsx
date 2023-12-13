@@ -15,7 +15,10 @@ const CardText = ({ location, score, hotelName, day, price }: props) => {
     <Stack sx={{ margin: "0.8rem 0.2rem", padding: "0.5rem" }}>
       {/* 호텔이름 / 별점 */}
       <SpacingStack>
-        <BoldText> {hotelName} </BoldText>
+        <BoldText sx={{ height: "3rem", fontSize: "1rem" }}>
+          {" "}
+          {hotelName}{" "}
+        </BoldText>
       </SpacingStack>
 
       {/* ~시 지역 */}
