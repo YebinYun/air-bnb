@@ -39,7 +39,7 @@ const ButtonItem = styled(Button)`
   }
 `;
 
-const LoginToggleDropDown = ({ hover }: { hover: boolean }) => {
+const LoginToggleDropDown = ({ hover }: { hover: any }) => {
   const [isLoginModal, setIsLoginModal] = useState<boolean>(false);
   const [isSignupModal, setIsSignupModal] = useState<boolean>(false);
   const [isSetting, setIsSetting] = useState<boolean>(false);
@@ -107,29 +107,3 @@ const LoginToggleDropDown = ({ hover }: { hover: boolean }) => {
 };
 
 export default LoginToggleDropDown;
-
-// Pages - 초기 상태값 받는 용도로만 사용하고..\
-// <NewsHead  />
-// <NewsBodyContainer  />
-
-// Container - UI제외 모든 ~
-// export const NewsHeadContainer = () => {
-// const [ isLoading, setIsLoading ] = useState(false)
-// const toggler = () => { setIsLoading(!isLoading )}
-// return (
-// <div>
-//    <NewsHeadComponent toggler={toggler} />
-//  </div)
-//  }
-
-// Component - UI만 담당하는 폴더
-//
-// export const NewsHeadComponent = ({ toggler }) => {
-//  return (
-//    <div>
-
-//    </div>
-//  )
-// }
-
-// code splitting!

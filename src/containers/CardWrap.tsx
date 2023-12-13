@@ -1,15 +1,9 @@
-import React, { Suspense, useState, useEffect } from "react";
+import React, { Suspense, useState } from "react";
 import CardImg from "../components/card/CardImg";
 import CardText from "../components/card/CardText";
 import { Box } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-
-// const query = useQuery({ queryKey: [], queryFn: fetchData });
-
-// Key는 []로
-// Fn 함수는 get을 해야하므로 axios로 만든 함수르 사용
-// option 기능에는 데이터가 있을때만 커리 요청하도록
 
 const options = {
   method: "GET",
@@ -37,24 +31,18 @@ const options = {
   },
 };
 
-const fetchData = ({ setData, hotelData, options }: any) => {
-  axios
+const fetchData = async ({ setData, hotelData, options }: any) => {
+  await axios
     .request(options)
     .then((res) => {
-      if (res.status === 200) {
-        return setData(res?.data);
-      } else if (res.status === 429) {
-        return alert("429 에러...");
-      }
+      return setData(res?.data);
     })
-    .catch((err) => window.alert("에러 발생"));
-
+    .catch((err) => console.log(err));
   return hotelData;
 };
 
 const CardWrap = () => {
   const [hotelData, setData] = useState("");
-
   const { data, isLoading } = useQuery({
     queryKey: ["getHotelList"],
     queryFn: () => {
@@ -110,7 +98,7 @@ const CardWrap = () => {
           )}
         </Box>
       ) : (
-        "Loading이요..."
+        "Loading..."
       )}
     </Suspense>
   );
