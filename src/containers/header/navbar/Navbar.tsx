@@ -69,6 +69,10 @@ const Navbar = ({ onNavInfoModal, loginModalHandler }: props) => {
 
         <Button
           sx={{
+            position: "absolute",
+            top: "1rem",
+            left: "50%",
+            transform: "translate(-50%, 0%)",
             display: "flex",
             padding: "10px 20px",
             boxShadow: "1px 1px 1px 1px lightgray",
