@@ -36,8 +36,19 @@ const ReservationCalendar = ({ rangeDate, dateChangeHandler }: props) => {
 export default ReservationCalendar;
 
 const StyledCalendar = styled(Calendar)`
+  .react-calendar__month-view__days {
+    /* border: 1px solid gray; */
+    margin: 1rem;
+    /* border-radius: 15px; */
+    overflow: hidden;
+  }
+  .react-calendar__tile {
+    /* border: 0.05rem solid gray; */
+  }
   .react-calendar__tile--active {
     background: #ff5a5f;
-    border-radius: 5px;
+  }
+  .react-calendar__tile:disabled {
+    background: #ff5a603e;
   }
 `;
