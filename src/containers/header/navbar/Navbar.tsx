@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react";
 import { Avatar, Box, Button, Modal, Stack } from "@mui/material";
 import { styled } from "@mui/system";
 import LoginToggleDropDown from "@/components/modal/LoginToggleDropDown";
-import NavbarModal from "./NavbarModal";
+import NavbarReservationModal from "./navbarReservationModal/NavbarReservationModal";
 // import Fun from "./Fun";
 
 interface props {
@@ -117,7 +117,7 @@ const Navbar = ({ onNavInfoModal, loginModalHandler }: props) => {
         </SearchContainer>
       </Stack>
       {onNavInfoModal && (
-        <NavbarModal
+        <NavbarReservationModal
           onNavInfoModal={onNavInfoModal}
           loginModalHandler={loginModalHandler}
         />

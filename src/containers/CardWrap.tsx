@@ -52,7 +52,7 @@ const CardWrap = () => {
 
   return (
     <Suspense fallback={<div>Loading......</div>}>
-      {!isLoading ? (
+      {!isLoading && (
         <Box
           sx={{
             width: "90%",
@@ -99,8 +99,6 @@ const CardWrap = () => {
             )
           )}
         </Box>
-      ) : (
-        "Loading..."
       )}
     </Suspense>
   );

@@ -13,7 +13,7 @@ const Slidebar = () => {
   return (
     <Stack
       position={"absolute"}
-      top={"4.8rem"}
+      top={"67px"}
       left={"-6%"}
       width={"112%"}
       padding={"0 5%"}
