@@ -45,6 +45,11 @@ const NavbarReservationModal = ({
         }
         setProgress(progress);
       }
+
+      if (totalPeople <= 0) {
+        alert("인원수를 입력해주세요");
+      }
+      setProgress(progress);
     }
   };
 
