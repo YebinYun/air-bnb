@@ -8,6 +8,8 @@ type ReservationInfoInitType = {
 
 interface props {
   peopleChangeHandler: Number;
+  totalPeople: Number;
+  setTotalPeople: () => void;
 }
 
 const reservationInfoInit = {
@@ -16,7 +18,11 @@ const reservationInfoInit = {
   // 나중에는 좌표를 지도에서 찍어서, 인원과 객실갯수 기준으로 좌표상의 호텔노출
 };
 
-const ReservationDetails = ({ peopleChangeHandler }: props) => {
+const ReservationDetails = ({
+  peopleChangeHandler,
+  setTotalPeople,
+  totalPeople,
+}: props) => {
   const [isCounter, setIsCounter] = useState<Number>(0);
 
   const [bookingInformation, setBookingInformation] =
@@ -71,7 +77,7 @@ const ReservationDetails = ({ peopleChangeHandler }: props) => {
           <Box sx={{ display: "flex" }}>
             <Button
               onClick={() => {
-                setIsCounter(isCounter - 1);
+                setTotalPeople(totalPeople - 1);
               }}
             >
               -
@@ -81,13 +87,19 @@ const ReservationDetails = ({ peopleChangeHandler }: props) => {
               name="guests"
               sx={{ width: "60px" }}
               onChange={bookingInfoChangeHandler}
-              value={bookingInformation?.guests || 0}
+              value={totalPeople}
               inputProps={{
                 min: 0,
                 max: 6,
               }}
             />
-            <Button>+</Button>
+            <Button
+              onClick={() => {
+                setTotalPeople(totalPeople + 1);
+              }}
+            >
+              +
+            </Button>
           </Box>
         </Box>
       </Box>
@@ -123,7 +135,7 @@ const ReservationDetails = ({ peopleChangeHandler }: props) => {
           <Box sx={{ display: "flex" }}>
             <Button
               onClick={() => {
-                setIsCounter(isCounter - 1);
+                setTotalPeople(totalPeople - 1);
               }}
             >
               -
@@ -139,7 +151,13 @@ const ReservationDetails = ({ peopleChangeHandler }: props) => {
                 max: 6,
               }}
             />
-            <Button>+</Button>
+            <Button
+              onClick={() => {
+                setTotalPeople(totalPeople + 1);
+              }}
+            >
+              +
+            </Button>
           </Box>
         </Box>
       </Box>

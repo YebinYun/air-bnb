@@ -18,7 +18,7 @@ const NavbarReservationModal = ({
   type Value = ValuePiece | [ValuePiece, ValuePiece];
 
   const [rangeDate, setRangeDate] = useState<Value>(null);
-  const [totalPeople, setTotalPeople] = useState<Value>(null);
+  const [totalPeople, setTotalPeople] = useState<Value>(0);
   const [progress, setProgress] = useState<number>(1);
 
   const dateChangeHandler = (e: any) => {
@@ -27,6 +27,7 @@ const NavbarReservationModal = ({
 
   const peopleChangeHandler = (e: any) => {
     setTotalPeople(e);
+    console.log(totalPeople);
   };
 
   const previousPage = () => {
@@ -128,7 +129,7 @@ const NavbarReservationModal = ({
               <Button sx={{ flexDirection: "column" }}>
                 <Box sx={{ color: "white", fontWeight: "bold" }}>여행자</Box>
                 <Box color={"black"} onChange={peopleChangeHandler}>
-                  {totalPeople === null ? "게스트 추가" : "gg"}
+                  {totalPeople === 0 ? "게스트 추가" : totalPeople}
                 </Box>
               </Button>
             </SelectMenubar>
@@ -144,7 +145,11 @@ const NavbarReservationModal = ({
 
           {/* 인원 */}
           {progress === 2 && (
-            <ReservationDetails peopleChangeHandler={peopleChangeHandler} />
+            <ReservationDetails
+              totalPeople={totalPeople}
+              setTotalPeople={setTotalPeople}
+              peopleChangeHandler={peopleChangeHandler}
+            />
           )}
 
           {/* 이동 버튼 */}
@@ -198,7 +203,7 @@ const NavInfoModalContainer = styled(Box)`
   width: 650px;
   min-height: 800px;
   border: 1px solid lightgray;
-  border-radius: 50px;
+  border-radius: 25px;
   padding: 0 2rem;
   background: white;
 `;
