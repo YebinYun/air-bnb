@@ -43,6 +43,7 @@ const fetchData = async ({ setData, hotelData, options }: any) => {
 
 const CardWrap = () => {
   const [hotelData, setData] = useState("");
+
   const { data, isLoading } = useQuery({
     queryKey: ["getHotelList"],
     queryFn: () => {
