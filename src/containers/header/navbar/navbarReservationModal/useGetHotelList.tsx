@@ -1,7 +1,8 @@
-import { useState } from "react"
+import { useState } from "react";
 import axios from "axios";
 
-const options = {
+const useGetHotelList = () => {
+  const initialOptions = {
     method: "GET",
     url: "https://booking-com.p.rapidapi.com/v1/hotels/search-by-coordinates",
     params: {
@@ -27,41 +28,31 @@ const options = {
     },
   };
 
-  const fetchData = async ({ setData, hotelData, options }: any) => {
-    await axios
-      .request(options)
-      .then((res) => {
-        return setData(res?.data);
-      })
-      .catch((err) => console.log(err));
-    return hotelData;
+  const [options, setOptions] = useState(initialOptions);
+
+  const changeDate = ({ checkin, checkout }) => {
+    setOptions((prevOptions) => ({
+      ...prevOptions,
+      params: {
+        ...prevOptions.params,
+        checkin_date: checkin,
+        checkout_date: checkout,
+      },
+    }));
+  };
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.request(options);
+      return response.data; 
+    } catch (error) {
+      console.error(error);
+      throw new Error("Error"); 
+    }
   };
 
 
-const useGetHotelList = ({  }) => {
-    const [ data, setdata ] = useState(options)
-    // const [ ] = useState()
+  return { fetchData, options, changeDate };
+};
 
-
-    const changeData = ( {prev} ) => {
-        const numberPeople= 
-        setdata({
-            ...prev,
-            bookingData
-        })
-    }}
-
-    
-    
-    // option 데이터 기존에거 가져와서 useState에 기본값으로 넣기
-
-    // booking option data로 가져온 데이터 ( guests, child, rooms) 를 option의 기본 데이터와 교체
-    // useQuery 로 자료를 불러오기
-
-    // 하단에 return 값으로 useQuery 로 가져온걸 내보냄.
-
-
-  return {  fetchData, options }
-}
-
-export default useGetHotelList
+export default useGetHotelList;
