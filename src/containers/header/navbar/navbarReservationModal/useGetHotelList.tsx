@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 
 const useGetHotelList = () => {
@@ -29,7 +30,14 @@ const useGetHotelList = () => {
 
   const [options, setOptions] = useState(initialOptions);
 
-  const changeDate = ({ checkin, checkout, guests, child }) => {
+  type getOptionsInit = {
+    checkin: string;
+    checkout: string;
+    guests: string;
+    child: string;
+  };
+
+  const changeData = ({ checkin, checkout, guests, child }: getOptionsInit) => {
     setOptions((prevOptions) => ({
       ...prevOptions,
       params: {
@@ -43,16 +51,16 @@ const useGetHotelList = () => {
   };
 
   const fetchData = async () => {
-    // try {
-    //   const response = await axios.request(options);
-    //   return response.data;
-    // } catch (error) {
-    //   console.error(error);
-    //   console.log("Error");
-    // }
+    try {
+      const response = await axios.request(options);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      console.log("Error");
+    }
   };
 
-  return { fetchData, options, changeDate };
+  return { fetchData, options, changeData };
 };
 
 export default useGetHotelList;

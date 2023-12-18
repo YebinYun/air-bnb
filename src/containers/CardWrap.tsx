@@ -4,30 +4,25 @@ import { useQuery } from "@tanstack/react-query";
 import useGetHotelList from "./header/navbar/navbarReservationModal/useGetHotelList";
 import { useRecoilState } from "recoil";
 import { testAtomSelector } from "@/store";
-import {
-  getHotelListQuerySelector,
-  getHotelListSelector,
-  useGetHotelListItem,
-} from "@/store/useGetHotelStore";
+import { getHotelListQuery } from "@/store/useGetHotelStore";
 
 const CardWrap = () => {
   const { fetchData, options, changeDate } = useGetHotelList();
   const [test, setTest] = useRecoilState(testAtomSelector);
-  const { setQuery, query, data } = useGetHotelListItem();
+  const [hotelList, setHotelList] = useRecoilState(getHotelListQuery);
 
   // 다른데 가서  const testValue = useRecoilValue(testAtomSelector)
 
-  useEffect(() => {
-    changeDate({ checkin: "2024 - 02 - 01", checkout: "2024-02-05" });
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   changeDate({ checkin: "2024 - 02 - 01", checkout: "2024-02-05" });
+  //   fetchData();
+  // }, []);
 
   const { data, isLoading } = useQuery({
     queryKey: ["getHotelList"],
     queryFn: fetchData,
   });
 
-  // 내위치 받아오기
   // useEffect(() => {
   //   const watchId = navigator.geolocation.watchPosition((position) => {
   //     const { latitude, longitude } = position.coords;

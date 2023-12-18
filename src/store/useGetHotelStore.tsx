@@ -82,20 +82,20 @@ export const getHotelListQuerySelector = selector({
   set: ({ set }, newValue) => set(getHotelListQuery, newValue),
 });
 
-export const useGetHotelListItem = () => {
-  const [query, setQuery] = useRecoilState(getHotelListQuerySelector);
-  const fetchData = (query: any) => {
-    return axios.request(query);
-  };
+// export const useGetHotelListItem = () => {
+//   const [query, setQuery] = useRecoilState(getHotelListQuerySelector);
+//   const fetchData = (query: any) => {
+//     return axios.request(query);
+//   };
 
-  const { data, isLoading } = useQuery({
-    queryKey: ["getHotelListByQuery"],
-    queryFn: () => {
-      return fetchData(query);
-    },
-  });
+//   const { data, isLoading } = useQuery({
+//     queryKey: ["getHotelListByQuery"],
+//     queryFn: () => {
+//       return fetchData(query);
+//     },
+//   });
 
-  return { query, setQuery, data, isLoading };
-};
+//   return { query, setQuery, data, isLoading };
+// };
 
 // const { hotelData, }
