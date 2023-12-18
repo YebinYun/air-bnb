@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button, Divider, colors, styled } from "@mui/material";
+import { Box, Button, Divider, styled } from "@mui/material";
 import "react-calendar/dist/Calendar.css";
 import ReservationCalendar from "./ReservationCalendar";
 import ReservationDetails from "./ReservationDetails";
@@ -19,15 +19,25 @@ const NavbarReservationModal = ({
 
   const [progress, setProgress] = useState<number>(1);
   const [rangeDate, setRangeDate] = useState<Value>(null);
-  const [totalPeople, setTotalPeople] = useState<number>(0);
+  const [bookingInformation, setBookingInformation] = useState([
+    { id: 0, guests: "성인", age: " 13세 이상", quantity: 0 },
+    {
+      id: 1,
+      guests: "어린이",
+      age: "  12세 이하 (영유아 포함)",
+      quantity: 0,
+    },
+  ]);
+
+  // console.log(bookingInformation[1].quantity + bookingInformation[0].quantity);
+  const totalQuantity = bookingInformation.reduce(
+    (total, booking) => total + booking.quantity,
+    0
+  );
+  console.log(totalQuantity);
 
   const dateChangeHandler = (e: any) => {
     setRangeDate(e);
-  };
-
-  const peopleChangeHandler = (e: any) => {
-    setTotalPeople(e);
-    console.log(totalPeople);
   };
 
   const previousPage = () => {
@@ -43,7 +53,7 @@ const NavbarReservationModal = ({
         alert("날짜를 입력해주세요.");
         setProgress(progress);
       }
-      if (progress === 2 && totalPeople === 0) {
+      if (progress === 2 && totalQuantity === 0) {
         alert("인원 수를 입력해주세요.");
         setProgress(progress);
       }
@@ -130,8 +140,8 @@ const NavbarReservationModal = ({
 
               <Button sx={{ flexDirection: "column" }}>
                 <Box sx={{ color: "white", fontWeight: "bold" }}>여행자</Box>
-                <Box color={"black"} onChange={peopleChangeHandler}>
-                  {totalPeople === 0 ? "게스트 추가" : totalPeople}
+                <Box color={"black"}>
+                  {totalQuantity === 0 ? "게스트 추가" : totalQuantity}
                 </Box>
               </Button>
             </SelectMenubar>
@@ -148,9 +158,8 @@ const NavbarReservationModal = ({
           {/* 인원 */}
           {progress === 2 && (
             <ReservationDetails
-              totalPeople={totalPeople}
-              setTotalPeople={setTotalPeople}
-              peopleChangeHandler={peopleChangeHandler}
+              bookingInformation={bookingInformation}
+              setBookingInformation={setBookingInformation}
             />
           )}
 

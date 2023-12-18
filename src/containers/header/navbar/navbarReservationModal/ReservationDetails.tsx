@@ -3,32 +3,20 @@ import React, { useEffect, useState } from "react";
 import useGetHotelList from "./useGetHotelList";
 
 interface props {
-  peopleChangeHandler: number;
-  totalPeople: number;
-  setTotalPeople: () => void;
+  bookingInformation: any;
+  setBookingInformation: () => void;
 }
 
 const ReservationDetails = ({
-  peopleChangeHandler,
-  setTotalPeople,
-  totalPeople,
+  bookingInformation,
+  setBookingInformation,
 }: props) => {
-  const { fetchData, options, changeDate } = useGetHotelList();
+  const { fetchData, changeDate } = useGetHotelList();
 
   useEffect(() => {
     changeDate({ guests: "2", child: "1" });
     fetchData();
   }, []);
-
-  const [bookingInformation, setBookingInformation] = useState([
-    { id: 0, guests: "성인", age: " 13세 이상", quantity: 0 },
-    {
-      id: 1,
-      guests: "어린이",
-      age: "  12세 이하 (영유아 포함)",
-      quantity: 0,
-    },
-  ]);
 
   const totalCounterHandler = (id: number, value: number) => {
     const totalList = [...bookingInformation];
@@ -68,7 +56,7 @@ const ReservationDetails = ({
               <Box sx={{ display: "flex" }}>
                 <Button
                   onClick={() => {
-                    totalCounterHandler(item.id, -1);
+                    item.quantity > 0 && totalCounterHandler(item.id, -1);
                   }}
                 >
                   -
@@ -76,7 +64,6 @@ const ReservationDetails = ({
                 <TextField
                   name={item.guests}
                   value={item.quantity}
-                  onChange={item.quantity}
                   sx={{ width: "60px" }}
                 />
 
