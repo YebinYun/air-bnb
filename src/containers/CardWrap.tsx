@@ -1,23 +1,15 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense } from "react";
 import { Box } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import useGetHotelList from "./header/navbar/navbarReservationModal/useGetHotelList";
 import { useRecoilState } from "recoil";
-import { testAtomSelector } from "@/store";
-import { getHotelListQuery } from "@/store/useGetHotelStore";
+import { getHotelListQuery } from "@/store/getHotelListQuery";
+import CardImg from "@/components/card/CardImg";
+import CardText from "@/components/card/CardText";
 
 const CardWrap = () => {
-  const { fetchData, options, changeDate } = useGetHotelList();
-  const [test, setTest] = useRecoilState(testAtomSelector);
+  const { fetchData, options, changeData } = useGetHotelList();
   const [hotelList, setHotelList] = useRecoilState(getHotelListQuery);
-
-  // 다른데 가서  const testValue = useRecoilValue(testAtomSelector)
-
-  // useEffect(() => {
-  //   changeDate({ checkin: "2024 - 02 - 01", checkout: "2024-02-05" });
-  //   fetchData();
-  // }, []);
-
   const { data, isLoading } = useQuery({
     queryKey: ["getHotelList"],
     queryFn: fetchData,
@@ -49,21 +41,7 @@ const CardWrap = () => {
             top: "10rem",
           }}
         >
-          <input
-            value={hotelList?.checkin_date}
-            name="checkin_date"
-            onChange={(e) =>
-              setHotelList({ ...hotelList, [e.target.name]: e.target.value })
-            }
-          />
-          <input
-            value={hotelList?.checkout_date}
-            name="checkout_date"
-            onChange={(e) =>
-              setHotelList({ ...hotelList, [e.target.name]: e.target.value })
-            }
-          />
-          {/* {data?.result?.map(
+          {data?.result?.map(
             (
               value: {
                 max_photo_url: string;
@@ -94,7 +72,7 @@ const CardWrap = () => {
                 />
               </Box>
             )
-          )} */}
+          )}
         </Box>
       )}
     </Suspense>

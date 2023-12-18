@@ -1,5 +1,4 @@
 import ProgressComponent from "@/components/common/ProgressComponent";
-import { Box, styled } from "@mui/material";
 import React from "react";
 
 interface props {

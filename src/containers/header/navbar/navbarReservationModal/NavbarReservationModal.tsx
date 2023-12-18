@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Button, Divider, styled } from "@mui/material";
 import "react-calendar/dist/Calendar.css";
 import ReservationCalendar from "./ReservationCalendar";
 import ReservationDetails from "./ReservationDetails";
 import ProgressContainer from "./ProgressContainer";
-import { useNavigatePage } from "@/store/useGetHotelStore";
+import { useNavigatePage } from "@/store/useNavigatePage ";
 
 interface props {
   loginModalHandler: () => void;
@@ -12,60 +12,15 @@ interface props {
 
 const NavbarReservationModal = ({ loginModalHandler }: props) => {
   const {
-    progress,
+    pageIndex,
     rangeDate,
-    bookingInformation,
-    setBookingInformation,
+    guestsInformation,
+    setGuestsInformation,
     totalQuantity,
     dateChangeHandler,
     previousPage,
     nextPage,
   } = useNavigatePage();
-
-  // const [test, setTest] = useRecoilState(testAtomSelector);
-  // type ValuePiece = Date | null;
-  // type Value = ValuePiece | [ValuePiece, ValuePiece];
-
-  // const [progress, setProgress] = useState<number>(1);
-  // const [rangeDate, setRangeDate] = useState<Value>(null);
-  // const [bookingInformation, setBookingInformation] = useState([
-  //   { id: 0, guests: "성인", age: " 13세 이상", quantity: 0 },
-  //   {
-  //     id: 1,
-  //     guests: "어린이",
-  //     age: "  12세 이하 (영유아 포함)",
-  //     quantity: 0,
-  //   },
-  // ]);
-
-  // const totalQuantity = bookingInformation.reduce(
-  //   (total, booking) => total + booking.quantity,
-  //   0
-  // );
-
-  // const dateChangeHandler = (e: any) => {
-  //   setRangeDate(e);
-  // };
-
-  // const previousPage = () => {
-  //   if (progress > 0) {
-  //     setProgress(progress - 1);
-  //   }
-  // };
-
-  // const nextPage = () => {
-  //   if (progress < 2) {
-  //     setProgress(progress + 1);
-  //     if (progress === 1 && rangeDate === null) {
-  //       alert("날짜를 입력해주세요.");
-  //       setProgress(progress);
-  //     }
-  //     if (progress === 2 && totalQuantity === 0) {
-  //       alert("인원 수를 입력해주세요.");
-  //       setProgress(progress);
-  //     }
-  //   }
-  // };
 
   return (
     <NavInfoModalBackground>
@@ -78,8 +33,7 @@ const NavbarReservationModal = ({ loginModalHandler }: props) => {
             fontSize: "1.5rem",
             fontWeight: "bold",
             my: "2rem",
-          }}
-        >
+          }}>
           <Box> 객실 찾아보기</Box>
           {/* 닫기버튼 */}
           <Box
@@ -94,8 +48,7 @@ const NavbarReservationModal = ({ loginModalHandler }: props) => {
             }}
             onClick={() => {
               loginModalHandler();
-            }}
-          >
+            }}>
             &#9421;
           </Box>
         </Box>
@@ -106,19 +59,17 @@ const NavbarReservationModal = ({ loginModalHandler }: props) => {
           travelDestination={0}
           travelDate={1}
           travelDetail={2}
-          currentPage={progress}
+          currentPage={pageIndex}
         />
 
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
-          }}
-        >
+          }}>
           {/* 헤더 */}
           <Box
-            sx={{ display: "flex", flexDirection: "row", marginTop: "2rem" }}
-          >
+            sx={{ display: "flex", flexDirection: "row", marginTop: "2rem" }}>
             <SelectMenubar>
               <Button sx={{ flexDirection: "column" }}>
                 <Box sx={{ color: "white", fontWeight: "bold" }}>여행지</Box>
@@ -155,7 +106,7 @@ const NavbarReservationModal = ({ loginModalHandler }: props) => {
           </Box>
 
           {/* 캘린더 */}
-          {progress === 1 && (
+          {pageIndex === 1 && (
             <ReservationCalendar
               rangeDate={rangeDate}
               dateChangeHandler={dateChangeHandler}
@@ -163,10 +114,10 @@ const NavbarReservationModal = ({ loginModalHandler }: props) => {
           )}
 
           {/* 인원 */}
-          {progress === 2 && (
+          {pageIndex === 2 && (
             <ReservationDetails
-              bookingInformation={bookingInformation}
-              setBookingInformation={setBookingInformation}
+              guestsInformation={guestsInformation}
+              setGuestsInformation={setGuestsInformation}
             />
           )}
 
@@ -177,23 +128,20 @@ const NavbarReservationModal = ({ loginModalHandler }: props) => {
             position={"absolute"}
             bottom={"1rem"}
             justifyContent={"space-between"}
-            sx={{ mb: "10px" }}
-          >
+            sx={{ mb: "10px" }}>
             <Button
               onClick={() => {
                 previousPage();
               }}
-              sx={{ border: "1px solid #767676" }}
-            >
+              sx={{ border: "1px solid #767676" }}>
               이전
             </Button>
             <Button
               onClick={() => {
                 nextPage();
               }}
-              sx={{ border: "1px solid #767676" }}
-            >
-              {progress === 2 ? "완료" : "다음"}
+              sx={{ border: "1px solid #767676" }}>
+              {pageIndex === 2 ? "완료" : "다음"}
             </Button>
           </Box>
         </Box>
