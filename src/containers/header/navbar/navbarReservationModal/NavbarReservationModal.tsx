@@ -17,9 +17,9 @@ const NavbarReservationModal = ({
   type ValuePiece = Date | null;
   type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-  const [rangeDate, setRangeDate] = useState<Value>(null);
-  const [totalPeople, setTotalPeople] = useState<Value>(0);
   const [progress, setProgress] = useState<number>(1);
+  const [rangeDate, setRangeDate] = useState<Value>(null);
+  const [totalPeople, setTotalPeople] = useState<number>(0);
 
   const dateChangeHandler = (e: any) => {
     setRangeDate(e);
@@ -39,17 +39,14 @@ const NavbarReservationModal = ({
   const nextPage = () => {
     if (progress < 2) {
       setProgress(progress + 1);
-      if (rangeDate === null) {
-        if (progress === 1) {
-          alert("날짜를 입력해주세요.");
-        }
+      if (progress === 1 && rangeDate === null) {
+        alert("날짜를 입력해주세요.");
         setProgress(progress);
       }
-
-      if (totalPeople <= 0) {
-        alert("인원수를 입력해주세요");
+      if (progress === 2 && totalPeople === 0) {
+        alert("인원 수를 입력해주세요.");
+        setProgress(progress);
       }
-      setProgress(progress);
     }
   };
 

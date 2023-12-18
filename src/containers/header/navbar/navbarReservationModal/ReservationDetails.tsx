@@ -1,168 +1,98 @@
 import { Box, Button, Divider, TextField } from "@mui/material";
-import React, { useState } from "react";
-
-type ReservationInfoInitType = {
-  guests: number;
-  child: number;
-};
+import React, { useEffect, useState } from "react";
+import useGetHotelList from "./useGetHotelList";
 
 interface props {
-  peopleChangeHandler: Number;
-  totalPeople: Number;
+  peopleChangeHandler: number;
+  totalPeople: number;
   setTotalPeople: () => void;
 }
-
-const reservationInfoInit = {
-  guests: 0, // 성인
-  child: 0, // 소아 인원
-  // 나중에는 좌표를 지도에서 찍어서, 인원과 객실갯수 기준으로 좌표상의 호텔노출
-};
 
 const ReservationDetails = ({
   peopleChangeHandler,
   setTotalPeople,
   totalPeople,
 }: props) => {
-  const [isCounter, setIsCounter] = useState<Number>(0);
+  const { fetchData, options, changeDate } = useGetHotelList();
 
-  const [bookingInformation, setBookingInformation] =
-    useState<ReservationInfoInitType>(reservationInfoInit);
+  useEffect(() => {
+    changeDate({ guests: "2", child: "1" });
+    fetchData();
+  }, []);
 
-  const bookingInfoChangeHandler = (e: any) => {
-    setBookingInformation({
-      ...bookingInformation,
-      [e.target.name]: e.target.value,
-    });
+  const [bookingInformation, setBookingInformation] = useState([
+    { id: 0, guests: "성인", age: " 13세 이상", quantity: 0 },
+    {
+      id: 1,
+      guests: "어린이",
+      age: "  12세 이하 (영유아 포함)",
+      quantity: 0,
+    },
+  ]);
 
-    console.log(e.target.name);
-    console.log(e.target.value);
+  const totalCounterHandler = (id: number, value: number) => {
+    const totalList = [...bookingInformation];
+    bookingInformation[id].quantity += value;
+    setBookingInformation(totalList);
   };
-
-  const [adultCounter, setAdultCounter] = useState<number>(0);
-
-  // const onComplete = () => {
-  //   const form = {
-  //     guests: adultCounter,
-  //     child: childCOunter,
-  //     rooms: roomCounter,
-  //   }
-  // }
 
   return (
     <Box sx={{ mt: "3rem" }}>
-      {/* 성인 */}
-      <Box
-        sx={{
-          py: "1rem",
-          display: "flex",
-          alignItems: "center",
-          height: "100%",
-          width: "100%",
-        }}
-      >
-        <Box sx={{ width: "50%" }}>
-          <Box sx={{ fontWeight: "bold", pb: "0.25rem" }}>성인</Box>
-          <Box sx={{ fontSize: "0.8rem", color: "gray" }}>13세 이상</Box>
-        </Box>
+      {bookingInformation.map((item) => (
+        <Box key={item.id}>
+          <Box
+            sx={{
+              py: "1rem",
+              display: "flex",
+              alignItems: "center",
+              height: "100%",
+              width: "100%",
+            }}
+          >
+            <Box sx={{ width: "50%" }}>
+              <Box sx={{ fontWeight: "bold", pb: "0.25rem" }}>
+                {item.guests}
+              </Box>
+              <Box sx={{ fontSize: "0.8rem", color: "gray" }}>{item.age}</Box>
+            </Box>
 
-        <Box
-          sx={{
-            width: "50%",
-            height: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: " flex-end",
-          }}
-        >
-          <Box sx={{ display: "flex" }}>
-            <Button
-              onClick={() => {
-                setTotalPeople(totalPeople - 1);
+            <Box
+              sx={{
+                width: "50%",
+                height: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: " flex-end",
               }}
             >
-              -
-            </Button>
-            <TextField
-              // type="number"
-              name="guests"
-              sx={{ width: "60px" }}
-              onChange={bookingInfoChangeHandler}
-              value={totalPeople}
-              inputProps={{
-                min: 0,
-                max: 6,
-              }}
-            />
-            <Button
-              onClick={() => {
-                setTotalPeople(totalPeople + 1);
-              }}
-            >
-              +
-            </Button>
+              <Box sx={{ display: "flex" }}>
+                <Button
+                  onClick={() => {
+                    totalCounterHandler(item.id, -1);
+                  }}
+                >
+                  -
+                </Button>
+                <TextField
+                  name={item.guests}
+                  value={item.quantity}
+                  onChange={item.quantity}
+                  sx={{ width: "60px" }}
+                />
+
+                <Button
+                  onClick={() => {
+                    totalCounterHandler(item.id, 1);
+                  }}
+                >
+                  +
+                </Button>
+              </Box>
+            </Box>
+            <Divider />
           </Box>
         </Box>
-      </Box>
-
-      <Divider />
-
-      {/* 어린이 */}
-      <Box
-        sx={{
-          py: "1rem",
-          display: "flex",
-          alignItems: "center",
-          height: "100%",
-          width: "100%",
-        }}
-      >
-        <Box sx={{ width: "50%" }}>
-          <Box sx={{ fontWeight: "bold", pb: "0.25rem" }}>어린이</Box>
-          <Box sx={{ fontSize: "0.8rem", color: "gray" }}>
-            12세 이하 (영유아 포함)
-          </Box>
-        </Box>
-
-        <Box
-          sx={{
-            width: "50%",
-            height: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: " flex-end",
-          }}
-        >
-          <Box sx={{ display: "flex" }}>
-            <Button
-              onClick={() => {
-                setTotalPeople(totalPeople - 1);
-              }}
-            >
-              -
-            </Button>
-            <TextField
-              // type="number"
-              name="child"
-              sx={{ width: "60px" }}
-              onChange={bookingInfoChangeHandler}
-              value={bookingInformation?.child || 0}
-              inputProps={{
-                min: 0,
-                max: 6,
-              }}
-            />
-            <Button
-              onClick={() => {
-                setTotalPeople(totalPeople + 1);
-              }}
-            >
-              +
-            </Button>
-          </Box>
-        </Box>
-      </Box>
-
-      <Divider />
+      ))}
     </Box>
   );
 };

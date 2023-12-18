@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import CardImg from "../components/card/CardImg";
 import CardText from "../components/card/CardText";
 import { Box } from "@mui/material";
@@ -6,7 +6,12 @@ import { useQuery } from "@tanstack/react-query";
 import useGetHotelList from "./header/navbar/navbarReservationModal/useGetHotelList";
 
 const CardWrap = () => {
-   const { fetchData, options, changeDate } = useGetHotelList();
+  const { fetchData, options, changeDate } = useGetHotelList();
+
+  useEffect(() => {
+    changeDate({ checkin: "2024 - 02 - 01", checkout: "2024-02-05" });
+    fetchData();
+  }, []);
 
   const { data, isLoading } = useQuery({
     queryKey: ["getHotelList"],

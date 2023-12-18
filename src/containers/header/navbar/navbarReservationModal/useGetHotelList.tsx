@@ -30,13 +30,15 @@ const useGetHotelList = () => {
 
   const [options, setOptions] = useState(initialOptions);
 
-  const changeDate = ({ checkin, checkout }) => {
+  const changeDate = ({ checkin, checkout, guests, child }) => {
     setOptions((prevOptions) => ({
       ...prevOptions,
       params: {
         ...prevOptions.params,
         checkin_date: checkin,
         checkout_date: checkout,
+        adults_number: guests,
+        children_number: child,
       },
     }));
   };
@@ -44,13 +46,12 @@ const useGetHotelList = () => {
   const fetchData = async () => {
     try {
       const response = await axios.request(options);
-      return response.data; 
+      return response.data;
     } catch (error) {
       console.error(error);
-      throw new Error("Error"); 
+      throw new Error("Error");
     }
   };
-
 
   return { fetchData, options, changeDate };
 };
