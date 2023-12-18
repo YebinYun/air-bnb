@@ -4,61 +4,68 @@ import "react-calendar/dist/Calendar.css";
 import ReservationCalendar from "./ReservationCalendar";
 import ReservationDetails from "./ReservationDetails";
 import ProgressContainer from "./ProgressContainer";
+import { useNavigatePage } from "@/store/useGetHotelStore";
 
 interface props {
-  onNavInfoModal: boolean;
   loginModalHandler: () => void;
 }
 
-const NavbarReservationModal = ({
-  onNavInfoModal,
-  loginModalHandler,
-}: props) => {
-  type ValuePiece = Date | null;
-  type Value = ValuePiece | [ValuePiece, ValuePiece];
+const NavbarReservationModal = ({ loginModalHandler }: props) => {
+  const {
+    progress,
+    rangeDate,
+    bookingInformation,
+    setBookingInformation,
+    totalQuantity,
+    dateChangeHandler,
+    previousPage,
+    nextPage,
+  } = useNavigatePage();
 
-  const [progress, setProgress] = useState<number>(1);
-  const [rangeDate, setRangeDate] = useState<Value>(null);
-  const [bookingInformation, setBookingInformation] = useState([
-    { id: 0, guests: "성인", age: " 13세 이상", quantity: 0 },
-    {
-      id: 1,
-      guests: "어린이",
-      age: "  12세 이하 (영유아 포함)",
-      quantity: 0,
-    },
-  ]);
+  // const [test, setTest] = useRecoilState(testAtomSelector);
+  // type ValuePiece = Date | null;
+  // type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-  // console.log(bookingInformation[1].quantity + bookingInformation[0].quantity);
-  const totalQuantity = bookingInformation.reduce(
-    (total, booking) => total + booking.quantity,
-    0
-  );
-  console.log(totalQuantity);
+  // const [progress, setProgress] = useState<number>(1);
+  // const [rangeDate, setRangeDate] = useState<Value>(null);
+  // const [bookingInformation, setBookingInformation] = useState([
+  //   { id: 0, guests: "성인", age: " 13세 이상", quantity: 0 },
+  //   {
+  //     id: 1,
+  //     guests: "어린이",
+  //     age: "  12세 이하 (영유아 포함)",
+  //     quantity: 0,
+  //   },
+  // ]);
 
-  const dateChangeHandler = (e: any) => {
-    setRangeDate(e);
-  };
+  // const totalQuantity = bookingInformation.reduce(
+  //   (total, booking) => total + booking.quantity,
+  //   0
+  // );
 
-  const previousPage = () => {
-    if (progress > 0) {
-      setProgress(progress - 1);
-    }
-  };
+  // const dateChangeHandler = (e: any) => {
+  //   setRangeDate(e);
+  // };
 
-  const nextPage = () => {
-    if (progress < 2) {
-      setProgress(progress + 1);
-      if (progress === 1 && rangeDate === null) {
-        alert("날짜를 입력해주세요.");
-        setProgress(progress);
-      }
-      if (progress === 2 && totalQuantity === 0) {
-        alert("인원 수를 입력해주세요.");
-        setProgress(progress);
-      }
-    }
-  };
+  // const previousPage = () => {
+  //   if (progress > 0) {
+  //     setProgress(progress - 1);
+  //   }
+  // };
+
+  // const nextPage = () => {
+  //   if (progress < 2) {
+  //     setProgress(progress + 1);
+  //     if (progress === 1 && rangeDate === null) {
+  //       alert("날짜를 입력해주세요.");
+  //       setProgress(progress);
+  //     }
+  //     if (progress === 2 && totalQuantity === 0) {
+  //       alert("인원 수를 입력해주세요.");
+  //       setProgress(progress);
+  //     }
+  //   }
+  // };
 
   return (
     <NavInfoModalBackground>

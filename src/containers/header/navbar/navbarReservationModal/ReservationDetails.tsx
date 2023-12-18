@@ -11,12 +11,14 @@ const ReservationDetails = ({
   bookingInformation,
   setBookingInformation,
 }: props) => {
-  const { fetchData, changeDate } = useGetHotelList();
+  const { fetchData, changeData } = useGetHotelList();
 
-  useEffect(() => {
-    changeDate({ guests: "2", child: "1" });
-    fetchData();
-  }, []);
+  const onChangeHandler = (e: any) => {
+    changeData({
+      ...fetchData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const totalCounterHandler = (id: number, value: number) => {
     const totalList = [...bookingInformation];

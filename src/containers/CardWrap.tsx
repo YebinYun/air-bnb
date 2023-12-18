@@ -1,12 +1,21 @@
 import React, { Suspense, useEffect, useState } from "react";
-import CardImg from "../components/card/CardImg";
-import CardText from "../components/card/CardText";
 import { Box } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import useGetHotelList from "./header/navbar/navbarReservationModal/useGetHotelList";
+import { useRecoilState } from "recoil";
+import { testAtomSelector } from "@/store";
+import {
+  getHotelListQuerySelector,
+  getHotelListSelector,
+  useGetHotelListItem,
+} from "@/store/useGetHotelStore";
 
 const CardWrap = () => {
   const { fetchData, options, changeDate } = useGetHotelList();
+  const [test, setTest] = useRecoilState(testAtomSelector);
+  const { setQuery, query, data } = useGetHotelListItem();
+
+  // 다른데 가서  const testValue = useRecoilValue(testAtomSelector)
 
   useEffect(() => {
     changeDate({ checkin: "2024 - 02 - 01", checkout: "2024-02-05" });
@@ -17,6 +26,17 @@ const CardWrap = () => {
     queryKey: ["getHotelList"],
     queryFn: fetchData,
   });
+
+  // 내위치 받아오기
+  // useEffect(() => {
+  //   const watchId = navigator.geolocation.watchPosition((position) => {
+  //     const { latitude, longitude } = position.coords;
+  //     // Show a map centered at latitude / longitude.
+  //     console.log("latitude", position.coords);
+  //   });
+  // }, []);
+
+  console.log("hotelList", hotelList);
 
   return (
     <Suspense fallback={<div>Loading......</div>}>
@@ -34,7 +54,21 @@ const CardWrap = () => {
             top: "10rem",
           }}
         >
-          {data?.result?.map(
+          <input
+            value={hotelList?.checkin_date}
+            name="checkin_date"
+            onChange={(e) =>
+              setHotelList({ ...hotelList, [e.target.name]: e.target.value })
+            }
+          />
+          <input
+            value={hotelList?.checkout_date}
+            name="checkout_date"
+            onChange={(e) =>
+              setHotelList({ ...hotelList, [e.target.name]: e.target.value })
+            }
+          />
+          {/* {data?.result?.map(
             (
               value: {
                 max_photo_url: string;
@@ -65,7 +99,7 @@ const CardWrap = () => {
                 />
               </Box>
             )
-          )}
+          )} */}
         </Box>
       )}
     </Suspense>

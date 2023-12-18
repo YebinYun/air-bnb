@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
 
 const useGetHotelList = () => {
   const initialOptions = {
@@ -44,13 +43,13 @@ const useGetHotelList = () => {
   };
 
   const fetchData = async () => {
-    try {
-      const response = await axios.request(options);
-      return response.data;
-    } catch (error) {
-      console.error(error);
-      throw new Error("Error");
-    }
+    // try {
+    //   const response = await axios.request(options);
+    //   return response.data;
+    // } catch (error) {
+    //   console.error(error);
+    //   console.log("Error");
+    // }
   };
 
   return { fetchData, options, changeDate };

@@ -3,10 +3,10 @@ import { Box, styled } from "@mui/material";
 import React from "react";
 
 interface props {
-  travelDestination: Number;
-  travelDate: Number;
-  travelDetail: Number;
-  currentPage: Number;
+  travelDestination: number;
+  travelDate: number;
+  travelDetail: number;
+  currentPage: number;
 }
 
 const ProgressContainer = ({
