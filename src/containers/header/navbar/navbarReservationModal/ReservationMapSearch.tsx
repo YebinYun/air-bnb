@@ -20,13 +20,11 @@ const ReservationMapSearch = () => {
         lat: latitude,
         lng: longitude,
       });
-      console.log("latitude", position.coords);
     });
   }, []);
 
   return (
     <div>
-      <div>adslkjfdjlkasafdsjl;kasdfjkl;</div>
       <Map lat={coords.lat} lng={coords.lng} />
     </div>
   );
