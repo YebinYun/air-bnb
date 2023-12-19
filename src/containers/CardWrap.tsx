@@ -15,14 +15,6 @@ const CardWrap = () => {
     queryFn: fetchData,
   });
 
-  // useEffect(() => {
-  //   const watchId = navigator.geolocation.watchPosition((position) => {
-  //     const { latitude, longitude } = position.coords;
-  //     // Show a map centered at latitude / longitude.
-  //     console.log("latitude", position.coords);
-  //   });
-  // }, []);
-
   return (
     <Suspense fallback={<div>Loading......</div>}>
       {!isLoading && (

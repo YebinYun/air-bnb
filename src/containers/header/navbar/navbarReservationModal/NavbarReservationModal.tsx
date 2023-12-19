@@ -5,6 +5,7 @@ import ReservationCalendar from "./ReservationCalendar";
 import ReservationDetails from "./ReservationDetails";
 import ProgressContainer from "./ProgressContainer";
 import { useNavigatePage } from "@/store/useNavigatePage ";
+import ReservationMapSearch from "./ReservationMapSearch";
 
 interface props {
   loginModalHandler: () => void;
@@ -108,6 +109,7 @@ const NavbarReservationModal = ({ loginModalHandler }: props) => {
               </Button>
             </SelectMenubar>
           </Box>
+          {pageIndex === 0 && <ReservationMapSearch />}
 
           {/* 캘린더 */}
           {pageIndex === 1 && (
