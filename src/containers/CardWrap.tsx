@@ -23,8 +23,6 @@ const CardWrap = () => {
   //   });
   // }, []);
 
-  console.log("hotelList", hotelList);
-
   return (
     <Suspense fallback={<div>Loading......</div>}>
       {!isLoading && (

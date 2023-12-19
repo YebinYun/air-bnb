@@ -33,7 +33,8 @@ const NavbarReservationModal = ({ loginModalHandler }: props) => {
             fontSize: "1.5rem",
             fontWeight: "bold",
             my: "2rem",
-          }}>
+          }}
+        >
           <Box> 객실 찾아보기</Box>
           {/* 닫기버튼 */}
           <Box
@@ -48,7 +49,8 @@ const NavbarReservationModal = ({ loginModalHandler }: props) => {
             }}
             onClick={() => {
               loginModalHandler();
-            }}>
+            }}
+          >
             &#9421;
           </Box>
         </Box>
@@ -66,10 +68,12 @@ const NavbarReservationModal = ({ loginModalHandler }: props) => {
           sx={{
             display: "flex",
             flexDirection: "column",
-          }}>
+          }}
+        >
           {/* 헤더 */}
           <Box
-            sx={{ display: "flex", flexDirection: "row", marginTop: "2rem" }}>
+            sx={{ display: "flex", flexDirection: "row", marginTop: "2rem" }}
+          >
             <SelectMenubar>
               <Button sx={{ flexDirection: "column" }}>
                 <Box sx={{ color: "white", fontWeight: "bold" }}>여행지</Box>
@@ -99,7 +103,7 @@ const NavbarReservationModal = ({ loginModalHandler }: props) => {
               <Button sx={{ flexDirection: "column" }}>
                 <Box sx={{ color: "white", fontWeight: "bold" }}>여행자</Box>
                 <Box color={"black"}>
-                  {totalQuantity === 0 ? "게스트 추가" : totalQuantity}
+                  {totalQuantity === 0 ? totalQuantity : totalQuantity}
                 </Box>
               </Button>
             </SelectMenubar>
@@ -128,19 +132,22 @@ const NavbarReservationModal = ({ loginModalHandler }: props) => {
             position={"absolute"}
             bottom={"1rem"}
             justifyContent={"space-between"}
-            sx={{ mb: "10px" }}>
+            sx={{ mb: "10px" }}
+          >
             <Button
               onClick={() => {
                 previousPage();
               }}
-              sx={{ border: "1px solid #767676" }}>
+              sx={{ border: "1px solid #767676" }}
+            >
               이전
             </Button>
             <Button
               onClick={() => {
                 nextPage();
               }}
-              sx={{ border: "1px solid #767676" }}>
+              sx={{ border: "1px solid #767676" }}
+            >
               {pageIndex === 2 ? "완료" : "다음"}
             </Button>
           </Box>

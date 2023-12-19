@@ -1,68 +1,130 @@
 import { Box, Button, Divider, TextField } from "@mui/material";
-import React  from "react";
+import React from "react";
 import { useNavigatePage } from "@/store/useNavigatePage ";
+import useGetHotelList from "./useGetHotelList";
+import { useRecoilState } from "recoil";
+import { getHotelListQuery } from "@/store/getHotelListQuery";
+import { useQuery } from "@tanstack/react-query";
 
-const ReservationDetails = ()=>{
+const ReservationDetails = () => {
   const { guestsInformation, setGuestsInformation } = useNavigatePage();
 
-  const totalCounterHandler = (id: number, value: number) => {
-    const updatedList = [...guestsInformation];
-    updatedList[id].quantity += value;
-    setGuestsInformation(updatedList);
+  const totalCounterHandler = (guestType: string, value: number) => {
+    const updateList = { ...guestsInformation };
+
+    if (guestType !== "children") updateList.adults_number += value;
+    else updateList.children_number += value;
+
+    return setGuestsInformation(updateList);
   };
+
+  const { fetchData, options, changeData } = useGetHotelList();
+  const [hotelList, setHotelList] = useRecoilState(getHotelListQuery);
+  const { data, isLoading } = useQuery({
+    queryKey: ["getHotelList"],
+    queryFn: fetchData,
+  });
 
   return (
     <Box sx={{ mt: "3rem" }}>
-      {guestsInformation.map((item) => (
-        <Box key={item.id}>
+      <Box>
+        <Box
+          sx={{
+            py: "1rem",
+            display: "flex",
+            alignItems: "center",
+            height: "100%",
+            width: "100%",
+          }}
+        >
+          <Box sx={{ width: "50%" }}>
+            <Box sx={{ fontWeight: "bold", pb: "0.25rem" }}>성인</Box>
+            <Box sx={{ fontSize: "0.8rem", color: "gray" }}> 18세 이상</Box>
+          </Box>
           <Box
             sx={{
-              py: "1rem",
+              width: "50%",
+              height: "100%",
               display: "flex",
               alignItems: "center",
-              height: "100%",
-              width: "100%",
-            }}>
-            <Box sx={{ width: "50%" }}>
-              <Box sx={{ fontWeight: "bold", pb: "0.25rem" }}>
-                {item.guests}
+              justifyContent: " flex-end",
+            }}
+          >
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <Button
+                onClick={() => {
+                  guestsInformation?.adults_number > 0 &&
+                    totalCounterHandler("adult", -1);
+                }}
+              >
+                -
+              </Button>
+              <Box sx={{ width: "4rem", textAlign: "center" }}>
+                {guestsInformation?.adults_number}
               </Box>
-              <Box sx={{ fontSize: "0.8rem", color: "gray" }}>{item.age}</Box>
-            </Box>
 
-            <Box
-              sx={{
-                width: "50%",
-                height: "100%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: " flex-end",
-              }}>
-              <Box sx={{ display: "flex" }}>
-                <Button
-                  onClick={() => {
-                    item.quantity > 0 && totalCounterHandler(item.id, -1);
-                  }}>
-                  -
-                </Button>
-                <TextField
-                  name={item.guests}
-                  value={item.quantity}
-                  sx={{ width: "60px" }}
-                />
-
-                <Button
-                  onClick={() => {
-                    totalCounterHandler(item.id, 1);
-                  }}>
-                  +
-                </Button>
-              </Box>
+              <Button
+                onClick={() => {
+                  totalCounterHandler("adult", 1);
+                }}
+              >
+                +
+              </Button>
             </Box>
-            <Divider />
           </Box>
         </Box>
-      ))}
+        <Divider />
+        <Box
+          sx={{
+            py: "1rem",
+            display: "flex",
+            alignItems: "center",
+            height: "100%",
+            width: "100%",
+          }}
+        >
+          <Box sx={{ width: "50%" }}>
+            <Box sx={{ fontWeight: "bold", pb: "0.25rem" }}>
+              청소년 (영.유아 포함)
+            </Box>
+            <Box sx={{ fontSize: "0.8rem", color: "gray" }}>13세 미만</Box>
+          </Box>
+
+          <Box
+            sx={{
+              width: "50%",
+              height: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: " flex-end",
+            }}
+          >
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <Button
+                onClick={() => {
+                  guestsInformation?.children_number > 0 &&
+                    totalCounterHandler("children", -1);
+                }}
+              >
+                -
+              </Button>
+              <Box sx={{ width: "4rem", textAlign: "center" }}>
+                {guestsInformation?.children_number}
+              </Box>
+
+              <Button
+                onClick={() => {
+                  totalCounterHandler("children", 1);
+                }}
+              >
+                +
+              </Button>
+            </Box>
+          </Box>
+          <Divider />
+        </Box>
+      </Box>
+      <Divider />
     </Box>
   );
 };
