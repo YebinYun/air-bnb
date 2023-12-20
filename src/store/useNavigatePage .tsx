@@ -20,6 +20,8 @@ type UseNavigatePageResult = {
   dateChangeHandler: (e: any) => void;
   previousPage: () => void;
   nextPage: () => void;
+  coords: any;
+  countyHandler: (e: React.FormEvent<HTMLDivElement>) => void;
 };
 
 const guestsInformationInit: GetHotelListInit = {
@@ -31,10 +33,21 @@ const guestsInformationInit: GetHotelListInit = {
 
 export const useNavigatePage = (): UseNavigatePageResult => {
   const [pageIndex, setPageIndex] = useState<number>(0);
+  const [coords, setCoords] = useState({
+    lat: 34.5289,
+    lng: 69.1725,
+  });
   const [rangeDate, setRangeDate] = useState<Value>(null);
   const [guestsInformation, setGuestsInformation] = useState(
     guestsInformationInit
   );
+
+  const countyHandler = (e: any) => {
+    setCoords({
+      lat: Number(e.target?.value.split("/")[0]),
+      lng: Number(e.target?.value.split("/")[1]),
+    });
+  };
 
   const dateChangeHandler = (e: any) => {
     setRangeDate(e);
@@ -75,5 +88,8 @@ export const useNavigatePage = (): UseNavigatePageResult => {
     previousPage,
     nextPage,
     totalQuantity,
+    coords,
+    setCoords,
+    countyHandler,
   };
 };

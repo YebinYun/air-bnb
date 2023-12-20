@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Button, Divider, styled } from "@mui/material";
 import "react-calendar/dist/Calendar.css";
 import ReservationCalendar from "./ReservationCalendar";
@@ -21,7 +21,11 @@ const NavbarReservationModal = ({ loginModalHandler }: props) => {
     dateChangeHandler,
     previousPage,
     nextPage,
+    coords,
+    countyHandler,
   } = useNavigatePage();
+
+  console.log(coords);
 
   return (
     <NavInfoModalBackground>
@@ -78,7 +82,16 @@ const NavbarReservationModal = ({ loginModalHandler }: props) => {
             <SelectMenubar>
               <Button sx={{ flexDirection: "column" }}>
                 <Box sx={{ color: "white", fontWeight: "bold" }}>여행지</Box>
-                <Box color={"black"}>여행지 검색</Box>
+                <Box
+                  color={"black"}
+                  onChange={(e) => {
+                    countyHandler(e);
+                  }}
+                >
+                  {coords?.lat === 34.5289 ? "여행지 검색" : "선택 완료"}
+                  {coords?.lat}
+                  {/* key를 coords?.lat으로 맞추고 일치하는 countryCapital에 lat에서 Country 값을 가져오기 */}
+                </Box>
               </Button>
 
               <Button sx={{ flexDirection: "column" }}>

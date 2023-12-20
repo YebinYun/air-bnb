@@ -1,24 +1,31 @@
 import React from "react";
-import { MapContainer, Marker, TileLayer } from "react-leaflet";
-import { divIcon } from "leaflet";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
-// world country 설치  그담에 react-select library 설치해서 select option 값으로 country 를 고를수 있게 하고, 고르면 해당 좌표로 이동!!
+type props = {
+  lat: number;
+  lng: number;
+};
 
-const Map = ({ lat, lng }) => {
-  const ICON = divIcon();
+const Map = ({ lat, lng }: props) => {
+  const Icon = icon({
+    iconUrl: "images/map-marker.svg",
+    iconSize: [24, 24],
+    iconAnchor: [12, 24],
+  });
 
   return (
     <>
       <MapContainer
         key={lat}
-        style={{ width: "100%", height: "400px", margin: "2rem 0 " }}
+        style={{ width: "100%", height: "400px" }}
         center={[lat, lng]}
-        zoom={6}
-        scrollWheelZoom={false}
+        zoom={13}
+        scrollWheelZoom={true}
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        <Marker icon={ICON} position={[lat, lng]} />
+        <Marker position={[lat, lng]} icon={Icon}></Marker>
       </MapContainer>
     </>
   );

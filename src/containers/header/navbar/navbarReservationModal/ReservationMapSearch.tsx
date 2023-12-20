@@ -1,54 +1,42 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import dynamic from "next/dynamic";
-import { Select } from "@mui/material";
-import countries from "world-countries";
-import { map } from "leaflet";
+import countryCapital from "./countryCapital.json";
+import { useNavigatePage } from "@/store/useNavigatePage ";
 
 const Map = dynamic(() => import("./Map"), {
   ssr: false,
 });
 
-console.log("@countries:", countries);
-
 const ReservationMapSearch = () => {
-  const [coords, setCoords] = useState({
-    lat: 37.5761827,
-    lng: 126.8998998,
-  });
+  const { coords, countyHandler } = useNavigatePage();
 
-  useEffect(() => {
-    const watchId = navigator.geolocation.watchPosition((position) => {
-      const { latitude, longitude } = position.coords;
-      setCoords({
-        lat: latitude,
-        lng: longitude,
-      });
-    });
-  }, []);
+  console.log(coords);
 
-  console.log("##coords:", coords);
-  const onChangeHandler = (e) => {
-    console.log("e", e);
-    const lat = e.target.value.split(",")[0];
-    const lng = e.target.value.split(",")[1];
-    setCoords({
-      lat: Number(lat),
-      lng: Number(lng),
-    });
-  };
+  // useEffect(() => {
+  //   const watchId = navigator.geolocation.watchPosition((position) => {
+  //     const { latitude, longitude } = position.coords;
+  //     setCoords({
+  //       // lat: latitude,
+  //       // lng: longitude,
+  //     });
+  //   });
+  // }, []);
 
   return (
     <>
       <select
+        style={{ margin: "1rem 0", padding: "1rem" }}
         onChange={(e) => {
-          onChangeHandler(e);
+          countyHandler(e);
         }}
       >
-        {countries?.map((x) => (
-          <option value={x?.latlng}>{x?.name?.common}</option>
+        {countryCapital?.map((x, index) => (
+          <option key={index} value={`${x?.lat + "/" + x?.lng}`}>
+            {x?.Country}
+          </option>
         ))}
       </select>
-      <Map lat={Number(coords.lat)} lng={Number(coords.lng)} />
+      <Map lat={coords?.lat} lng={coords?.lng} />
     </>
   );
 };

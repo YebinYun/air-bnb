@@ -35,9 +35,10 @@ const initialOptions: AxiosRequestConfig = {
     children_ages: "5,0",
   },
   headers: {
-    "X-RapidAPI-Key": process.env.NEXT_PUBLIC_X_RAPIDAPI_KEY || "",
+    "X-RapidAPI-Key": process.env.NEXT_PUBLIC_X_RAPIDAPI_KEY,
     "X-RapidAPI-Host": "booking-com.p.rapidapi.com",
   },
+  Z,
 };
 
 const useGetHotelList = (): UseGetHotelListResult => {
