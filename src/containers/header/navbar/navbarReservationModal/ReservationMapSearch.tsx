@@ -1,30 +1,22 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import countryCapital from "./countryCapital.json";
-import { useCoordsHandler } from "@/store/getHotelListQuery";
+import { useBookingInfoChangeHandler } from "@/store/getHotelListQuery";
 
 const Map = dynamic(() => import("./Map"), {
   ssr: false,
 });
 
 const ReservationMapSearch = () => {
-  const { coordsSetHandler, coords } = useCoordsHandler();
-
-  // useEffect(() => {
-  //   const watchId = navigator.geolocation.watchPosition((position) => {
-  //     const { latitude, longitude } = position.coords;
-  //     setCoords({
-  //       // lat: latitude,
-  //       // lng: longitude,
-  //     });
-  //   });
-  // }, []);
+  const { handleOnBookingInfoChange, bookingInfo } =
+    useBookingInfoChangeHandler();
 
   return (
     <>
       <select
+        name="coords"
         style={{ margin: "1rem 0", padding: "1rem" }}
-        onChange={coordsSetHandler}
+        onChange={handleOnBookingInfoChange}
       >
         {countryCapital?.map((x, index) => (
           <option key={index} value={`${x?.lat + "/" + x?.lng}`}>
@@ -32,7 +24,7 @@ const ReservationMapSearch = () => {
           </option>
         ))}
       </select>
-      <Map lat={coords?.lat} lng={coords?.lng} />
+      <Map lat={bookingInfo?.lat} lng={bookingInfo?.lng} />
     </>
   );
 };

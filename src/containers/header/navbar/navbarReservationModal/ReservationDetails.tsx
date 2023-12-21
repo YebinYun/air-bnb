@@ -6,9 +6,7 @@ import { useRecoilState } from "recoil";
 import { getHotelListQuery } from "@/store/getHotelListQuery";
 import { useQuery } from "@tanstack/react-query";
 
-const ReservationDetails = () => {
-  const { guestsInformation, setGuestsInformation } = useNavigatePage();
-
+const ReservationDetails = ({ guestsInformation, setGuestsInformation }) => {
   const totalCounterHandler = (guestType: string, value: number) => {
     const updateList = { ...guestsInformation };
 
@@ -17,13 +15,6 @@ const ReservationDetails = () => {
 
     return setGuestsInformation(updateList);
   };
-
-  const { fetchData, options, changeData } = useGetHotelList();
-  const [hotelList, setHotelList] = useRecoilState(getHotelListQuery);
-  const { data, isLoading } = useQuery({
-    queryKey: ["getHotelList"],
-    queryFn: fetchData,
-  });
 
   return (
     <Box sx={{ mt: "3rem" }}>

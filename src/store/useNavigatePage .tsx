@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { GetHotelListInit } from "./getHotelListQuery";
+import {
+  GetHotelListInit,
+  bookingInformationSelector,
+} from "./getHotelListQuery";
+import { useRecoilValue } from "recoil";
 
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
@@ -29,6 +33,8 @@ const guestsInformationInit: GetHotelListInit = {
   checkout_date: null,
   adults_number: 0,
   children_number: 0,
+  lat: 34.5289,
+  lng: 69.1725,
 };
 
 export const useNavigatePage = (): UseNavigatePageResult => {
@@ -37,10 +43,8 @@ export const useNavigatePage = (): UseNavigatePageResult => {
     lat: 34.5289,
     lng: 69.1725,
   });
-  const [rangeDate, setRangeDate] = useState<Value>(null);
-  const [guestsInformation, setGuestsInformation] = useState(
-    guestsInformationInit
-  );
+
+  const bookingInfomation = useRecoilValue(bookingInformationSelector);
 
   const countyHandler = (e: any) => {
     setCoords({
@@ -49,15 +53,11 @@ export const useNavigatePage = (): UseNavigatePageResult => {
     });
   };
 
-  const dateChangeHandler = (e: any) => {
-    setRangeDate(e);
-  };
-
   const totalQuantity =
-    guestsInformation.adults_number + guestsInformation.children_number;
+    bookingInfomation.adults_number + bookingInfomation.children_number;
 
   const validateInputs = () => {
-    if (pageIndex === 1 && rangeDate === null) {
+    if (pageIndex === 1 && !bookingInfomation?.dates[1]) {
       alert("날짜를 입력해주세요.");
       return false;
     }
@@ -79,31 +79,12 @@ export const useNavigatePage = (): UseNavigatePageResult => {
     }
   };
 
-  // ----
-  //
-  // const [coords, setCoords] = useRecoilCallback(({ set }) => {
-  //   return {
-  //     coords: useRecoilValue(coordsState),
-  //     setCoords: (newCoords) => set(coordsState, newCoords),
-  //   };
-  // });
-  //
-  // const [coords, setCoords] = useRecoilState(coordsState);
-  // const countyHandler = useRecoilValue(countyHandlerSelector);
-  //
-  // ----
-
   return {
     pageIndex,
-    rangeDate,
-    guestsInformation,
-    setGuestsInformation,
-    dateChangeHandler,
     previousPage,
     nextPage,
     totalQuantity,
     coords,
-    setCoords,
     countyHandler,
   };
 };

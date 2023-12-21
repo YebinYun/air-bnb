@@ -5,7 +5,7 @@ import "react-calendar/dist/Calendar.css";
 
 interface props {
   rangeDate: any;
-  dateChangeHandler: () => void;
+  dateChangeHandler: (e: any) => void;
 }
 
 const ReservationCalendar = ({ rangeDate, dateChangeHandler }: props) => {

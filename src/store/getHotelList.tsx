@@ -1,5 +1,8 @@
 import axios, { AxiosRequestConfig } from "axios";
+import { format } from "date-fns";
 import { useState } from "react";
+import { useRecoilValue } from "recoil";
+import { bookingInformationSelector } from "./getHotelListQuery";
 
 type GetOptions = {
   checkin: string;
@@ -38,28 +41,51 @@ const initialOptions: AxiosRequestConfig = {
     "X-RapidAPI-Key": process.env.NEXT_PUBLIC_X_RAPIDAPI_KEY,
     "X-RapidAPI-Host": "booking-com.p.rapidapi.com",
   },
-  Z,
 };
 
-const useGetHotelList = (): UseGetHotelListResult => {
+const useGetHotelLists = (): UseGetHotelListResult => {
   const [options, setOptions] = useState<AxiosRequestConfig>(initialOptions);
+  const value = useRecoilValue(bookingInformationSelector);
+  const [listData, setlistData] = useState();
 
-  const changeData = ({ checkin, checkout, guests, child }: GetOptions) => {
-    setOptions((prevOptions) => ({
-      ...prevOptions,
-      params: {
-        ...prevOptions.params,
-        checkin_date: checkin,
-        checkout_date: checkout,
-        adults_number: guests,
-        children_number: child,
-      },
-    }));
+  const changeData = (checkin, checkout, guests, child, lat, lng) => {
+    const params = {
+      ...options.params,
+      checkin_date: format(checkin, "yyyy-MM-dd"),
+      checkout_date: format(checkout, "yyyy-MM-dd"),
+      adults_number: guests,
+      children_number: child,
+      latitude: lat,
+      longitude: lng,
+    };
+
+    const newData = { ...options };
+    newData.params = params;
+
+    return newData;
   };
 
   const fetchData = async () => {
+    changeData(
+      value.checkin_date,
+      value.checkout_date,
+      value.adults_number,
+      value.children_number,
+      value.lat,
+      value.lng
+    );
+
     try {
-      const response = await axios.request(options);
+      const response = await axios.request(
+        changeData(
+          value.checkin_date,
+          value.checkout_date,
+          value.adults_number,
+          value.children_number,
+          value.lat,
+          value.lng
+        )
+      );
       return response.data;
     } catch (error) {
       console.error(error);
@@ -68,7 +94,7 @@ const useGetHotelList = (): UseGetHotelListResult => {
     }
   };
 
-  return { fetchData, options, changeData };
+  return { fetchData, options, changeData, listData };
 };
 
-export default useGetHotelList;
+export default useGetHotelLists;

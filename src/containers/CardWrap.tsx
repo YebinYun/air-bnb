@@ -3,13 +3,17 @@ import { Box } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import useGetHotelList from "./header/navbar/navbarReservationModal/useGetHotelList";
 import { useRecoilState } from "recoil";
-import { getHotelListQuery } from "@/store/getHotelListQuery";
+import { bookingInformationAtomState } from "@/store/getHotelListQuery";
 import CardImg from "@/components/card/CardImg";
 import CardText from "@/components/card/CardText";
+import useGetHotelListItem from "@/store/useGetHotelListItem";
+import useGetHotelLists from "@/store/getHotelList";
 
 const CardWrap = () => {
-  const { fetchData, options, changeData } = useGetHotelList();
-  const [hotelList, setHotelList] = useRecoilState(getHotelListQuery);
+  // const { fetchData, options, changeData } = useGetHotelList();
+  const { fetchData, options, changeData } = useGetHotelLists();
+
+  const [hotelList, setHotelList] = useRecoilState(bookingInformationAtomState);
   const { data, isLoading } = useQuery({
     queryKey: ["getHotelList"],
     queryFn: fetchData,
@@ -44,7 +48,7 @@ const CardWrap = () => {
               index: React.Key
             ) => (
               <Box
-                key={index}
+                key={value.hotel_name + index}
                 sx={{
                   width: "100%",
                   border: "1px solid lightgray",

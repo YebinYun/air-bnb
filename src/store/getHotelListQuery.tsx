@@ -5,23 +5,10 @@ export type GetHotelListInit = {
   checkout_date: Date | null;
   adults_number: number;
   children_number: number;
+  dates: [];
+  lat: number;
+  lng: number;
 };
-
-export const getHotelListQuery = atom<GetHotelListInit>({
-  key: "getHotelListQuery",
-  default: {
-    checkin_date: new Date(),
-    checkout_date: new Date(),
-    adults_number: 0,
-    children_number: 0,
-  },
-});
-
-export const getHotelListQuerySelector = selector({
-  key: "getHotelListQuerySelector",
-  get: ({ get }) => get(getHotelListQuery),
-  set: ({ set }, newValue) => set(getHotelListQuery, newValue),
-});
 
 export const coordsState = atom({
   key: "coordsState",
@@ -31,40 +18,55 @@ export const coordsState = atom({
   },
 });
 
-export const countyHandlerSelector = selector({
-  key: "countyHandlerSelector",
-  get: ({ get }) => get(coordsState),
-  set: ({ set }, newCoords) => set(coordsState, newCoords),
+export const bookingInformationAtomState = atom<GetHotelListInit>({
+  key: "bookingInformationAtomState",
+  default: {
+    checkin_date: new Date(),
+    checkout_date: new Date(),
+    dates: [new Date(), new Date()],
+    adults_number: 0,
+    children_number: 0,
+    lat: 34.5289,
+    lng: 69.1725,
+  },
 });
 
-export const useCoordsHandler = () => {
-  const [coords, setCoords] = useRecoilState(countyHandlerSelector);
+export const bookingInformationSelector = selector({
+  key: "bookingInformationSelector",
+  get: ({ get }) => get(bookingInformationAtomState),
+  set: ({ set }, newValue) => set(bookingInformationAtomState, newValue),
+});
 
-  const coordsSetHandler = (e: any) => {
-    setCoords({
-      lat: Number(e.target?.value.split("/")[0]),
-      lng: Number(e.target?.value.split("/")[1]),
-    });
+export const useBookingInfoChangeHandler = () => {
+  const [bookingInfo, setBookingInfo] = useRecoilState(
+    bookingInformationSelector
+  );
+
+  const handleOnBookingInfoChange = (e: any) => {
+    if (e.length === 2) {
+      return setBookingInfo({
+        ...bookingInfo,
+        checkin_date: e[0],
+        checkout_date: e[1],
+        dates: e,
+      });
+    }
+
+    if (!e.length) {
+      if (e.target.name === "coords") {
+        return setBookingInfo({
+          ...bookingInfo,
+          lat: e.target.value.split("/")[0],
+          lng: e.target.value.split("/")[1],
+        });
+      } else {
+        return setBookingInfo({
+          ...bookingInfo,
+          [e.target.name]: e.target.value,
+        });
+      }
+    }
   };
 
-  return { coords, coordsSetHandler };
-};
-
-export const getGuestState = atom({
-  key: "getGuestState",
-  default: 0,
-});
-
-export const getGuestSelector = selector({
-  key: "getGuestSelector",
-  get: ({ get }) => get(getGuestState),
-  set: ({ set }, newGuest) => set(getGuestState, newGuest),
-});
-
-export const useGuestCountHandler = () => {
-  const [guest, setGuest] = useRecoilState(getGuestSelector);
-
-  const guestSetHandler = () => {
-    setGuest();
-  };
+  return { handleOnBookingInfoChange, bookingInfo };
 };

@@ -12,36 +12,38 @@ import {
   useResetRecoilState,
   useSetRecoilState,
 } from "recoil";
-import { countyHandlerSelector } from "@/store/getHotelListQuery";
+import {
+  bookingInformationSelector,
+  useBookingInfoChangeHandler,
+} from "@/store/getHotelListQuery";
+import useGetHotelList from "@/store/getHotelList";
 
 interface props {
   loginModalHandler: () => void;
 }
 
 const NavbarReservationModal = ({ loginModalHandler }: props) => {
+  const { fetchData, options, changeData, listData } = useGetHotelList();
   const {
     pageIndex,
-    rangeDate,
-    guestsInformation,
-    setGuestsInformation,
     totalQuantity,
     dateChangeHandler,
     previousPage,
     nextPage,
-    coords,
   } = useNavigatePage();
 
-  const coordsValue = useRecoilValue(countyHandlerSelector);
-  const resetValue = useResetRecoilState(countyHandlerSelector);
-  // const setValue = useSetRecoilState(countyHandlerSelector)
+  const [coordsValue, setCoorsValue] = useRecoilState(
+    bookingInformationSelector
+  );
+  const resetValue = useResetRecoilState(bookingInformationSelector);
+  const { handleOnBookingInfoChange, bookingInfo } =
+    useBookingInfoChangeHandler();
 
-  // const [ aa, setAa ] = useRecoilState()
+  console.log("listData", listData);
 
   useEffect(() => {
     return resetValue();
   }, []);
-
-  console.log("coordsValue", coordsValue);
 
   return (
     <NavInfoModalBackground>
@@ -98,12 +100,7 @@ const NavbarReservationModal = ({ loginModalHandler }: props) => {
             <SelectMenubar>
               <Button sx={{ flexDirection: "column" }}>
                 <Box sx={{ color: "white", fontWeight: "bold" }}>여행지</Box>
-                <Box
-                  color={"black"}
-                  onChange={(e) => {
-                    countyHandler(e);
-                  }}
-                >
+                <Box color={"black"}>
                   {coordsValue?.lat === 34.5289 ? "여행지 검색" : "선택 완료"}
                   {/* key를 coords?.lat으로 맞추고 일치하는 countryCapital에 lat에서 Country 값을 가져오기 */}
                 </Box>
@@ -112,19 +109,19 @@ const NavbarReservationModal = ({ loginModalHandler }: props) => {
               <Button sx={{ flexDirection: "column" }}>
                 <Box sx={{ color: "white", fontWeight: "bold" }}>날짜</Box>
                 <Box color={"black"} onChange={dateChangeHandler}>
-                  {rangeDate === null
+                  {coordsValue?.dates === null
                     ? "날짜 추가"
-                    : rangeDate[0].getFullYear() +
+                    : coordsValue?.dates[0].getFullYear() +
                       "년" +
-                      (rangeDate[0].getMonth() + 1) +
+                      (coordsValue?.dates[0].getMonth() + 1) +
                       "월" +
-                      rangeDate[0].getDate() +
+                      coordsValue?.dates[0].getDate() +
                       "일 ~ " +
-                      rangeDate[1].getFullYear() +
+                      coordsValue?.dates[1].getFullYear() +
                       "년" +
-                      (rangeDate[1].getMonth() + 1) +
+                      (coordsValue?.dates[1].getMonth() + 1) +
                       "월" +
-                      rangeDate[1].getDate() +
+                      coordsValue?.dates[1].getDate() +
                       "일"}
                 </Box>
               </Button>
@@ -132,7 +129,7 @@ const NavbarReservationModal = ({ loginModalHandler }: props) => {
               <Button sx={{ flexDirection: "column" }}>
                 <Box sx={{ color: "white", fontWeight: "bold" }}>여행자</Box>
                 <Box color={"black"}>
-                  {totalQuantity === 0 ? totalQuantity : totalQuantity}
+                  {totalQuantity === 0 ? "여행자 입력" : totalQuantity}
                 </Box>
               </Button>
             </SelectMenubar>
@@ -142,16 +139,16 @@ const NavbarReservationModal = ({ loginModalHandler }: props) => {
           {/* 캘린더 */}
           {pageIndex === 1 && (
             <ReservationCalendar
-              rangeDate={rangeDate}
-              dateChangeHandler={dateChangeHandler}
+              rangeDate={bookingInfo?.dates}
+              dateChangeHandler={handleOnBookingInfoChange}
             />
           )}
 
           {/* 인원 */}
           {pageIndex === 2 && (
             <ReservationDetails
-              guestsInformation={guestsInformation}
-              setGuestsInformation={setGuestsInformation}
+              guestsInformation={coordsValue}
+              setGuestsInformation={setCoorsValue}
             />
           )}
 
@@ -174,7 +171,14 @@ const NavbarReservationModal = ({ loginModalHandler }: props) => {
             </Button>
             <Button
               onClick={() => {
-                nextPage();
+                if (pageIndex !== 2) {
+                  return nextPage();
+                } else {
+                  // close modal
+                  // fetch data
+                  loginModalHandler();
+                  fetchData();
+                }
               }}
               sx={{ border: "1px solid #767676" }}
             >
