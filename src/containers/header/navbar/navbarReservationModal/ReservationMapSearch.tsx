@@ -1,16 +1,14 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import countryCapital from "./countryCapital.json";
-import { useNavigatePage } from "@/store/useNavigatePage ";
+import { useCoordsHandler } from "@/store/getHotelListQuery";
 
 const Map = dynamic(() => import("./Map"), {
   ssr: false,
 });
 
 const ReservationMapSearch = () => {
-  const { coords, countyHandler } = useNavigatePage();
-
-  console.log(coords);
+  const { coordsSetHandler, coords } = useCoordsHandler();
 
   // useEffect(() => {
   //   const watchId = navigator.geolocation.watchPosition((position) => {
@@ -26,9 +24,7 @@ const ReservationMapSearch = () => {
     <>
       <select
         style={{ margin: "1rem 0", padding: "1rem" }}
-        onChange={(e) => {
-          countyHandler(e);
-        }}
+        onChange={coordsSetHandler}
       >
         {countryCapital?.map((x, index) => (
           <option key={index} value={`${x?.lat + "/" + x?.lng}`}>

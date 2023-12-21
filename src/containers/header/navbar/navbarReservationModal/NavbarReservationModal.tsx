@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Button, Divider, styled } from "@mui/material";
 import "react-calendar/dist/Calendar.css";
 import ReservationCalendar from "./ReservationCalendar";
@@ -6,6 +6,13 @@ import ReservationDetails from "./ReservationDetails";
 import ProgressContainer from "./ProgressContainer";
 import { useNavigatePage } from "@/store/useNavigatePage ";
 import ReservationMapSearch from "./ReservationMapSearch";
+import {
+  useRecoilState,
+  useRecoilValue,
+  useResetRecoilState,
+  useSetRecoilState,
+} from "recoil";
+import { countyHandlerSelector } from "@/store/getHotelListQuery";
 
 interface props {
   loginModalHandler: () => void;
@@ -22,10 +29,19 @@ const NavbarReservationModal = ({ loginModalHandler }: props) => {
     previousPage,
     nextPage,
     coords,
-    countyHandler,
   } = useNavigatePage();
 
-  console.log(coords);
+  const coordsValue = useRecoilValue(countyHandlerSelector);
+  const resetValue = useResetRecoilState(countyHandlerSelector);
+  // const setValue = useSetRecoilState(countyHandlerSelector)
+
+  // const [ aa, setAa ] = useRecoilState()
+
+  useEffect(() => {
+    return resetValue();
+  }, []);
+
+  console.log("coordsValue", coordsValue);
 
   return (
     <NavInfoModalBackground>
@@ -88,8 +104,7 @@ const NavbarReservationModal = ({ loginModalHandler }: props) => {
                     countyHandler(e);
                   }}
                 >
-                  {coords?.lat === 34.5289 ? "여행지 검색" : "선택 완료"}
-                  {coords?.lat}
+                  {coordsValue?.lat === 34.5289 ? "여행지 검색" : "선택 완료"}
                   {/* key를 coords?.lat으로 맞추고 일치하는 countryCapital에 lat에서 Country 값을 가져오기 */}
                 </Box>
               </Button>

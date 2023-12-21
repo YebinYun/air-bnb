@@ -79,6 +79,20 @@ export const useNavigatePage = (): UseNavigatePageResult => {
     }
   };
 
+  // ----
+  //
+  // const [coords, setCoords] = useRecoilCallback(({ set }) => {
+  //   return {
+  //     coords: useRecoilValue(coordsState),
+  //     setCoords: (newCoords) => set(coordsState, newCoords),
+  //   };
+  // });
+  //
+  // const [coords, setCoords] = useRecoilState(coordsState);
+  // const countyHandler = useRecoilValue(countyHandlerSelector);
+  //
+  // ----
+
   return {
     pageIndex,
     rangeDate,
