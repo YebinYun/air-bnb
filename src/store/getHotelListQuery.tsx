@@ -63,4 +63,8 @@ export const getGuestSelector = selector({
 
 export const useGuestCountHandler = () => {
   const [guest, setGuest] = useRecoilState(getGuestSelector);
+
+  const guestSetHandler = () => {
+    setGuest();
+  };
 };
