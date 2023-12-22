@@ -39,8 +39,6 @@ const NavbarReservationModal = ({ loginModalHandler }: props) => {
   const { handleOnBookingInfoChange, bookingInfo } =
     useBookingInfoChangeHandler();
 
-  console.log("listData", listData);
-
   useEffect(() => {
     return resetValue();
   }, []);

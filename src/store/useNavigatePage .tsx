@@ -1,8 +1,5 @@
 import { useState } from "react";
-import {
-  GetHotelListInit,
-  bookingInformationSelector,
-} from "./getHotelListQuery";
+import { bookingInformationSelector } from "./getHotelListQuery";
 import { useRecoilValue } from "recoil";
 
 type ValuePiece = Date | null;
@@ -26,15 +23,6 @@ type UseNavigatePageResult = {
   nextPage: () => void;
   coords: any;
   countyHandler: (e: React.FormEvent<HTMLDivElement>) => void;
-};
-
-const guestsInformationInit: GetHotelListInit = {
-  checkin_date: new Date(),
-  checkout_date: null,
-  adults_number: 0,
-  children_number: 0,
-  lat: 34.5289,
-  lng: 69.1725,
 };
 
 export const useNavigatePage = (): UseNavigatePageResult => {

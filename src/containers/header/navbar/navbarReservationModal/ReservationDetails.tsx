@@ -44,7 +44,7 @@ const ReservationDetails = ({ guestsInformation, setGuestsInformation }) => {
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <Button
                 onClick={() => {
-                  guestsInformation?.adults_number > 0 &&
+                  guestsInformation?.adults_number > 1 &&
                     totalCounterHandler("adult", -1);
                 }}
               >
@@ -93,7 +93,7 @@ const ReservationDetails = ({ guestsInformation, setGuestsInformation }) => {
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <Button
                 onClick={() => {
-                  guestsInformation?.children_number > 0 &&
+                  guestsInformation?.children_number > 1 &&
                     totalCounterHandler("children", -1);
                 }}
               >

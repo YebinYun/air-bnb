@@ -1,7 +1,7 @@
 import { atom, selector, useRecoilState } from "recoil";
 
 export type GetHotelListInit = {
-  checkin_date: Date;
+  checkin_date: Date | null;
   checkout_date: Date | null;
   adults_number: number;
   children_number: number;
@@ -21,11 +21,11 @@ export const coordsState = atom({
 export const bookingInformationAtomState = atom<GetHotelListInit>({
   key: "bookingInformationAtomState",
   default: {
-    checkin_date: new Date(),
-    checkout_date: new Date(),
+    checkin_date: null,
+    checkout_date: null,
     dates: [new Date(), new Date()],
-    adults_number: 0,
-    children_number: 0,
+    adults_number: 1,
+    children_number: 1,
     lat: 34.5289,
     lng: 69.1725,
   },
