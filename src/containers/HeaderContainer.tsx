@@ -1,14 +1,10 @@
+import HeaderComponent from "@/components/header/HeaderComponent";
 import React from "react";
-import HeaderTop from "@/containers/HeaderTopContainer";
-import HeaderBottom from "@/containers/HeaderBottomContainer";
 
-const HeaderComponent = () => {
+const HeaderContainer = () => {
   return (
-    <>
-      <HeaderTop />
-      <HeaderBottom />
-    </>
+      <HeaderComponent/>
   );
 };
 
-export default HeaderComponent;
+export default HeaderContainer;

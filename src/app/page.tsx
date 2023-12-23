@@ -1,10 +1,10 @@
-import Header from "@/containers/HeaderContainer";
+import HeaderComponent from "@/components/header/HeaderComponent";
 import React from "react";
 
 const page = () => {
   return (
     <>
-      <Header />
+      <HeaderComponent />
     </>
   );
 };

@@ -3,11 +3,7 @@ import React from "react";
 
 const HeaderTopContainer = () => {
   return (
-    <>
-      <div>
-        <HeaderTopComponent />
-      </div>
-    </>
+      <HeaderTopComponent />
   );
 };
 
