@@ -14,7 +14,7 @@ type props = {
 
 const HeaderTopComponent = ({ onUserToggle,setOnUserToggle, onUserToggleHandler }: props) => {
   return (
-    <Box>
+    <Box sx={{px:"5rem"}}>
       <Stack
         direction={"row"}
         sx={{

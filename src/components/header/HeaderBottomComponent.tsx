@@ -2,7 +2,7 @@
 import React from "react";
 import { styled } from "@mui/system";
 import { iconData } from "../../hooks/dummys/HeaderIcon";
-import { Box, Stack, Tabs, Tab } from "@mui/material";
+import { Box, Stack, Tabs, Tab, tabsClasses } from "@mui/material";
 import FilterListIcon from "@mui/icons-material/FilterList";
 
 type props = {
@@ -15,15 +15,18 @@ const HeaderBottomComponent = ({ value, handleChange }: props) => {
     <Stack
       direction="row"
       boxShadow={"0 1px 5px lightgray;"}
-      sx={{ width: "100%", background: "white", alignItems: "center" }}
-    >
+      sx={{ background: "white", alignItems: "center", px: "5rem" }}>
       <Container>
         <Tabs
           value={value}
           onChange={handleChange}
           variant="scrollable"
-          scrollButtons="auto"
-        >
+          scrollButtons
+          sx={{
+            [`& .${tabsClasses.scrollButtons}`]: {
+              "&.Mui-disabled": { opacity: 0.3 },
+            },
+          }}>
           {iconData.map((value, index) => (
             <IconContainer
               key={index}
@@ -33,7 +36,7 @@ const HeaderBottomComponent = ({ value, handleChange }: props) => {
           ))}
         </Tabs>
       </Container>
-      
+
       <FilterButton>
         <FilterListIcon />
         <Box sx={{ width: "2rem", ml: "0.7rem" }}>필터</Box>
