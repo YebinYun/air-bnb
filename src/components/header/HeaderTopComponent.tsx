@@ -5,7 +5,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SearchIcon from "@mui/icons-material/Search";
 import UserToggleDropDownContainer from "@/containers/header/headerUserMenu/UserToggleDropDownContainer";
-import { relative } from "path";
 
 type props = {
   onUserToggle: boolean;

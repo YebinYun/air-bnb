@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { styled } from "@mui/system";
 import { iconData } from "../../hooks/dummys/HeaderIcon";
 import { Box, Stack, Tabs, Tab } from "@mui/material";
@@ -23,7 +23,6 @@ const HeaderBottomComponent = ({ value, handleChange }: props) => {
           onChange={handleChange}
           variant="scrollable"
           scrollButtons="auto"
-          aria-label="scrollable auto tabs example"
         >
           {iconData.map((value, index) => (
             <IconContainer
@@ -34,6 +33,7 @@ const HeaderBottomComponent = ({ value, handleChange }: props) => {
           ))}
         </Tabs>
       </Container>
+      
       <FilterButton>
         <FilterListIcon />
         <Box sx={{ width: "2rem", ml: "0.7rem" }}>필터</Box>
