@@ -1,0 +1,32 @@
+[
+  {
+    "title": "이름",
+    "type": "text",
+    "prop": "userName"
+  },
+  {
+    "title": "연락처",
+    "type": "tel",
+    "prop": "userTel"
+  },
+  {
+    "title": "생년월일",
+    "type": "date",
+    "prop": "userDate"
+  },
+  {
+    "title": "이메일",
+    "type": "email",
+    "prop": "userEmail"
+  },
+  {
+    "title": "비밀번호",
+    "type": "password",
+    "prop": "password"
+  },
+  {
+    "title": "개인정보 동의",
+    "type": "checkbox",
+    "prop": "userCheck"
+  }
+]
