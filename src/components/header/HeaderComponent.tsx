@@ -1,5 +1,5 @@
-import HeaderBottomContainer from '@/containers/HeaderBottomContainer'
-import HeaderTopContainer from '@/containers/HeaderTopContainer'
+import HeaderBottomContainer from '@/containers/header/HeaderBottomContainer'
+import HeaderTopContainer from '@/containers/header/HeaderTopContainer'
 import React from 'react'
 
 const HeaderComponent = () => {

@@ -4,9 +4,18 @@ import LuggageIcon from "@mui/icons-material/Luggage";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SearchIcon from "@mui/icons-material/Search";
+import UserToggleDropDownContainer from "@/containers/header/headerUserMenu/UserToggleDropDownContainer";
+import { relative } from "path";
 
-const HeaderTopComponent = () => {
+type props = {
+  onUserToggle: boolean;
+  setOnUserToggle: React.Dispatch<React.SetStateAction<boolean>>;
+  onUserToggleHandler: () => void;
+};
+
+const HeaderTopComponent = ({ onUserToggle,setOnUserToggle, onUserToggleHandler }: props) => {
   return (
+    <Box>
       <Stack
         direction={"row"}
         sx={{
@@ -48,7 +57,14 @@ const HeaderTopComponent = () => {
         </Button>
 
         <Button
+          onMouseEnter={() => {
+            setOnUserToggle(true);
+          }}
+          onMouseLeave={() => {
+            setOnUserToggle(false);
+          }}
           sx={{
+            position: "relative",
             padding: "0.6rem 1rem",
             alignItems: "center",
             width: "5rem",
@@ -58,8 +74,10 @@ const HeaderTopComponent = () => {
           }}>
           <MenuIcon sx={{ mr: "0.5rem" }} />
           <AccountCircleIcon />
-      </Button>
+          {onUserToggle && <UserToggleDropDownContainer />}
+        </Button>
       </Stack>
+    </Box>
   );
 };
 
