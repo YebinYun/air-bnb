@@ -9,10 +9,9 @@ import UserToggleDropDownContainer from "@/containers/header/headerUserMenu/User
 type props = {
   onUserToggle: boolean;
   setOnUserToggle: React.Dispatch<React.SetStateAction<boolean>>;
-  onUserToggleHandler: () => void;
 };
 
-const HeaderTopComponent = ({ onUserToggle,setOnUserToggle, onUserToggleHandler }: props) => {
+const HeaderTopComponent = ({ onUserToggle,setOnUserToggle }: props) => {
   return (
     <Box sx={{px:"5rem"}}>
       <Stack
