@@ -1,7 +1,28 @@
+import UserModalContainer from "@/containers/header/headerUserMenu/UserModalContainer";
 import { Button, Stack } from "@mui/material";
 import React from "react";
 
-const UserToggleDropDownComponent = () => {
+type props = {
+  isLogin: boolean;
+  isSignup: boolean;
+  isSetting: boolean;
+  loginModalHandler: () => void;
+  signupModalHandler: () => void;
+  settingModalHandler: () => void;
+  closeModalHandler: () => void;
+  userChoice:string;
+};
+
+const UserToggleDropDownComponent = ({
+  isLogin,
+  isSignup,
+  isSetting,
+  loginModalHandler,
+  signupModalHandler,
+  settingModalHandler,
+  closeModalHandler,
+  userChoice,
+}: props) => {
   return (
     <Stack
       direction={"column"}
@@ -16,6 +37,9 @@ const UserToggleDropDownComponent = () => {
         zIndex: 1,
       }}>
       <Button
+        onClick={() => {
+          signupModalHandler();
+        }}
         sx={{
           color: "black",
           borderBottom: "1px solid lightgray",
@@ -24,6 +48,9 @@ const UserToggleDropDownComponent = () => {
         회원가입
       </Button>
       <Button
+        onClick={() => {
+          loginModalHandler();
+        }}
         sx={{
           color: "black",
           borderBottom: "1px solid lightgray",
@@ -32,11 +59,21 @@ const UserToggleDropDownComponent = () => {
         로그인
       </Button>
       <Button
+        onClick={() => {
+          settingModalHandler();
+        }}
         sx={{
           color: "black",
         }}>
-        비회원
+        수정하기
       </Button>
+      {(isLogin || isSignup || isSetting) && (
+        <UserModalContainer
+          closeModalHandler={closeModalHandler}
+          isSetting={isSetting}
+          userChoice={userChoice}
+        />
+      )}
     </Stack>
   );
 };
