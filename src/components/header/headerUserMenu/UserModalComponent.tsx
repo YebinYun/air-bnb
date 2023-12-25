@@ -2,6 +2,7 @@ import React from 'react'
 import { Box, Button, Link, Stack, TextField, styled } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import userData from "../../../dummys/userData.json"
+import { UserDataAlert } from '../../../hooks/UserDataAlert';
 
 type props = {
   loginModalHandler: () => void;
@@ -24,6 +25,10 @@ const UserModalComponent = ({
   isSignup,
   userChoice,
 }: props) => {
+  const { userAlertData, onChangeHandler, onSubmitHandler } = UserDataAlert({
+    isLogin,
+    isSetting,
+  });
   
   return (
     <Box
@@ -76,6 +81,7 @@ const UserModalComponent = ({
             {userData.map((item, index) => (
               <Box key={index}>
                 <TextFieldContainer
+                  onChange={onChangeHandler}
                   label={item.title}
                   type={item.type}
                   name={item.prop}
@@ -85,12 +91,34 @@ const UserModalComponent = ({
           </Box>
         ) : (
           <Stack direction={"column"}>
-            {isLogin ? "" : <TextFieldContainer label="이름" />}
-            <TextFieldContainer label="아이디" />
-            <TextFieldContainer label="비밀번호" />
+            {isLogin ? (
+              ""
+            ) : (
+              <TextFieldContainer
+                label="이름"
+                name="userName"
+                value={userAlertData.userName}
+                onChange={onChangeHandler}
+              />
+            )}
+            <TextFieldContainer
+              label="아이디"
+              name="userId"
+              value={userAlertData.userId}
+              onChange={onChangeHandler}
+            />
+            <TextFieldContainer
+              label="비밀번호"
+              type="password"
+              name="password"
+              value={userAlertData.password}
+              onChange={onChangeHandler}
+            />
           </Stack>
         )}
-        <ButtonContainer sx={{ background: "lightblue" }}>
+        <ButtonContainer
+          onClick={onSubmitHandler}
+          sx={{ background: "lightblue" }}>
           {userChoice}
         </ButtonContainer>
 
