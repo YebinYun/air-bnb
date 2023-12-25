@@ -10,7 +10,8 @@ type props = {
   signupModalHandler: () => void;
   settingModalHandler: () => void;
   closeModalHandler: () => void;
-  userChoice:string;
+  userChangeHandler: () => void;
+  userChoice: string;
 };
 
 const UserToggleDropDownComponent = ({
@@ -21,6 +22,7 @@ const UserToggleDropDownComponent = ({
   signupModalHandler,
   settingModalHandler,
   closeModalHandler,
+  userChangeHandler,
   userChoice,
 }: props) => {
   return (
@@ -28,7 +30,7 @@ const UserToggleDropDownComponent = ({
       direction={"column"}
       sx={{
         position: "absolute",
-        top: 45,
+        top: 44,
         right: 0,
         width: "10rem",
         border: "solid 1px lightgray",
@@ -69,7 +71,12 @@ const UserToggleDropDownComponent = ({
       </Button>
       {(isLogin || isSignup || isSetting) && (
         <UserModalContainer
+          loginModalHandler={loginModalHandler}
+          signupModalHandler={signupModalHandler}
           closeModalHandler={closeModalHandler}
+          userChangeHandler={userChangeHandler}
+          isLogin={isLogin}
+          isSignup={isSignup}
           isSetting={isSetting}
           userChoice={userChoice}
         />

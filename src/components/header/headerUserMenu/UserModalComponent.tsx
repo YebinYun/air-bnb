@@ -1,14 +1,30 @@
 import React from 'react'
-import { Box, Button, Stack, styled } from "@mui/material";
+import { Box, Button, Link, Stack, TextField, styled } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import userData from "../../../dummys/userData.json"
 
 type props = {
-    closeModalHandler: () => void;
-    isSetting: boolean;
-  userChoice:string;
+  loginModalHandler: () => void;
+  signupModalHandler: () => void;
+  closeModalHandler: () => void;
+  userChangeHandler: () => void;
+  isSetting: boolean;
+  isLogin: boolean;
+  isSignup: boolean;
+  userChoice: string;
 };
 
-const UserModalComponent = ({ closeModalHandler,isSetting, userChoice }: props) => {
+const UserModalComponent = ({
+  loginModalHandler,
+  signupModalHandler,
+  closeModalHandler,
+  userChangeHandler,
+  isSetting,
+  isLogin,
+  isSignup,
+  userChoice,
+}: props) => {
+  
   return (
     <Box
       sx={{
@@ -28,38 +44,93 @@ const UserModalComponent = ({ closeModalHandler,isSetting, userChoice }: props) 
           background: "white",
           alignItems: "center",
           p: "2rem",
+          borderRadius: "5px",
         }}>
-            
-        {/* 로그인,회원가입,수정하기*/}
         <Stack
           direction={"row"}
-          sx={{ borderBottom: "1px solid gray", mb: "1rem", p: "1.5rem" }}>
-          <Box sx={{ fontSize: "1.5rem", fontWeight: "bold", color: "black" }}>
+          sx={{
+            width: "100%",
+            justifyContent: "space-between",
+            mt: "1rem",
+            mb: "2rem",
+          }}>
+          <Box
+            sx={{
+              width: "100%",
+              fontSize: "1.5rem",
+              fontWeight: "bold",
+              color: "#222",
+            }}>
             {userChoice}하기
           </Box>
           <Button
             onClick={() => {
               closeModalHandler();
-            }}
-            sx={{ justifyContent: "flex-end" }}>
+            }}>
             <CloseIcon sx={{ color: "black" }} />
           </Button>
         </Stack>
 
-        {/* intro */}
-        <Box>환영합니다.</Box>
+        {isSetting ? (
+          <Box>
+            {userData.map((item, index) => (
+              <Box key={index}>
+                <TextFieldContainer
+                  label={item.title}
+                  type={item.type}
+                  name={item.prop}
+                />
+              </Box>
+            ))}
+          </Box>
+        ) : (
+          <Stack direction={"column"}>
+            {isLogin ? "" : <TextFieldContainer label="이름" />}
+            <TextFieldContainer label="아이디" />
+            <TextFieldContainer label="비밀번호" />
+          </Stack>
+        )}
+        <ButtonContainer sx={{ background: "lightblue" }}>
+          {userChoice}
+        </ButtonContainer>
 
-        {/* 네이버,카카오,구글 */}
-        {isSetting
-        ? ("")
-        : (<Stack>
-          <ButtonContainer>네이버 {userChoice}</ButtonContainer>
-          <ButtonContainer>카카오 {userChoice}</ButtonContainer>
-          <ButtonContainer>구글 {userChoice}</ButtonContainer>
-        </Stack>)}
+        <Box sx={{ mb: "2.5rem" }}>
+          {isSetting ? (
+            ""
+          ) : isLogin ? (
+            <Stack direction={"row"}>
+              <Box>계정이 없으신가요?</Box>
+              <Link
+                component="button"
+                onClick={userChangeHandler}
+                sx={{ ml: "0.5rem" }}>
+                회원가입
+              </Link>
+            </Stack>
+          ) : (
+            <Stack direction={"row"}>
+              <Box>이미 가입하셨나요?</Box>
+              <Link
+                component="button"
+                onClick={userChangeHandler}
+                sx={{ ml: "0.5rem" }}>
+                로그인
+              </Link>
+            </Stack>
+          )}
+        </Box>
+
+        {isSetting ? (
+          ""
+        ) : (
+          <Stack>
+            <ButtonContainer>네이버 {userChoice}</ButtonContainer>
+            <ButtonContainer>카카오 {userChoice}</ButtonContainer>
+            <ButtonContainer>구글 {userChoice}</ButtonContainer>
+          </Stack>
+        )}
       </Stack>
     </Box>
-        
   );
 };
 
@@ -69,6 +140,13 @@ const ButtonContainer = styled(Button)`
   color: black;
   font-weight: bold;
   border: 1px solid lightgray;
+  margin: 0.5rem 0;
+`;
+
+const TextFieldContainer = styled(TextField)`
+  width: 20rem;
+  color: black;
+  font-weight: bold;
   margin: 0.5rem 0;
 `;
 

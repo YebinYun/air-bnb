@@ -20,8 +20,18 @@ const UserToggleDropDownContainer = () => {
     setIsSignup(false);
     setIsSetting(false);
   };
+  const userChangeHandler = () => {
+    if (isLogin) {
+      setIsLogin(false);
+      setIsSignup(true);
+    } else if (isSignup) {
+      setIsLogin(true);
+      setIsSignup(false);
+    }
+  };
 
   const userChoice = `${isLogin ? "로그인" : isSignup ? "회원가입" : "수정"}`;
+  
 
   return (
     <UserToggleDropDownComponent
@@ -32,6 +42,7 @@ const UserToggleDropDownContainer = () => {
       signupModalHandler={signupModalHandler}
       settingModalHandler={settingModalHandler}
       closeModalHandler={closeModalHandler}
+      userChangeHandler={userChangeHandler}
       userChoice={userChoice}
     />
   );
