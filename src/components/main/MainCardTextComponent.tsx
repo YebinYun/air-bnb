@@ -17,7 +17,7 @@ const MainCardTextComponent = ({
   price,
 }: props) => {
   return (
-    <Stack>
+    <Stack sx={{ p: "1rem 0.5rem" }}>
       <SpacingStack>
         <BoldText>{hotelName}</BoldText>
       </SpacingStack>
