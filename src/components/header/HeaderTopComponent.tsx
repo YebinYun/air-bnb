@@ -34,7 +34,11 @@ const HeaderTopComponent = ({
           <LuggageIcon sx={{ color: "#FF5A5F", fontSize: 50 }} />
         </Box>
 
-        <Button onClick={toggleBookingModal}>
+        <Button
+          onClick={() => {
+            toggleBookingModal();
+          }}
+        >
           <Stack
             direction={"row"}
             sx={{
@@ -82,7 +86,9 @@ const HeaderTopComponent = ({
           {isMouseOnUser && <UserToggleDropDownContainer />}
         </Button>
       </Stack>
-      {isBookingModalOpen && <BookingModalContainer />}
+      {isBookingModalOpen && (
+        <BookingModalContainer toggleBookingModal={toggleBookingModal} />
+      )}
     </Box>
   );
 };

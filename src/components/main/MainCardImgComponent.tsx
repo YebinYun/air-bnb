@@ -12,7 +12,7 @@ type props = {
 
 const MainCardImgComponent = ({ OnChangeLikeHandler, isLike, img }: props) => {
   return (
-    <Card sx={{ position: "relative" }}>
+    <Card sx={{ position: "relative", zIndex: -1 }}>
       <Box>
         <ImageBox>
           <Image alt="호텔사진" src={img} fill />

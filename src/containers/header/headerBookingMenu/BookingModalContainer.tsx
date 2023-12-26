@@ -1,8 +1,12 @@
 import BookingModalComponent from "@/components/header/headerBookingMenu/BookingModalComponent";
 import React from "react";
 
-const BookingModalContainer = () => {
-  return <BookingModalComponent />;
+type props = {
+  toggleBookingModal: () => void;
+};
+
+const BookingModalContainer = ({ toggleBookingModal }: props) => {
+  return <BookingModalComponent toggleBookingModal={toggleBookingModal} />;
 };
 
 export default BookingModalContainer;
