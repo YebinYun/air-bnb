@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { styled } from "@mui/system";
-import { iconData } from "../../dummys/HeaderIcon";
+import { iconData } from "../../utils/HeaderIcon";
 import { Box, Stack, Tabs, Tab, tabsClasses } from "@mui/material";
 import FilterListIcon from "@mui/icons-material/FilterList";
 
@@ -15,7 +15,8 @@ const HeaderBottomComponent = ({ value, handleChange }: props) => {
     <Stack
       direction="row"
       boxShadow={"0 1px 5px lightgray;"}
-      sx={{ background: "white", alignItems: "center", px: "5rem" }}>
+      sx={{ background: "white", alignItems: "center", px: "5rem" }}
+    >
       <Container>
         <Tabs
           value={value}
@@ -26,7 +27,8 @@ const HeaderBottomComponent = ({ value, handleChange }: props) => {
             [`& .${tabsClasses.scrollButtons}`]: {
               "&.Mui-disabled": { opacity: 0.3 },
             },
-          }}>
+          }}
+        >
           {iconData.map((value, index) => (
             <IconContainer
               key={index}

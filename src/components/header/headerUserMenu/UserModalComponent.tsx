@@ -1,8 +1,8 @@
-import React from 'react'
+import React from "react";
 import { Box, Button, Link, Stack, TextField, styled } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import userData from "../../../dummys/userData.json"
-import { UserDataAlert } from '../../../hooks/UserDataAlert';
+import userData from "../../../utils/userData.json";
+import { UserDataAlert } from "../../../hooks/UserDataAlert";
 
 type props = {
   loginModalHandler: () => void;
@@ -29,7 +29,7 @@ const UserModalComponent = ({
     isLogin,
     isSetting,
   });
-  
+
   return (
     <Box
       sx={{
@@ -39,7 +39,8 @@ const UserModalComponent = ({
         right: 0,
         left: 0,
         background: "rgba(0, 0, 0, 0.5)",
-      }}>
+      }}
+    >
       <Stack
         sx={{
           position: "absolute",
@@ -50,7 +51,8 @@ const UserModalComponent = ({
           alignItems: "center",
           p: "2rem",
           borderRadius: "5px",
-        }}>
+        }}
+      >
         <Stack
           direction={"row"}
           sx={{
@@ -58,20 +60,23 @@ const UserModalComponent = ({
             justifyContent: "space-between",
             mt: "1rem",
             mb: "2rem",
-          }}>
+          }}
+        >
           <Box
             sx={{
               width: "100%",
               fontSize: "1.5rem",
               fontWeight: "bold",
               color: "#222",
-            }}>
+            }}
+          >
             {userChoice}하기
           </Box>
           <Button
             onClick={() => {
               closeModalHandler();
-            }}>
+            }}
+          >
             <CloseIcon sx={{ color: "black" }} />
           </Button>
         </Stack>
@@ -118,7 +123,8 @@ const UserModalComponent = ({
         )}
         <ButtonContainer
           onClick={onSubmitHandler}
-          sx={{ background: "lightblue" }}>
+          sx={{ background: "lightblue" }}
+        >
           {userChoice}
         </ButtonContainer>
 
@@ -131,7 +137,8 @@ const UserModalComponent = ({
               <Link
                 component="button"
                 onClick={userChangeHandler}
-                sx={{ ml: "0.5rem" }}>
+                sx={{ ml: "0.5rem" }}
+              >
                 회원가입
               </Link>
             </Stack>
@@ -141,7 +148,8 @@ const UserModalComponent = ({
               <Link
                 component="button"
                 onClick={userChangeHandler}
-                sx={{ ml: "0.5rem" }}>
+                sx={{ ml: "0.5rem" }}
+              >
                 로그인
               </Link>
             </Stack>
@@ -178,4 +186,4 @@ const TextFieldContainer = styled(TextField)`
   margin: 0.5rem 0;
 `;
 
-export default UserModalComponent
+export default UserModalComponent;
