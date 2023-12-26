@@ -9,14 +9,11 @@ type props = {
 };
 
 const MainCardComponent = ({ data, isLoading }: props) => {
-  // console.log(data);
-
   return (
     <Suspense fallback={<div>Loading......</div>}>
       {!isLoading && (
         <Box
           sx={{
-            border: "1px solid red",
             padding: "2rem 0",
             display: "grid",
             gridTemplateColumns: "repeat(auto-fill, minmax(15rem, 1fr))",

@@ -1,4 +1,4 @@
-import { Stack, styled } from "@mui/material";
+import { Box, Stack, styled } from "@mui/material";
 import React from "react";
 
 type props = {
@@ -24,6 +24,23 @@ const MainCardTextComponent = ({
 
       <SpacingStack>
         <Text>{location}</Text>
+      </SpacingStack>
+
+      <SpacingStack spacing={1} direction={"row"} alignItems={"center"}>
+        <Text> {day} </Text>
+        <Box>
+          <Text> {`★`} </Text>
+          <BoldText>{score}</BoldText>
+          <Text> {`/ 10`} </Text>
+        </Box>
+      </SpacingStack>
+
+      <SpacingStack>
+        <Box>
+          <Text> {`￦`} </Text>
+          <BoldText>{Math.trunc(price).toLocaleString()}</BoldText>
+          <Text> {`/ 1 Day `} </Text>
+        </Box>
       </SpacingStack>
     </Stack>
   );
