@@ -1,17 +1,19 @@
 import React from "react";
-import { useRecoilState } from "recoil";
 import { useQuery } from "@tanstack/react-query";
-import { bookingInformationAtomState } from "@/recoil/RecoilHotelList";
-import useGetHotelLists from "@/api/getHotelList";
+import useGetHotelList from "@/api/getHotelList";
 import MainCardComponent from "@/components/main/MainCardComponent";
 
 const MainCardContainer = () => {
-  const { fetchData, options, changeData } = useGetHotelLists();
-  const [hotelList, setHotelList] = useRecoilState(bookingInformationAtomState);
-  const { data, isLoading } = useQuery({
+  const { fetchData, options, changeData } = useGetHotelList();
+  const { isLoading, data } = useQuery({
     queryKey: ["getHotelList"],
     queryFn: fetchData,
   });
+
+  console.log("@@options@@ ----->", options);
+  console.log("@@changeData@@ ----->", changeData);
+  console.log("@@data@@ ----->", data);
+  console.log("@@isLoading@@ ----->", isLoading);
 
   return <MainCardComponent data={data} isLoading={isLoading} />;
 };

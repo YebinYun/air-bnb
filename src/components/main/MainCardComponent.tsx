@@ -9,6 +9,8 @@ type props = {
 };
 
 const MainCardComponent = ({ data, isLoading }: props) => {
+  // console.log(data);
+
   return (
     <Suspense fallback={<div>Loading......</div>}>
       {!isLoading && (

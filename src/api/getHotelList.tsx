@@ -43,7 +43,7 @@ const initialOptions: AxiosRequestConfig = {
   },
 };
 
-const useGetHotelLists = (): UseGetHotelListResult => {
+const useGetHotelList = (): UseGetHotelListResult => {
   const [options, setOptions] = useState<AxiosRequestConfig>(initialOptions);
   const value = useRecoilValue(bookingInformationSelector);
 
@@ -104,4 +104,4 @@ const useGetHotelLists = (): UseGetHotelListResult => {
   return { fetchData, options, changeData };
 };
 
-export default useGetHotelLists;
+export default useGetHotelList;
