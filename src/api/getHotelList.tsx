@@ -47,7 +47,14 @@ const useGetHotelLists = (): UseGetHotelListResult => {
   const [options, setOptions] = useState<AxiosRequestConfig>(initialOptions);
   const value = useRecoilValue(bookingInformationSelector);
 
-  const changeData = (checkin, checkout, guests, child, lat, lng) => {
+  const changeData = (
+    checkin: Date,
+    checkout: Date,
+    guests: number,
+    child: number,
+    lat: number,
+    lng: number
+  ) => {
     const params = {
       ...options.params,
       checkin_date: format(checkin, "yyyy-MM-dd"),
