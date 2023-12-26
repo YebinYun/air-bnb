@@ -1,11 +1,11 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { format } from "date-fns";
-import { useState } from "react";
-import { useRecoilValue } from "recoil";
+import { useEffect, useState } from "react";
+import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
 import { bookingInformationSelector } from "../recoil/RecoilHotelList";
 
 type GetOptions = {
-  checkin: string;
+  checkin_: string;
   checkout: string;
   guests: string;
   child: string;
@@ -46,6 +46,11 @@ const initialOptions: AxiosRequestConfig = {
 const useGetHotelList = (): UseGetHotelListResult => {
   const [options, setOptions] = useState<AxiosRequestConfig>(initialOptions);
   const value = useRecoilValue(bookingInformationSelector);
+  const resetDate = useResetRecoilState(bookingInformationSelector);
+
+  useEffect(() => {
+    resetDate();
+  }, []);
 
   const changeData = (
     checkin: Date,

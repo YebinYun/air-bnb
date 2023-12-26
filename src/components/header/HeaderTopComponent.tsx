@@ -5,27 +5,36 @@ import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SearchIcon from "@mui/icons-material/Search";
 import UserToggleDropDownContainer from "@/containers/header/headerUserMenu/UserToggleDropDownContainer";
+import BookingModalContainer from "@/containers/header/headerBookingMenu/BookingModalContainer";
 
 type props = {
-  onUserToggle: boolean;
-  setOnUserToggle: React.Dispatch<React.SetStateAction<boolean>>;
+  isMouseOnUser: boolean;
+  isBookingModalOpen: boolean;
+  toggleBookingModal: () => void;
+  toggleMouseOnUser: () => void;
 };
 
-const HeaderTopComponent = ({ onUserToggle,setOnUserToggle }: props) => {
+const HeaderTopComponent = ({
+  isMouseOnUser,
+  isBookingModalOpen,
+  toggleBookingModal,
+  toggleMouseOnUser,
+}: props) => {
   return (
-    <Box sx={{px:"5rem"}}>
+    <Box sx={{ px: "5rem" }}>
       <Stack
         direction={"row"}
         sx={{
           alignItems: "center",
           justifyContent: "space-between",
           py: "1rem",
-        }}>
+        }}
+      >
         <Box sx={{ width: "5rem" }}>
           <LuggageIcon sx={{ color: "#FF5A5F", fontSize: 50 }} />
         </Box>
 
-        <Button>
+        <Button onClick={toggleBookingModal}>
           <Stack
             direction={"row"}
             sx={{
@@ -35,7 +44,8 @@ const HeaderTopComponent = ({ onUserToggle,setOnUserToggle }: props) => {
               padding: " 0.5rem 1.5rem",
               boxShadow: "1px 1px 1px 1px lightgray",
               borderRadius: "25px",
-            }}>
+            }}
+          >
             <Box sx={{ borderRight: "2px solid lightgray", pr: "1rem" }}>
               위치 추가
             </Box>
@@ -55,12 +65,8 @@ const HeaderTopComponent = ({ onUserToggle,setOnUserToggle }: props) => {
         </Button>
 
         <Button
-          onMouseEnter={() => {
-            setOnUserToggle(true);
-          }}
-          onMouseLeave={() => {
-            setOnUserToggle(false);
-          }}
+          onMouseEnter={toggleMouseOnUser}
+          onMouseLeave={toggleMouseOnUser}
           sx={{
             position: "relative",
             padding: "0.6rem 1rem",
@@ -69,12 +75,14 @@ const HeaderTopComponent = ({ onUserToggle,setOnUserToggle }: props) => {
             boxShadow: "1px 1px 1px 1px lightgray",
             borderRadius: "25px",
             color: "gray",
-          }}>
+          }}
+        >
           <MenuIcon sx={{ mr: "0.5rem" }} />
           <AccountCircleIcon />
-          {onUserToggle && <UserToggleDropDownContainer />}
+          {isMouseOnUser && <UserToggleDropDownContainer />}
         </Button>
       </Stack>
+      {isBookingModalOpen && <BookingModalContainer />}
     </Box>
   );
 };

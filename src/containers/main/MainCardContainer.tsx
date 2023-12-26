@@ -10,11 +10,6 @@ const MainCardContainer = () => {
     queryFn: fetchData,
   });
 
-  console.log("@@options@@ ----->", options);
-  console.log("@@changeData@@ ----->", changeData);
-  console.log("@@data@@ ----->", data);
-  console.log("@@isLoading@@ ----->", isLoading);
-
   return <MainCardComponent data={data} isLoading={isLoading} />;
 };
 

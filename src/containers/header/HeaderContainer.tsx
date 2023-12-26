@@ -1,9 +1,13 @@
-import HeaderComponent from "@/components/header/HeaderComponent";
 import React from "react";
+import HeaderTopContainer from "./HeaderTopContainer";
+import HeaderBottomContainer from "./HeaderBottomContainer";
 
 const HeaderContainer = () => {
   return (
-      <HeaderComponent/>
+    <>
+      <HeaderTopContainer />
+      <HeaderBottomContainer />
+    </>
   );
 };
 

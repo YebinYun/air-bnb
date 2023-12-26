@@ -2,12 +2,18 @@ import HeaderTopComponent from "@/components/header/HeaderTopComponent";
 import React, { useState } from "react";
 
 const HeaderTopContainer = () => {
-  const [onUserToggle, setOnUserToggle] = useState<boolean>(false)
-  
+  const [isMouseOnUser, setIsMouseOnUser] = useState<boolean>(false);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState<boolean>(false);
+
+  const toggleBookingModal = () => setIsBookingModalOpen(!isBookingModalOpen);
+  const toggleMouseOnUser = () => setIsMouseOnUser(!isMouseOnUser);
+
   return (
     <HeaderTopComponent
-      onUserToggle={onUserToggle}
-      setOnUserToggle={setOnUserToggle}
+      isMouseOnUser={isMouseOnUser}
+      isBookingModalOpen={isBookingModalOpen}
+      toggleBookingModal={toggleBookingModal}
+      toggleMouseOnUser={toggleMouseOnUser}
     />
   );
 };
