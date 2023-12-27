@@ -5,24 +5,18 @@ import userData from "../../../utils/userData.json";
 import { UserDataAlert } from "../../../hooks/UserDataAlert";
 
 type props = {
-  loginModalHandler: () => void;
-  signupModalHandler: () => void;
   closeModalHandler: () => void;
   userChangeHandler: () => void;
-  isSetting: boolean;
   isLogin: boolean;
-  isSignup: boolean;
+  isSetting: boolean;
   userChoice: string;
 };
 
 const UserModalComponent = ({
-  loginModalHandler,
-  signupModalHandler,
   closeModalHandler,
   userChangeHandler,
-  isSetting,
   isLogin,
-  isSignup,
+  isSetting,
   userChoice,
 }: props) => {
   const { userAlertData, onChangeHandler, onSubmitHandler } = UserDataAlert({
@@ -39,6 +33,7 @@ const UserModalComponent = ({
         right: 0,
         left: 0,
         background: "rgba(0, 0, 0, 0.5)",
+        zIndex: 1,
       }}
     >
       <Stack
@@ -64,6 +59,8 @@ const UserModalComponent = ({
         >
           <Box
             sx={{
+              display: "flex",
+              justifyContent: "center",
               width: "100%",
               fontSize: "1.5rem",
               fontWeight: "bold",

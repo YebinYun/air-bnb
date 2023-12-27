@@ -4,19 +4,15 @@ import LuggageIcon from "@mui/icons-material/Luggage";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SearchIcon from "@mui/icons-material/Search";
-import UserToggleDropDownContainer from "@/containers/header/headerUserMenu/UserToggleDropDownContainer";
-import BookingModalContainer from "@/containers/header/headerBookingMenu/BookingModalContainer";
 
 type props = {
-  isMouseOnUser: boolean;
-  isBookingModalOpen: boolean;
+  setIsMouseOnUser: React.Dispatch<React.SetStateAction<boolean>>;
   toggleBookingModal: () => void;
   toggleMouseOnUser: () => void;
 };
 
 const HeaderTopComponent = ({
-  isMouseOnUser,
-  isBookingModalOpen,
+  setIsMouseOnUser,
   toggleBookingModal,
   toggleMouseOnUser,
 }: props) => {
@@ -69,8 +65,15 @@ const HeaderTopComponent = ({
         </Button>
 
         <Button
-          onMouseEnter={toggleMouseOnUser}
-          onMouseLeave={toggleMouseOnUser}
+          // onMouseEnter={() => {
+          //   setIsMouseOnUser(true);
+          // }}
+          // onMouseLeave={() => {
+          //   setIsMouseOnUser(false);
+          // }}
+          onClick={() => {
+            toggleMouseOnUser();
+          }}
           sx={{
             position: "relative",
             padding: "0.6rem 1rem",
@@ -83,12 +86,8 @@ const HeaderTopComponent = ({
         >
           <MenuIcon sx={{ mr: "0.5rem" }} />
           <AccountCircleIcon />
-          {isMouseOnUser && <UserToggleDropDownContainer />}
         </Button>
       </Stack>
-      {isBookingModalOpen && (
-        <BookingModalContainer toggleBookingModal={toggleBookingModal} />
-      )}
     </Box>
   );
 };

@@ -3,10 +3,14 @@ import { Box, Button, Stack } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
 type props = {
+  isBookingModalOpen: boolean;
   toggleBookingModal: () => void;
 };
 
-const BookingModalComponent = ({ toggleBookingModal }: props) => {
+const BookingModalComponent = ({
+  isBookingModalOpen,
+  toggleBookingModal,
+}: props) => {
   return (
     <Box
       sx={{
@@ -16,6 +20,7 @@ const BookingModalComponent = ({ toggleBookingModal }: props) => {
         right: 0,
         left: 0,
         background: "rgba(0, 0, 0, 0.5)",
+        zIndex: 1,
       }}
     >
       <Box
@@ -28,7 +33,6 @@ const BookingModalComponent = ({ toggleBookingModal }: props) => {
           alignItems: "center",
           p: "2rem",
           borderRadius: "5px",
-          zIndex: 999,
         }}
       >
         <Stack direction={"row"} sx={{ alignItems: "center" }}>
