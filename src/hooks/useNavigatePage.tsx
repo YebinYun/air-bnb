@@ -2,7 +2,14 @@ import { bookingInformationSelector } from "@/recoil/RecoilHotelList";
 import { useState } from "react";
 import { useRecoilValue } from "recoil";
 
-export const useNavigatePage = () => {
+type UseNavigatePageResult = {
+  pageIndex: number;
+  totalQuantity: number;
+  prevPage: () => void;
+  nextPage: () => void;
+};
+
+export const useNavigatePage = (): UseNavigatePageResult => {
   const [pageIndex, setPageIndex] = useState<number>(0);
 
   const bookingInformation = useRecoilValue(bookingInformationSelector);
@@ -18,7 +25,7 @@ export const useNavigatePage = () => {
     return true;
   };
 
-  const previousPage = () => {
+  const prevPage = () => {
     if (pageIndex > 0) {
       setPageIndex(pageIndex - 1);
     }
@@ -33,5 +40,5 @@ export const useNavigatePage = () => {
     }
   };
 
-  return { pageIndex, totalQuantity, previousPage, nextPage };
+  return { pageIndex, totalQuantity, prevPage, nextPage };
 };
