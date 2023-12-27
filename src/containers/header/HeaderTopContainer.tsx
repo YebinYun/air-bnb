@@ -1,9 +1,6 @@
-import HeaderTopComponent from "@/components/header/HeaderTopComponent";
 import React, { useState } from "react";
-import BookingModalContainer from "./headerBookingMenu/BookingModalContainer";
-import UserToggleDropDownContainer from "./headerUserMenu/UserToggleDropDownContainer";
+import HeaderTopComponent from "@/components/header/HeaderTopComponent";
 import BookingModalComponent from "@/components/header/headerBookingMenu/BookingModalComponent";
-import UserModalContainer from "./headerUserMenu/UserModalContainer";
 import UserToggleDropDownComponent from "@/components/header/headerUserMenu/UserToggleDropDownComponent";
 import UserModalComponent from "@/components/header/headerUserMenu/UserModalComponent";
 
@@ -41,6 +38,8 @@ const HeaderTopContainer = () => {
     setIsSetting(false);
   };
 
+  const userChoice = `${isLogin ? "로그인" : isSignup ? "회원가입" : "수정"}`;
+
   // 로그인/회원가입 전환 핸들러
   const userChangeHandler = () => {
     if (isLogin) {
@@ -51,8 +50,6 @@ const HeaderTopContainer = () => {
       setIsSignup(false);
     }
   };
-
-  const userChoice = `${isLogin ? "로그인" : isSignup ? "회원가입" : "수정"}`;
 
   return (
     <>
