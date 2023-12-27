@@ -4,11 +4,16 @@ import React from "react";
 type props = {
   coordsValue: any;
   totalQuantity: number;
+  pageIndex: number;
+  setPageIndex: any;
 };
 
-const BookingModalHeaderComponent = ({ coordsValue, totalQuantity }: props) => {
-  console.log(coordsValue);
-
+const BookingModalHeaderComponent = ({
+  coordsValue,
+  totalQuantity,
+  pageIndex,
+  setPageIndex,
+}: props) => {
   return (
     <>
       <Stack direction={"row"} sx={{ mt: "2rem", height: "4rem" }}>
@@ -24,7 +29,12 @@ const BookingModalHeaderComponent = ({ coordsValue, totalQuantity }: props) => {
           }}
         >
           {/* index 0 */}
-          <Button sx={{ flexDirection: "column" }}>
+          <Button
+            onClick={() => {
+              setPageIndex(0);
+            }}
+            sx={{ flexDirection: "column" }}
+          >
             <Box sx={{ color: "white", fontWeight: "bold" }}>여행지</Box>
             <Box color={"black"}>
               {coordsValue?.lat === 34.5289 ? "여행지 검색" : "선택 완료"}
@@ -32,7 +42,12 @@ const BookingModalHeaderComponent = ({ coordsValue, totalQuantity }: props) => {
           </Button>
 
           {/* index 1 */}
-          <Button sx={{ flexDirection: "column" }}>
+          <Button
+            onClick={() => {
+              setPageIndex(1);
+            }}
+            sx={{ flexDirection: "column" }}
+          >
             <Box sx={{ color: "white", fontWeight: "bold" }}>날짜</Box>
             <Box color={"black"}>
               {coordsValue?.dates[0].getFullYear() +
@@ -51,7 +66,12 @@ const BookingModalHeaderComponent = ({ coordsValue, totalQuantity }: props) => {
           </Button>
 
           {/* index 2 */}
-          <Button sx={{ flexDirection: "column" }}>
+          <Button
+            onClick={() => {
+              setPageIndex(2);
+            }}
+            sx={{ flexDirection: "column" }}
+          >
             <Box sx={{ color: "white", fontWeight: "bold" }}>여행자</Box>
             <Box color={"black"}>
               {totalQuantity === 2 ? "여행자 입력" : totalQuantity}

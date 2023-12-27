@@ -54,8 +54,8 @@ const useGetHotelList = (): UseGetHotelListResult => {
   }, []);
 
   const changeData = (
-    checkin: number | Date,
-    checkout: number | Date,
+    checkin: number | Date | string,
+    checkout: number | Date | string,
     guests: number,
     child: number,
     lat: number,

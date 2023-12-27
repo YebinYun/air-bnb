@@ -8,7 +8,7 @@ import {
   useBookingInfoChangeHandler,
 } from "@/recoil/RecoilHotelList";
 import { useRecoilState } from "recoil";
-import { useNavigatePage } from "@/hooks/useNavigatePage";
+import { useBookingPageChangeHandler } from "@/recoil/RecoilPageIndex";
 
 const HeaderTopContainer = () => {
   const [isUserDataModalOpen, setIsUserDataModalOpen] =
@@ -64,7 +64,8 @@ const HeaderTopContainer = () => {
     bookingInformationSelector
   );
 
-  const { pageIndex, totalQuantity, prevPage, nextPage } = useNavigatePage();
+  const { prevPage, nextPage, totalQuantity, pageIndex, setPageIndex } =
+    useBookingPageChangeHandler();
 
   return (
     <>
@@ -79,6 +80,7 @@ const HeaderTopContainer = () => {
           isBookingModalOpen={isBookingModalOpen}
           toggleBookingModal={toggleBookingModal}
           pageIndex={pageIndex}
+          setPageIndex={setPageIndex}
           totalQuantity={totalQuantity}
           nextPage={nextPage}
           prevPage={prevPage}

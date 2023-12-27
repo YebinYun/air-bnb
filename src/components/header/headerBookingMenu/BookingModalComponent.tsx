@@ -10,6 +10,7 @@ type props = {
   isBookingModalOpen: boolean;
   toggleBookingModal: () => void;
   pageIndex: number;
+  setPageIndex: any;
   totalQuantity: number;
   prevPage: () => void;
   nextPage: () => void;
@@ -23,6 +24,7 @@ const BookingModalComponent = ({
   isBookingModalOpen,
   toggleBookingModal,
   pageIndex,
+  setPageIndex,
   totalQuantity,
   prevPage,
   nextPage,
@@ -88,6 +90,8 @@ const BookingModalComponent = ({
         <BookingModalHeaderComponent
           coordsValue={coordsValue}
           totalQuantity={totalQuantity}
+          pageIndex={pageIndex}
+          setPageIndex={setPageIndex}
         />
 
         {/* index 0 (지도) */}
