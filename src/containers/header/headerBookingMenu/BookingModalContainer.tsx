@@ -6,7 +6,12 @@ type props = {
 };
 
 const BookingModalContainer = ({ toggleBookingModal }: props) => {
-  return <BookingModalComponent toggleBookingModal={toggleBookingModal} />;
+  return (
+    <BookingModalComponent
+      toggleBookingModal={toggleBookingModal}
+      isBookingModalOpen={false}
+    />
+  );
 };
 
 export default BookingModalContainer;

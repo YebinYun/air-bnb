@@ -23,7 +23,7 @@ const initUserData = {
   userCheck: "NO",
 };
 
-export const UserDataAlert = ({ isLogin, isSetting }: props) => {
+export const useDataAlert = ({ isLogin, isSetting }: props) => {
   const [userAlertData, setUserAlertData] =
     useState<UserDataProps>(initUserData);
 

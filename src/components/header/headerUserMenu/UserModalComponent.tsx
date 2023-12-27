@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Button, Link, Stack, TextField, styled } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import userData from "../../../utils/userData.json";
-import { UserDataAlert } from "../../../hooks/UserDataAlert";
+import { useDataAlert } from "../../../hooks/useDataAlert";
 
 type props = {
   closeModalHandler: () => void;
@@ -19,7 +19,7 @@ const UserModalComponent = ({
   isSetting,
   userChoice,
 }: props) => {
-  const { userAlertData, onChangeHandler, onSubmitHandler } = UserDataAlert({
+  const { userAlertData, onChangeHandler, onSubmitHandler } = useDataAlert({
     isLogin,
     isSetting,
   });
