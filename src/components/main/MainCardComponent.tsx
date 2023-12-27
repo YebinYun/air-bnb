@@ -14,7 +14,7 @@ const MainCardComponent = ({ data, isLoading }: props) => {
       {!isLoading && (
         <Box
           sx={{
-            padding: "2rem 0",
+            padding: "2rem 5rem",
             display: "grid",
             gridTemplateColumns: "repeat(auto-fill, minmax(15rem, 1fr))",
             rowGap: "2rem",
