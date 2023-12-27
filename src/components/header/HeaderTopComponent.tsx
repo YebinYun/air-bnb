@@ -6,15 +6,15 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SearchIcon from "@mui/icons-material/Search";
 
 type props = {
-  setIsMouseOnUser: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsUserDataModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   toggleBookingModal: () => void;
-  toggleMouseOnUser: () => void;
+  toggleUserDataModal: () => void;
 };
 
 const HeaderTopComponent = ({
-  setIsMouseOnUser,
+  setIsUserDataModalOpen,
   toggleBookingModal,
-  toggleMouseOnUser,
+  toggleUserDataModal,
 }: props) => {
   return (
     <Box sx={{ px: "5rem" }}>
@@ -66,13 +66,13 @@ const HeaderTopComponent = ({
 
         <Button
           // onMouseEnter={() => {
-          //   setIsMouseOnUser(true);
+          //   setIsUserDataModalOpen(true);
           // }}
           // onMouseLeave={() => {
-          //   setIsMouseOnUser(false);
+          //   setIsUserDataModalOpen(false);
           // }}
           onClick={() => {
-            toggleMouseOnUser();
+            toggleUserDataModal();
           }}
           sx={{
             position: "relative",

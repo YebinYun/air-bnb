@@ -4,13 +4,17 @@ import BookingModalContainer from "./headerBookingMenu/BookingModalContainer";
 import UserToggleDropDownContainer from "./headerUserMenu/UserToggleDropDownContainer";
 import BookingModalComponent from "@/components/header/headerBookingMenu/BookingModalComponent";
 import UserModalContainer from "./headerUserMenu/UserModalContainer";
+import UserToggleDropDownComponent from "@/components/header/headerUserMenu/UserToggleDropDownComponent";
+import UserModalComponent from "@/components/header/headerUserMenu/UserModalComponent";
 
 const HeaderTopContainer = () => {
-  const [isMouseOnUser, setIsMouseOnUser] = useState<boolean>(false);
+  const [isUserDataModalOpen, setIsUserDataModalOpen] =
+    useState<boolean>(false);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState<boolean>(false);
 
   const toggleBookingModal = () => setIsBookingModalOpen(!isBookingModalOpen);
-  const toggleMouseOnUser = () => setIsMouseOnUser(!isMouseOnUser);
+  const toggleUserDataModal = () =>
+    setIsUserDataModalOpen(!isUserDataModalOpen);
 
   const [isLogin, setIsLogin] = useState<boolean>(false);
   const [isSignup, setIsSignup] = useState<boolean>(false);
@@ -18,21 +22,26 @@ const HeaderTopContainer = () => {
 
   const loginModalHandler = () => {
     setIsLogin(!isLogin);
-    setIsMouseOnUser(!isMouseOnUser);
+    setIsUserDataModalOpen(false);
   };
+
   const signupModalHandler = () => {
     setIsSignup(!isSignup);
-    setIsMouseOnUser(false);
+    setIsUserDataModalOpen(false);
   };
+
   const settingModalHandler = () => {
     setIsSetting(!isSetting);
-    setIsMouseOnUser(!isMouseOnUser);
+    setIsUserDataModalOpen(false);
   };
+
   const closeModalHandler = () => {
     setIsLogin(false);
     setIsSignup(false);
     setIsSetting(false);
   };
+
+  // 로그인/회원가입 전환 핸들러
   const userChangeHandler = () => {
     if (isLogin) {
       setIsLogin(false);
@@ -48,10 +57,11 @@ const HeaderTopContainer = () => {
   return (
     <>
       <HeaderTopComponent
-        setIsMouseOnUser={setIsMouseOnUser}
-        toggleMouseOnUser={toggleMouseOnUser}
+        setIsUserDataModalOpen={setIsUserDataModalOpen}
+        toggleUserDataModal={toggleUserDataModal}
         toggleBookingModal={toggleBookingModal}
       />
+
       {isBookingModalOpen && (
         <BookingModalComponent
           isBookingModalOpen={isBookingModalOpen}
@@ -59,8 +69,8 @@ const HeaderTopContainer = () => {
         />
       )}
 
-      {isMouseOnUser && (
-        <UserToggleDropDownContainer
+      {isUserDataModalOpen && (
+        <UserToggleDropDownComponent
           loginModalHandler={loginModalHandler}
           signupModalHandler={signupModalHandler}
           settingModalHandler={settingModalHandler}
@@ -68,7 +78,7 @@ const HeaderTopContainer = () => {
       )}
 
       {(isLogin || isSignup || isSetting) && (
-        <UserModalContainer
+        <UserModalComponent
           closeModalHandler={closeModalHandler}
           userChangeHandler={userChangeHandler}
           isLogin={isLogin}
