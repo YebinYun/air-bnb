@@ -5,10 +5,10 @@ import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
 import { bookingInformationSelector } from "../recoil/RecoilHotelList";
 
 type GetOptions = {
-  checkin_: string;
-  checkout: string;
-  guests: string;
-  child: string;
+  checkin: Date;
+  checkout: Date;
+  guests: number;
+  child: number;
 };
 
 type UseGetHotelListResult = {
@@ -50,11 +50,12 @@ const useGetHotelList = (): UseGetHotelListResult => {
 
   useEffect(() => {
     resetDate();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const changeData = (
-    checkin: Date,
-    checkout: Date,
+    checkin: number | Date,
+    checkout: number | Date,
     guests: number,
     child: number,
     lat: number,
