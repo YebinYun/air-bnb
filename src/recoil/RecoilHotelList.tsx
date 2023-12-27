@@ -1,11 +1,12 @@
 import { atom, selector, useRecoilState } from "recoil";
+import { format } from "date-fns";
 
 export type GetHotelListInit = {
-  checkin_date: Date | number;
-  checkout_date: Date | number;
+  checkin_date: Date | number | string;
+  checkout_date: Date | number | string;
   adults_number: number;
   children_number: number;
-  dates: [Date | number, Date | number];
+  dates: [Date | number | string, Date | number | string];
   lat: number;
   lng: number;
 };
@@ -23,9 +24,9 @@ const date = new Date();
 export const bookingInformationAtomState = atom<GetHotelListInit>({
   key: "bookingInformationAtomState",
   default: {
-    checkin_date: date.setDate(date.getDate()),
-    checkout_date: date.setDate(date.getDate() + 2),
-    dates: [date.setDate(date.getDate()), date.setDate(date.getDate() + 2)],
+    checkin_date: format(date.setDate(date.getDate()), "yyyy-MM-dd"),
+    checkout_date: format(date.setDate(date.getDate() + 2), "yyyy-MM-dd"),
+    dates: [new Date(), new Date()],
     adults_number: 1,
     children_number: 1,
     lat: 34.5289,

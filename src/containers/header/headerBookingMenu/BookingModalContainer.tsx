@@ -9,11 +9,6 @@ type props = {
 };
 
 const BookingModalContainer = ({ toggleBookingModal }: props) => {
-  const [coordsValue, setCoorsValue] = useRecoilState(
-    bookingInformationSelector
-  );
-
-  const { pageIndex, totalQuantity, prevPage, nextPage } = useNavigatePage();
   return (
     <BookingModalComponent
       toggleBookingModal={toggleBookingModal}

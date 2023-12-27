@@ -7,6 +7,8 @@ type props = {
 };
 
 const BookingModalHeaderComponent = ({ coordsValue, totalQuantity }: props) => {
+  console.log(coordsValue);
+
   return (
     <>
       <Stack direction={"row"} sx={{ mt: "2rem", height: "4rem" }}>
@@ -33,20 +35,18 @@ const BookingModalHeaderComponent = ({ coordsValue, totalQuantity }: props) => {
           <Button sx={{ flexDirection: "column" }}>
             <Box sx={{ color: "white", fontWeight: "bold" }}>날짜</Box>
             <Box color={"black"}>
-              {coordsValue?.dates === null
-                ? "날짜 추가"
-                : coordsValue?.dates[0].getFullYear() +
-                  "년" +
-                  (coordsValue?.dates[0].getMonth() + 1) +
-                  "월" +
-                  coordsValue?.dates[0].getDate() +
-                  "일 ~ " +
-                  coordsValue?.dates[1].getFullYear() +
-                  "년" +
-                  (coordsValue?.dates[1].getMonth() + 1) +
-                  "월" +
-                  coordsValue?.dates[1].getDate() +
-                  "일"}
+              {coordsValue?.dates[0].getFullYear() +
+                "년" +
+                (coordsValue?.dates[0].getMonth() + 1) +
+                "월" +
+                coordsValue?.dates[0].getDate() +
+                "일 ~ " +
+                coordsValue?.dates[1].getFullYear() +
+                "년" +
+                (coordsValue?.dates[1].getMonth() + 1) +
+                "월" +
+                coordsValue?.dates[1].getDate() +
+                "일"}
             </Box>
           </Button>
 
@@ -54,7 +54,7 @@ const BookingModalHeaderComponent = ({ coordsValue, totalQuantity }: props) => {
           <Button sx={{ flexDirection: "column" }}>
             <Box sx={{ color: "white", fontWeight: "bold" }}>여행자</Box>
             <Box color={"black"}>
-              {totalQuantity === 0 ? "여행자 입력" : totalQuantity}
+              {totalQuantity === 2 ? "여행자 입력" : totalQuantity}
             </Box>
           </Button>
         </Box>

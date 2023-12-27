@@ -65,12 +65,6 @@ const HeaderTopComponent = ({
         </Button>
 
         <Button
-          // onMouseEnter={() => {
-          //   setIsUserDataModalOpen(true);
-          // }}
-          // onMouseLeave={() => {
-          //   setIsUserDataModalOpen(false);
-          // }}
           onClick={() => {
             toggleUserDataModal();
           }}

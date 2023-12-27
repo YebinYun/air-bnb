@@ -1,11 +1,10 @@
 import React from "react";
-import { Box, Button, Stack } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import BookingProgressContainer from "@/containers/header/headerBookingMenu/BookingProgressContainer";
-import BookingModalHeaderContainer from "@/containers/header/headerBookingMenu/BookingModalHeaderContainer";
 import BookingModalHeaderComponent from "./BookingModalHeaderComponent";
 import BookingProgressComponent from "./BookingProgressComponent";
 import BookingMapSearch from "@/containers/header/headerBookingMenu/bookingMap/BookingMapSearch";
+import BookingDateInput from "@/containers/header/headerBookingMenu/bookingCalender/BookingDateInput";
 
 type props = {
   isBookingModalOpen: boolean;
@@ -16,6 +15,8 @@ type props = {
   nextPage: () => void;
   coordsValue: any;
   setCoorsValue: any;
+  handleOnBookingInfoChange: any;
+  bookingInfo: any;
 };
 
 const BookingModalComponent = ({
@@ -27,9 +28,9 @@ const BookingModalComponent = ({
   nextPage,
   coordsValue,
   setCoorsValue,
+  handleOnBookingInfoChange,
+  bookingInfo,
 }: props) => {
-  console.log(pageIndex);
-
   return (
     <Box
       sx={{
@@ -48,6 +49,7 @@ const BookingModalComponent = ({
           top: "50%",
           left: "50%",
           height: "80%",
+          width: "80%",
           overflow: "hidden",
           transform: "translate(-50%, -50%)",
           background: "white",
@@ -89,15 +91,50 @@ const BookingModalComponent = ({
         />
 
         {/* index 0 (지도) */}
-        {/* {pageIndex === 0 && <BookingMapSearch />} */}
+        {pageIndex === 0 && <BookingMapSearch />}
 
         {/* index 1 (캘린더) */}
-        {/* {pageIndex === 1 && < />} */}
+        {pageIndex === 1 && (
+          <BookingDateInput
+            rangeDate={bookingInfo?.dates}
+            dateChangeHandler={handleOnBookingInfoChange}
+          />
+        )}
 
         {/* index 2 (인원) */}
         {/* {pageIndex === 2 && < />} */}
 
-        <BookingMapSearch />
+        {/* 이동 버튼 */}
+        <Box
+          width={"90%"}
+          display={"flex"}
+          position={"absolute"}
+          bottom={"1rem"}
+          justifyContent={"space-between"}
+          sx={{ mb: "10px" }}
+        >
+          <Button
+            onClick={() => {
+              prevPage();
+            }}
+            sx={{ border: "1px solid #767676" }}
+          >
+            이전
+          </Button>
+          <Button
+            onClick={() => {
+              if (pageIndex !== 2) {
+                return nextPage();
+              } else {
+                toggleBookingModal();
+                // fetchData();
+              }
+            }}
+            sx={{ border: "1px solid #767676" }}
+          >
+            {pageIndex === 2 ? "완료" : "다음"}
+          </Button>
+        </Box>
       </Box>
     </Box>
   );
