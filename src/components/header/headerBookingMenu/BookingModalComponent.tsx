@@ -3,9 +3,9 @@ import { Box, Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import BookingModalHeaderComponent from "./BookingModalHeaderComponent";
 import BookingProgressComponent from "./BookingProgressComponent";
-import BookingMapSearch from "@/containers/header/headerBookingMenu/bookingMap/BookingMapSearch";
-import BookingDateInput from "@/containers/header/headerBookingMenu/bookingCalender/BookingDateInput";
-import BookingGuestInput from "@/containers/header/headerBookingMenu/bookingGuest/BookingGuestInput";
+import BookingMapSearch from "@/components/header/headerBookingMenu/bookingMap/BookingMapSearch";
+import BookingDateInput from "@/components/header/headerBookingMenu/bookingCalender/BookingDateInput";
+import BookingGuestInput from "@/components/header/headerBookingMenu/bookingGuest/BookingGuestInput";
 
 type props = {
   isBookingModalOpen?: boolean;

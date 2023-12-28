@@ -43,7 +43,7 @@ const BookingGuestInput = ({
           >
             -
           </Button>
-          <Box>{guestsInformation?.adults_number}</Box>
+          <Box>{guestsInformation?.adults_number}명</Box>
           <Button
             onClick={() => {
               totalCounterHandler("adult", 1);
@@ -77,7 +77,7 @@ const BookingGuestInput = ({
           >
             -
           </Button>
-          <Box>{guestsInformation?.children_number}</Box>
+          <Box>{guestsInformation?.children_number}명</Box>
           <Button
             onClick={() => {
               totalCounterHandler("children", 1);

@@ -17,12 +17,13 @@ const UserToggleDropDownComponent = ({
       direction={"column"}
       sx={{
         position: "absolute",
-        top: 60,
-        right: 0,
+        top: 70,
+        right: "5rem",
         width: "10rem",
         border: "solid 1px lightgray",
         borderRadius: "10px",
         background: "white",
+        zIndex: "1",
       }}
     >
       <Button

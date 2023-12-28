@@ -14,8 +14,8 @@ export type GetHotelListInit = {
 export const coordsState = atom({
   key: "coordsState",
   default: {
-    lat: 34.5289,
-    lng: 69.1725,
+    lat: 35.6895,
+    lng: 139.6917,
   },
 });
 

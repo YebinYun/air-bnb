@@ -74,7 +74,7 @@ const BookingModalHeaderComponent = ({
           >
             <Box sx={{ color: "white", fontWeight: "bold" }}>여행자</Box>
             <Box color={"black"}>
-              {totalQuantity === 2 ? "여행자 입력" : totalQuantity}
+              {totalQuantity === 2 ? "여행자 입력" : totalQuantity + "명"}
             </Box>
           </Button>
         </Box>
