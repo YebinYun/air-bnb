@@ -1,16 +1,20 @@
-# Website Practice
-
 ## 🚀 소개
 
-### 🏨 전세계 호텔 예약 사이트
+#### 🏨 전세계 호텔 예약 사이트
+
+<br>
 
 ## 🕐 기간
 
 2023.11.29 ~ 2023.12.28
 
+<br>
+
 ## ⚒️ Stack
 
 <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"><img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=Next.js&logoColor=white"><img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black"><img src="https://img.shields.io/badge/reactquery-FF4154?style=for-the-badge&logo=reactquery&logoColor=black"><img src="https://img.shields.io/badge/Recoil-3578E5?style=for-the-badge&logo=recoil&logoColor=black"><img src="https://img.shields.io/badge/mui-007FFF?style=for-the-badge&logo=mui&logoColor=black">
+
+<br>
 
 ## 📌 주요 기능
 
@@ -23,6 +27,8 @@
 | 지도 (예약) | <img src="public\images\지도.png" alt="지도"/>     |
 | 달력 (예약) | <img src="public\images\캘린더.png" alt="달력"/>   |
 | 인원 (예약) | <img src="public\images\인원.png" alt="인원"/>     |
+
+<br>
 
 ## 📁 폴더 구조
 
