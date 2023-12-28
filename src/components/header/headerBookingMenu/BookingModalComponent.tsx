@@ -8,22 +8,21 @@ import BookingDateInput from "@/containers/header/headerBookingMenu/bookingCalen
 import BookingGuestInput from "@/containers/header/headerBookingMenu/bookingGuest/BookingGuestInput";
 
 type props = {
-  isBookingModalOpen: boolean;
+  isBookingModalOpen?: boolean;
   toggleBookingModal: () => void;
   pageIndex: number;
-  setPageIndex: any;
+  setPageIndex?: any;
   totalQuantity: number;
   prevPage: () => void;
   nextPage: () => void;
-  coordsValue: any;
-  setCoorsValue: any;
-  handleOnBookingInfoChange: any;
-  bookingInfo: any;
-  fetchData: any;
+  coordsValue?: any;
+  setCoorsValue?: any;
+  handleOnBookingInfoChange?: any;
+  bookingInfo?: any;
+  fetchData?: any;
 };
 
 const BookingModalComponent = ({
-  isBookingModalOpen,
   toggleBookingModal,
   pageIndex,
   setPageIndex,
@@ -75,9 +74,7 @@ const BookingModalComponent = ({
         </Box>
         <Button
           sx={{ position: "absolute", top: "2rem", right: "2rem" }}
-          onClick={() => {
-            toggleBookingModal();
-          }}
+          onClick={toggleBookingModal}
         >
           <CloseIcon sx={{ color: "black" }} />
         </Button>
@@ -125,12 +122,7 @@ const BookingModalComponent = ({
           justifyContent={"space-between"}
           sx={{ mb: "10px" }}
         >
-          <Button
-            onClick={() => {
-              prevPage();
-            }}
-            sx={{ border: "1px solid #767676" }}
-          >
+          <Button onClick={prevPage} sx={{ border: "1px solid #767676" }}>
             이전
           </Button>
           <Button
