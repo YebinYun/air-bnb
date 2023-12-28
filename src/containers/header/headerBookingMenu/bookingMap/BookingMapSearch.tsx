@@ -15,7 +15,7 @@ const BookingMapSearch = () => {
     <>
       <select
         name="coords"
-        style={{ margin: "1rem 0", padding: "1rem" }}
+        style={{ margin: "1rem 0", padding: "1rem", width: "100%" }}
         onChange={handleOnBookingInfoChange}
       >
         {countryCapital?.map((x, index) => (

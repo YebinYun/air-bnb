@@ -5,6 +5,7 @@ import BookingModalHeaderComponent from "./BookingModalHeaderComponent";
 import BookingProgressComponent from "./BookingProgressComponent";
 import BookingMapSearch from "@/containers/header/headerBookingMenu/bookingMap/BookingMapSearch";
 import BookingDateInput from "@/containers/header/headerBookingMenu/bookingCalender/BookingDateInput";
+import BookingGuestInput from "@/containers/header/headerBookingMenu/bookingGuest/BookingGuestInput";
 
 type props = {
   isBookingModalOpen: boolean;
@@ -18,6 +19,7 @@ type props = {
   setCoorsValue: any;
   handleOnBookingInfoChange: any;
   bookingInfo: any;
+  fetchData: any;
 };
 
 const BookingModalComponent = ({
@@ -32,6 +34,7 @@ const BookingModalComponent = ({
   setCoorsValue,
   handleOnBookingInfoChange,
   bookingInfo,
+  fetchData,
 }: props) => {
   return (
     <Box
@@ -106,7 +109,12 @@ const BookingModalComponent = ({
         )}
 
         {/* index 2 (인원) */}
-        {/* {pageIndex === 2 && < />} */}
+        {pageIndex === 2 && (
+          <BookingGuestInput
+            guestsInformation={coordsValue}
+            setGuestsInformation={setCoorsValue}
+          />
+        )}
 
         {/* 이동 버튼 */}
         <Box
@@ -131,7 +139,7 @@ const BookingModalComponent = ({
                 return nextPage();
               } else {
                 toggleBookingModal();
-                // fetchData();
+                fetchData();
               }
             }}
             sx={{ border: "1px solid #767676" }}

@@ -19,7 +19,7 @@ const Map = ({ lat, lng }: props) => {
     <>
       <MapContainer
         key={lat}
-        style={{ width: "100%", height: "400px" }}
+        style={{ width: "100%", height: "50%" }}
         center={[lat, lng]}
         zoom={13}
         scrollWheelZoom={true}
