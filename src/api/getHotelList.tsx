@@ -14,7 +14,7 @@ type GetOptions = {
 type UseGetHotelListResult = {
   fetchData: () => Promise<any>;
   options: AxiosRequestConfig;
-  changeData: (data: GetOptions) => void;
+  changeData?: (data: GetOptions) => void;
 };
 
 const initialOptions: AxiosRequestConfig = {
@@ -107,7 +107,7 @@ const useGetHotelList = (): UseGetHotelListResult => {
     }
   };
 
-  return { fetchData, options, changeData };
+  return { fetchData, options };
 };
 
 export default useGetHotelList;

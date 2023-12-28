@@ -4,7 +4,7 @@ import useGetHotelList from "@/api/getHotelList";
 import MainCardComponent from "@/components/main/MainCardComponent";
 
 const MainCardContainer = () => {
-  const { fetchData, options, changeData } = useGetHotelList();
+  const { fetchData } = useGetHotelList();
   const { isLoading, data } = useQuery({
     queryKey: ["getHotelList"],
     queryFn: fetchData,
