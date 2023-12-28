@@ -14,11 +14,15 @@
 
 ## 📌 주요 기능
 
-| 화면                 |     |
-| -------------------- | --- |
-| <img src="" alt=""/> |     |
-| <img src="" alt=""/> |     |
-| <img src="" alt=""/> |     |
+| 기능            | 화면                                               |
+| --------------- | -------------------------------------------------- |
+| 메인            | <img src="public\images\홈화면.png" alt="메인"/>   |
+| 지도 (예약하기) | <img src="public\images\회원가입.png" alt="지도"/> |
+| 지도 (예약하기) | <img src="public\images\로그인.png" alt="지도"/>   |
+| 지도 (예약하기) | <img src="public\images\수정하기.png" alt="지도"/> |
+| 지도 (예약하기) | <img src="public\images\지도.png" alt="지도"/>     |
+| 달력 (예약하기) | <img src="public\images\캘린더.png" alt="달력"/>   |
+| 인원 (예약하기) | <img src="public\images\인원.png" alt="인원"/>     |
 
 ## 📁 폴더 구조
 
