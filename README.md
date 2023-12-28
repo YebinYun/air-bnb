@@ -17,12 +17,12 @@
 | 기능            | 화면                                               |
 | --------------- | -------------------------------------------------- |
 | 메인            | <img src="public\images\홈화면.png" alt="메인"/>   |
-| 지도 (예약하기) | <img src="public\images\회원가입.png" alt="지도"/> |
-| 지도 (예약하기) | <img src="public\images\로그인.png" alt="지도"/>   |
-| 지도 (예약하기) | <img src="public\images\수정하기.png" alt="지도"/> |
-| 지도 (예약하기) | <img src="public\images\지도.png" alt="지도"/>     |
-| 달력 (예약하기) | <img src="public\images\캘린더.png" alt="달력"/>   |
-| 인원 (예약하기) | <img src="public\images\인원.png" alt="인원"/>     |
+| 회원가입 (유저) | <img src="public\images\회원가입.png" alt="회원가입"/> |
+| 로그인 (유저) | <img src="public\images\로그인.png" alt="로그인"/>   |
+| 수정하기 (유저) | <img src="public\images\수정하기.png" alt="수정하기"/> |
+| 지도 (예약) | <img src="public\images\지도.png" alt="지도"/>     |
+| 달력 (예약) | <img src="public\images\캘린더.png" alt="달력"/>   |
+| 인원 (예약) | <img src="public\images\인원.png" alt="인원"/>     |
 
 ## 📁 폴더 구조
 
