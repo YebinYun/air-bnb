@@ -49,6 +49,13 @@
     ├───components
     │   ├───header
     │   │   ├───headerBookingMenu
+    │   │   │   ├───bookingCalender
+    │   │   │   │   └───BookingDateInput.tsx
+    │   │   │   ├───bookingGuest
+    │   │   │   │   └───BookingDateInput.tsx
+    │   │   │   ├───bookingMap
+    │   │   │   │   ├───BookingMapSearch.tsx
+    │   │   │   │   └───Map.tsx
     │   │   │   ├───BookingModalComponent.tsx
     │   │   │   ├───BookingModalHeaderComponent.tsx
     │   │   │   └───BookingProgressComponent.tsx
@@ -66,13 +73,6 @@
     ├───containers
     │   ├───header
     │   │   ├───headerBookingMenu
-    │   │   │   ├───bookingCalender
-    │   │   │   │   └───BookingDateInput.tsx
-    │   │   │   ├───bookingGuest
-    │   │   │   │   └───BookingDateInput.tsx
-    │   │   │   ├───bookingMap
-    │   │   │   │   ├───BookingMapSearch.tsx
-    │   │   │   │   └───Map.tsx
     │   │   │   ├───BookingModalContainer.tsx
     │   │   │   ├───BookingModalHeaderContainer.tsx
     │   │   │   └───BookingProgressContainer.tsx
