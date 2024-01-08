@@ -10,6 +10,8 @@ type props = {
   isLogin: boolean;
   isSetting: boolean;
   userChoice: string;
+  getData: () => void;
+  data: {};
 };
 
 const UserModalComponent = ({
@@ -18,6 +20,7 @@ const UserModalComponent = ({
   isLogin,
   isSetting,
   userChoice,
+  getData,
 }: props) => {
   const { userAlertData, onChangeHandler, onSubmitHandler } = useDataAlert({
     isLogin,

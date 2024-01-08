@@ -3,19 +3,16 @@ import React, { useState } from "react";
 
 type props = {
   img: string;
+  hotelID: string;
+  handleOnClickLike: ({ userId, hotelId }: any) => void;
 };
 
-const MainCardImgContainer = ({ img }: props) => {
-  const [isLike, setIsLike] = useState<boolean>(false);
-  const OnChangeLikeHandler = () => {
-    setIsLike(!isLike);
-  };
-
+const MainCardImgContainer = ({ img, hotelID, handleOnClickLike }: props) => {
   return (
     <MainCardImgComponent
-      OnChangeLikeHandler={OnChangeLikeHandler}
-      isLike={isLike}
       img={img}
+      hotelID={hotelID}
+      handleOnClickLike={handleOnClickLike}
     />
   );
 };

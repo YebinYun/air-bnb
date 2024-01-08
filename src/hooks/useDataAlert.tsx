@@ -1,9 +1,11 @@
+import axios from "axios";
 import React, { useState } from "react";
 
 type props = {
   isLogin: boolean;
   isSetting: boolean;
 };
+
 type UserDataProps = {
   userId?: string;
   userName?: string;
@@ -12,15 +14,19 @@ type UserDataProps = {
   userDate?: string;
   userEmail?: string;
   userCheck: boolean | string;
+  loggedIn: boolean;
 };
+
 const initUserData = {
   userId: "",
   userName: "",
-  userTel: "",
+  birthDay: "",
   userDate: "",
-  userEmail: "",
+  email: "",
   password: "",
+  phoneNumber: "",
   userCheck: "NO",
+  loggedIn: false,
 };
 
 export const useDataAlert = ({ isLogin, isSetting }: props) => {
@@ -31,7 +37,7 @@ export const useDataAlert = ({ isLogin, isSetting }: props) => {
     if (e?.target?.type !== "checkbox") {
       return setUserAlertData({
         ...userAlertData,
-        [e?.target?.name]: [e?.target?.value],
+        [e?.target?.name]: e?.target?.value,
       });
     } else {
       if (e?.target?.checked) {
@@ -42,33 +48,38 @@ export const useDataAlert = ({ isLogin, isSetting }: props) => {
     }
   };
 
+  const registerUser = async () => {
+    await axios
+      .post("http://localhost:8000/user", userAlertData)
+      .then((res) => {
+        if (res.data.resultCode === 200) {
+          alert("회원가입에 성공하였습니다.");
+        } else {
+          alert("회원가입에 실패하였습니다.");
+        }
+      });
+  };
+
+  const loginUser = async () => {
+    await axios
+      .post("http://localhost:8000/login", userAlertData)
+      .then((res) => {
+        if (res.data.resultCode === 200) {
+          setUserAlertData({
+            ...userAlertData,
+            loggedIn: true,
+          });
+          alert("로그인에 성공하였습니다.");
+        } else {
+          alert("로그인에 실패하였습니다.");
+        }
+      });
+  };
   const onSubmitHandler = () => {
     if (isLogin) {
-      alert(
-        `
-      아이디:  ${userAlertData.userId} 
-      비밀번호:  ${userAlertData.password}
-      `
-      );
-    } else if (isSetting) {
-      alert(
-        `
-      이름:  ${userAlertData.userName} 
-      연락처: ${userAlertData.userTel}
-      생년월일: ${userAlertData.userDate}
-      이메일: ${userAlertData.userEmail}
-      비밀번호:  ${userAlertData.password} 
-      개인정보 동의: ${userAlertData.userCheck}
-      `
-      );
+      loginUser();
     } else {
-      alert(
-        `
-        이름:  ${userAlertData.userName}
-        아이디:  ${userAlertData.userId} 
-        비밀번호:  ${userAlertData.password}
-        `
-      );
+      registerUser();
     }
     setUserAlertData(initUserData);
   };

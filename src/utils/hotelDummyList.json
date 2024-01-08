@@ -1,0 +1,37 @@
+[
+  {
+    "idx": 1,
+    "hotel_ID": "a1",
+    "photo_url": "123123"
+  },
+  {
+    "idx": 2,
+    "hotel_ID": "a2",
+    "photo_url": "123123"
+  },
+  {
+    "idx": 3,
+    "hotel_ID": "a3",
+    "photo_url": "123"
+  },
+  {
+    "idx": 4,
+    "hotel_ID": "a4",
+    "photo_url": "11111"
+  },
+  {
+    "idx": 5,
+    "hotel_ID": "a5",
+    "photo_url": "222222"
+  },
+  {
+    "idx": 6,
+    "hotel_ID": "a6",
+    "photo_url": "3333333"
+  },
+  {
+    "idx": 7,
+    "hotel_ID": "a7",
+    "photo_url": "44444"
+  }
+]

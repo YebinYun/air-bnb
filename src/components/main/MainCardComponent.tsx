@@ -1,14 +1,25 @@
 import MainCardImgContainer from "@/containers/main/MainCardImgContainer";
 import MainCardTextContainer from "@/containers/main/MainCardTextContainer";
+import hotelDummyList from "@/utils/hotelDummyList.json";
 import { Box } from "@mui/material";
 import React, { Suspense } from "react";
 
 type props = {
-  data: any;
   isLoading: any;
+  handleOnClickLike: any;
+  userId: any;
+  hotelId: any;
 };
 
-const MainCardComponent = ({ data, isLoading }: props) => {
+const MainCardComponent = ({
+  isLoading,
+  handleOnClickLike,
+  userId,
+  hotelId,
+}: props) => {
+  console.log(userId);
+  console.log(hotelId);
+
   return (
     <Suspense fallback={<div>Loading......</div>}>
       {!isLoading && (
@@ -22,38 +33,31 @@ const MainCardComponent = ({ data, isLoading }: props) => {
             cursor: "pointer",
           }}
         >
-          {data?.result?.map(
-            (
-              value: {
-                max_photo_url: string;
-                hotel_name: string;
-                review_score: string;
-                city: string;
-                review_score_word: string;
-                min_total_price: number;
-              },
-              index: React.Key
-            ) => (
-              <Box
-                key={value.hotel_name + index}
-                sx={{
-                  width: "100%",
-                  border: "1px solid lightgray",
-                  borderRadius: "5px",
-                  rowGap: "4",
-                }}
-              >
-                <MainCardImgContainer img={value?.max_photo_url} />
-                <MainCardTextContainer
+          {hotelDummyList?.map((value, index: React.Key) => (
+            <Box
+              key={index}
+              sx={{
+                width: "100%",
+                border: "1px solid lightgray",
+                borderRadius: "5px",
+                rowGap: "4",
+              }}
+            >
+              <MainCardImgContainer
+                handleOnClickLike={handleOnClickLike}
+                img={value?.photo_url}
+                hotelID={value?.hotel_ID}
+              />
+              {/* <MainCardTextContainer
                   hotelName={value.hotel_name}
                   score={value.review_score}
                   location={value.city}
                   day={value.review_score_word}
                   price={value.min_total_price}
-                />
-              </Box>
-            )
-          )}
+                /> 
+              <MainCardTextContainer /> */}
+            </Box>
+          ))}
         </Box>
       )}
     </Suspense>

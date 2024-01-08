@@ -3,30 +3,39 @@ import Image from "next/image";
 import React from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { useLikeClickHandler } from "@/recoil/RecoilHotelLike";
 
 type props = {
-  OnChangeLikeHandler: () => void;
-  isLike: boolean;
   img: string;
+  hotelID: string;
+  handleOnClickLike: (userId: string, hotelId: string) => void;
 };
 
-const MainCardImgComponent = ({ OnChangeLikeHandler, isLike, img }: props) => {
+const MainCardImgComponent = ({ img, hotelID, handleOnClickLike }: props) => {
+  const { handleOnLikeChange, isLike } = useLikeClickHandler();
+
+  console.log(hotelID);
+
   return (
     <Card sx={{ position: "relative" }}>
-      <Box>
-        <ImageBox>
-          <Image alt="호텔사진" src={img} fill />
-        </ImageBox>
+      <ImageBox>
+        {/* <Image src={img} fill alt="hotel_photo" /> */}
+        <Box sx={{ width: "100%", height: "100%", background: "red" }}></Box>
 
-        <Stack
-          sx={{ position: "absolute", top: "1rem", right: "1rem" }}
+        <Box
+          sx={{
+            border: "1px solid white",
+            position: "absolute",
+            top: "1rem",
+            right: "1rem",
+          }}
           onClick={() => {
-            OnChangeLikeHandler();
+            handleOnClickLike("kildong", "659b665a1bdb5203f3591748");
           }}
         >
           {isLike ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-        </Stack>
-      </Box>
+        </Box>
+      </ImageBox>
     </Card>
   );
 };

@@ -1,5 +1,6 @@
-import UserModalComponent from "@/components/header/headerUserMenu/UserModalComponent";
 import React from "react";
+import axios from "axios";
+import UserModalComponent from "@/components/header/headerUserMenu/UserModalComponent";
 
 type props = {
   closeModalHandler: () => void;
@@ -16,6 +17,34 @@ const UserModalContainer = ({
   isLogin,
   userChoice,
 }: props) => {
+  // const data = { userName: "userName", userId: "userId", password: "password" };
+
+  // const getData = async () => {
+  //   await axios
+  //     .post("http://localhost:8000/user", data)
+  //     .then((res) => {
+  //       console.log("res", res?.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log("err===>", err);
+  //     });
+  // };
+
+  // getData();
+
+  const getData = async () => {
+    await axios
+      .get("http://localhost:8000/user")
+      .then((res) => {
+        console.log("res", res?.data);
+      })
+      .catch((err) => {
+        console.log("err===>", err);
+      });
+  };
+
+  getData();
+
   return (
     <UserModalComponent
       closeModalHandler={closeModalHandler}
@@ -23,6 +52,7 @@ const UserModalContainer = ({
       isLogin={isLogin}
       isSetting={isSetting}
       userChoice={userChoice}
+      getData={getData}
     />
   );
 };

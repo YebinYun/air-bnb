@@ -10,6 +10,7 @@ import {
 import { useRecoilState } from "recoil";
 import { useBookingPageChangeHandler } from "@/recoil/RecoilPageIndex";
 import useGetHotelList from "@/api/getHotelList";
+import axios from "axios";
 
 const HeaderTopContainer = () => {
   const { fetchData } = useGetHotelList();
@@ -69,6 +70,24 @@ const HeaderTopContainer = () => {
 
   const { prevPage, nextPage, totalQuantity, pageIndex, setPageIndex } =
     useBookingPageChangeHandler();
+
+  // const data = {
+  //   userName: "userName",
+  //   password: "password",
+  //   email: "gmail@gmail.com",
+  // };
+
+  // const getData = async () => {
+  //   await axios.post("http://localhost:8000/user", data).then((res) => {
+  //     if (res?.data?.resultCode === "200") {
+  //       console.log("res  =>", res?.data);
+  //     } else {
+  //       console.log("err  =>", res?.data);
+  //     }
+  //   });
+  // };
+
+  // getData();
 
   return (
     <>

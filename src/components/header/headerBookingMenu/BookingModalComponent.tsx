@@ -131,7 +131,7 @@ const BookingModalComponent = ({
                 return nextPage();
               } else {
                 toggleBookingModal();
-                fetchData();
+                // fetchData();
               }
             }}
             sx={{ border: "1px solid #767676" }}
