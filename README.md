@@ -55,20 +55,26 @@
     │   │   ├───headerBookingMenu
     │   │   │   ├───bookingCalender
     │   │   │   │   └───BookingDateInput.tsx
+    │   │   │   │
     │   │   │   ├───bookingGuest
     │   │   │   │   └───BookingDateInput.tsx
+    │   │   │   │
     │   │   │   ├───bookingMap
     │   │   │   │   ├───BookingMapSearch.tsx
     │   │   │   │   └───Map.tsx
+    │   │   │   │
     │   │   │   ├───BookingModalComponent.tsx
     │   │   │   ├───BookingModalHeaderComponent.tsx
     │   │   │   └───BookingProgressComponent.tsx
+    │   │   │
     │   │   ├───headerUserMenu
     │   │   │   ├───UserModalComponent.tsx
     │   │   │   └───UserToggleDropDownComponent.tsx
+    │   │   │
     │   │   ├───HeaderBottomComponent.tsx
     │   │   ├───HeaderComponent.tsx
     │   │   └───HeaderTopComponent.tsx
+    │   │
     │   └───main
     │       ├───MainCardComponent.tsx
     │       ├───MainCardImgComponent.tsx
@@ -76,30 +82,27 @@
     │
     ├───containers
     │   ├───header
-    │   │   ├───headerBookingMenu
-    │   │   │   ├───BookingModalContainer.tsx
-    │   │   │   ├───BookingModalHeaderContainer.tsx
-    │   │   │   └───BookingProgressContainer.tsx
     │   │   ├───headerUserMenu
-    │   │   │   ├───UserModalContainer.tsx
-    │   │   │   └───UserToggleDropDownContainer.tsx
+    │   │   │   └───UserModalContainer.tsx
+    │   │   │
     │   │   ├───HeaderBottomContainer.tsx
     │   │   ├───HeaderContainer.tsx
     │   │   └───HeaderTopContainer.tsx
+    │   │
     │   └───main
-    │       ├───MainCardContainer.tsx
-    │       ├───MainCardImgContainer.tsx
-    │       └───MainCardTextContainer.tsx
+    │       └───MainCardContainer.tsx
     │
     ├───hooks
     │   └───useDataAlert.tsx
     │
     ├───recoil
+    │   ├───RecoilHotelLike.tsx
     │   ├───RecoilHotelList.tsx
     │   └───RecoilPageIndex.tsx
     │
     └───utils
         ├───countryCapital.json
         ├───HeaderIcon.tsx
+        ├───hotelDummyList.tsx
         └───userData.json
 ```

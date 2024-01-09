@@ -1,49 +1,43 @@
-import { Box, Stack, Card, styled } from "@mui/material";
+import { Box, Card, styled } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { useLikeClickHandler } from "@/recoil/RecoilHotelLike";
 
 type props = {
+  handleOnClickLike: (userId: string, hotelId: string) => void;
+  data: any;
   img: string;
   hotelID: string;
-  data: any;
-  handleOnClickLike: (userId: string, hotelId: string) => void;
 };
 
 const MainCardImgComponent = ({
-  img,
-  hotelID,
   handleOnClickLike,
   data,
+  img,
+  hotelID,
 }: props) => {
-  const { handleOnLikeChange, isLike } = useLikeClickHandler();
-
   return (
     <Card sx={{ position: "relative" }}>
       <ImageBox>
-        {/* <Image src={img} fill alt="hotel_photo" /> */}
-        <Box sx={{ width: "100%", height: "100%", background: "red" }}></Box>
-
-        <Box
-          sx={{
-            border: "1px solid white",
-            position: "absolute",
-            top: "1rem",
-            right: "1rem",
-          }}
-          onClick={() => {
-            handleOnClickLike("659b665a1bdb5203f3591748", hotelID);
-          }}
-        >
-          {data.likes?.includes(hotelID) ? (
-            <FavoriteIcon />
-          ) : (
-            <FavoriteBorderIcon />
-          )}
-        </Box>
+        <Image src={img} fill alt="hotel_photo" style={{ background: "red" }} />
       </ImageBox>
+      <Box
+        sx={{
+          position: "absolute",
+          top: "1rem",
+          right: "1rem",
+        }}
+        onClick={() => {
+          handleOnClickLike("659b665a1bdb5203f3591748", hotelID);
+        }}
+      >
+        {data.likes?.includes(hotelID) ? (
+          <FavoriteIcon />
+        ) : (
+          <FavoriteBorderIcon />
+        )}
+      </Box>
     </Card>
   );
 };

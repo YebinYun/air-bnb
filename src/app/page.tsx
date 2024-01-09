@@ -9,9 +9,13 @@ const queryClient = new QueryClient();
 
 const page = () => {
   return (
+    // Recoil
     <RecoilRoot>
+      {/* Query */}
       <QueryClientProvider client={queryClient}>
+        {/* Header */}
         <HeaderContainer />
+        {/* Main */}
         <MainCardContainer />
       </QueryClientProvider>
     </RecoilRoot>

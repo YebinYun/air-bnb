@@ -20,7 +20,7 @@ const MainCardContainer = () => {
     return postLike();
   };
 
-  console.log("data@@@@@@@", data.likes);
+  console.log("data@@@@@@@", data);
 
   // const { fetchData } = useGetHotelList();
   // // const { modalTrigger } = useModal()
@@ -40,14 +40,9 @@ const MainCardContainer = () => {
   // };
 
   return (
-    // <Suspense fallback={<div>Loading..???</div>}>
-    //   {!isLoading ? (
-    //     <MainCardComponent key={data} data={data} isLoading={isLoading} />
-    //   ) : (
-    //     <div>Loading...!!</div>
-    //   )}
-    <HeartPracticeContainer handleOnClickLike={handleOnClickLike} data={data} />
-    // </Suspense/>
+    <Suspense>
+      <MainCardComponent handleOnClickLike={handleOnClickLike} data={data} />
+    </Suspense>
   );
 };
 
