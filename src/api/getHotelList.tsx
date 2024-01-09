@@ -101,8 +101,7 @@ const useGetHotelList = (): UseGetHotelListResult => {
 
       return response.data;
     } catch (error) {
-      console.error(error);
-      console.log("Error");
+      console.log("Error", error);
       throw error;
     }
   };

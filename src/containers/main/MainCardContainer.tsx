@@ -1,9 +1,6 @@
 import React, { Suspense, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import useGetHotelList from "@/api/getHotelList";
-import MainCardComponent from "@/components/main/MainCardComponent";
 import axios from "axios";
-import HeartPracticeContainer from "./HeartPracticeContainer";
+import MainCardComponent from "@/components/main/MainCardComponent";
 
 const MainCardContainer = () => {
   const [data, setData] = useState([]);
@@ -19,28 +16,8 @@ const MainCardContainer = () => {
 
     return postLike();
   };
-
-  console.log("data@@@@@@@", data);
-
-  // const { fetchData } = useGetHotelList();
-  // // const { modalTrigger } = useModal()
-  // const { isLoading, data } = useQuery({
-  //   queryKey: ["getHotelList"],
-  //   queryFn: async () => {
-  //     return await fetchData();
-  //   },
-  // });
-
-  // const postData = async () => {
-  //   await axios.post("http://localhost:8000/user").then((res) => {
-  //     if (res.data.resultCode !== 200) {
-  //       return modalTrigger(res.data.message);
-  //     }
-  //   });
-  // };
-
   return (
-    <Suspense>
+    <Suspense fallback={<div>loading...</div>}>
       <MainCardComponent handleOnClickLike={handleOnClickLike} data={data} />
     </Suspense>
   );

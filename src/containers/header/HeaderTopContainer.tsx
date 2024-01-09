@@ -71,24 +71,6 @@ const HeaderTopContainer = () => {
   const { prevPage, nextPage, totalQuantity, pageIndex, setPageIndex } =
     useBookingPageChangeHandler();
 
-  // const data = {
-  //   userName: "userName",
-  //   password: "password",
-  //   email: "gmail@gmail.com",
-  // };
-
-  // const getData = async () => {
-  //   await axios.post("http://localhost:8000/user", data).then((res) => {
-  //     if (res?.data?.resultCode === "200") {
-  //       console.log("res  =>", res?.data);
-  //     } else {
-  //       console.log("err  =>", res?.data);
-  //     }
-  //   });
-  // };
-
-  // getData();
-
   return (
     <>
       <HeaderTopComponent

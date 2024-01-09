@@ -10,8 +10,6 @@ type props = {
 };
 
 const MainCardComponent = ({ handleOnClickLike, data }: props) => {
-  console.log("!!!!data ===>", data);
-
   return (
     <Suspense fallback={<div>Loading......</div>}>
       <Box

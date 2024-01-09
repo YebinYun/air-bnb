@@ -17,21 +17,6 @@ const UserModalContainer = ({
   isLogin,
   userChoice,
 }: props) => {
-  // const data = { userName: "userName", userId: "userId", password: "password" };
-
-  // const getData = async () => {
-  //   await axios
-  //     .post("http://localhost:8000/user", data)
-  //     .then((res) => {
-  //       console.log("res", res?.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log("err===>", err);
-  //     });
-  // };
-
-  // getData();
-
   const getData = async () => {
     await axios
       .get("http://localhost:8000/user")
@@ -52,7 +37,6 @@ const UserModalContainer = ({
       isLogin={isLogin}
       isSetting={isSetting}
       userChoice={userChoice}
-      getData={getData}
     />
   );
 };
