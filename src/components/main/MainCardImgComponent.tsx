@@ -8,13 +8,17 @@ import { useLikeClickHandler } from "@/recoil/RecoilHotelLike";
 type props = {
   img: string;
   hotelID: string;
+  data: any;
   handleOnClickLike: (userId: string, hotelId: string) => void;
 };
 
-const MainCardImgComponent = ({ img, hotelID, handleOnClickLike }: props) => {
+const MainCardImgComponent = ({
+  img,
+  hotelID,
+  handleOnClickLike,
+  data,
+}: props) => {
   const { handleOnLikeChange, isLike } = useLikeClickHandler();
-
-  console.log(hotelID);
 
   return (
     <Card sx={{ position: "relative" }}>
@@ -30,10 +34,14 @@ const MainCardImgComponent = ({ img, hotelID, handleOnClickLike }: props) => {
             right: "1rem",
           }}
           onClick={() => {
-            handleOnClickLike("kildong", "659b665a1bdb5203f3591748");
+            handleOnClickLike("659b665a1bdb5203f3591748", hotelID);
           }}
         >
-          {isLike ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+          {data.likes?.includes(hotelID) ? (
+            <FavoriteIcon />
+          ) : (
+            <FavoriteBorderIcon />
+          )}
         </Box>
       </ImageBox>
     </Card>

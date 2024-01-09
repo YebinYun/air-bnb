@@ -1,22 +1,26 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useGetHotelList from "@/api/getHotelList";
 import MainCardComponent from "@/components/main/MainCardComponent";
 import axios from "axios";
 import HeartPracticeContainer from "./HeartPracticeContainer";
 
-const MainCardContainer = ({ userId, hotelId }: any) => {
-  const handleOnClickLike = () => {
-    if (!userId || !hotelId) return alert("없어유..");
+const MainCardContainer = () => {
+  const [data, setData] = useState([]);
+
+  const handleOnClickLike = (userId: any, hotelId: any) => {
+    if (!userId || !hotelId) alert("없어유..");
 
     const postLike = async () => {
       await axios
-        .get(`localhost:8000/likes?userId=${userId}?hotelId=${hotelId}`)
-        .then((res) => console.log(res));
+        .get(`http://localhost:8000/likes?userId=${userId}&hotelId=${hotelId}`)
+        .then((res) => setData(res?.data.data));
     };
 
     return postLike();
   };
+
+  console.log("data@@@@@@@", data.likes);
 
   // const { fetchData } = useGetHotelList();
   // // const { modalTrigger } = useModal()
@@ -42,7 +46,7 @@ const MainCardContainer = ({ userId, hotelId }: any) => {
     //   ) : (
     //     <div>Loading...!!</div>
     //   )}
-    <HeartPracticeContainer handleOnClickLike={handleOnClickLike} />
+    <HeartPracticeContainer handleOnClickLike={handleOnClickLike} data={data} />
     // </Suspense/>
   );
 };

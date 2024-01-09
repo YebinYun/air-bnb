@@ -6,6 +6,7 @@ const HeartPracticeContainer = ({
   handleOnClickLike,
   userId,
   hotelId,
+  data,
   isLoading,
 }: any) => {
   return (
@@ -15,6 +16,7 @@ const HeartPracticeContainer = ({
         userId={userId}
         hotelId={hotelId}
         isLoading={isLoading}
+        data={data}
       />
       {/* <MainCardImgContainer img={""} /> */}
     </>

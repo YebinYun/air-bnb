@@ -9,12 +9,14 @@ type props = {
   handleOnClickLike: any;
   userId: any;
   hotelId: any;
+  data: any;
 };
 
 const MainCardComponent = ({
   isLoading,
   handleOnClickLike,
   userId,
+  data,
   hotelId,
 }: props) => {
   console.log(userId);
@@ -46,6 +48,7 @@ const MainCardComponent = ({
               <MainCardImgContainer
                 handleOnClickLike={handleOnClickLike}
                 img={value?.photo_url}
+                data={data}
                 hotelID={value?.hotel_ID}
               />
               {/* <MainCardTextContainer
