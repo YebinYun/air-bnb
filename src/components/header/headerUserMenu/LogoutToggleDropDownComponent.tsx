@@ -5,12 +5,16 @@ type props = {
   loginModalHandler: () => void;
   signupModalHandler: () => void;
   settingModalHandler: () => void;
+  setIsBookingModalOpen: (isUserDataModalOpen: boolean) => void;
+  isUserDataModalOpen: boolean;
 };
 
 const LogoutToggleDropDownComponent = ({
   loginModalHandler,
   signupModalHandler,
   settingModalHandler,
+  isUserDataModalOpen,
+  setIsBookingModalOpen,
 }: props) => {
   return (
     <Stack
@@ -27,9 +31,7 @@ const LogoutToggleDropDownComponent = ({
       }}
     >
       <Button
-        onClick={() => {
-          signupModalHandler();
-        }}
+        onClick={() => {}}
         sx={{
           color: "black",
           borderBottom: "1px solid lightgray",
@@ -38,9 +40,11 @@ const LogoutToggleDropDownComponent = ({
       >
         내 정보 보기
       </Button>
+
       <Button
         onClick={() => {
-          loginModalHandler();
+          window.localStorage.clear();
+          setTimeout(() => setIsBookingModalOpen(false), 500);
         }}
         sx={{
           color: "black",
@@ -50,6 +54,7 @@ const LogoutToggleDropDownComponent = ({
       >
         로그아웃
       </Button>
+
       <Button
         onClick={() => {
           settingModalHandler();

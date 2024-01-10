@@ -96,18 +96,22 @@ const HeaderTopContainer = () => {
         />
       )}
 
-      {isUserDataModalOpen && (
-        // <LoginToggleDropDownComponent
-        //   loginModalHandler={loginModalHandler}
-        //   signupModalHandler={signupModalHandler}
-        //   settingModalHandler={settingModalHandler}
-        // />
-        <LogoutToggleDropDownComponent
-          loginModalHandler={loginModalHandler}
-          signupModalHandler={signupModalHandler}
-          settingModalHandler={settingModalHandler}
-        />
-      )}
+      {isUserDataModalOpen &&
+        (localStorage.getItem("token") ? (
+          <LogoutToggleDropDownComponent
+            loginModalHandler={loginModalHandler}
+            signupModalHandler={signupModalHandler}
+            settingModalHandler={settingModalHandler}
+            isUserDataModalOpen={isUserDataModalOpen}
+            setIsBookingModalOpen={setIsBookingModalOpen}
+          />
+        ) : (
+          <LoginToggleDropDownComponent
+            loginModalHandler={loginModalHandler}
+            signupModalHandler={signupModalHandler}
+            settingModalHandler={settingModalHandler}
+          />
+        ))}
 
       {(isLogin || isSignup || isSetting) && (
         <UserModalComponent
