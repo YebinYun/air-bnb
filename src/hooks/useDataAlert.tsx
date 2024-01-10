@@ -62,19 +62,25 @@ export const useDataAlert = ({ isLogin, isSetting }: props) => {
 
   const loginUser = async () => {
     await axios
-      .post("http://localhost:8000/login", userAlertData)
+      .post("http://localhost:8000/login", userAlertData, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      })
       .then((res) => {
         if (res.data.resultCode === 200) {
           setUserAlertData({
             ...userAlertData,
             loggedIn: true,
           });
+          localStorage.setItem("token", JSON.stringify(res.data.data));
           alert("로그인에 성공하였습니다.");
         } else {
           alert("로그인에 실패하였습니다.");
         }
       });
   };
+
   const onSubmitHandler = () => {
     if (isLogin) {
       loginUser();

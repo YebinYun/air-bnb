@@ -7,10 +7,19 @@ const MainCardContainer = () => {
 
   const handleOnClickLike = (userId: any, hotelId: any) => {
     if (!userId || !hotelId) alert("없어유..");
+    const token = JSON.parse(localStorage.getItem("token"));
+    const headers = {
+      token: token.token,
+    };
 
     const postLike = async () => {
       await axios
-        .get(`http://localhost:8000/likes?userId=${userId}&hotelId=${hotelId}`)
+        .get(
+          `http://localhost:8000/likes?userId=${userId}&hotelId=${hotelId}`,
+          {
+            headers,
+          }
+        )
         .then((res) => setData(res?.data.data));
     };
 

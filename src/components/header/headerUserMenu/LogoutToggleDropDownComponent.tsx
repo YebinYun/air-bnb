@@ -7,7 +7,7 @@ type props = {
   settingModalHandler: () => void;
 };
 
-const UserToggleDropDownComponent = ({
+const LogoutToggleDropDownComponent = ({
   loginModalHandler,
   signupModalHandler,
   settingModalHandler,
@@ -36,7 +36,7 @@ const UserToggleDropDownComponent = ({
           borderRadius: 0,
         }}
       >
-        회원가입
+        내 정보 보기
       </Button>
       <Button
         onClick={() => {
@@ -48,7 +48,7 @@ const UserToggleDropDownComponent = ({
           borderRadius: 0,
         }}
       >
-        로그인
+        로그아웃
       </Button>
       <Button
         onClick={() => {
@@ -64,4 +64,4 @@ const UserToggleDropDownComponent = ({
   );
 };
 
-export default UserToggleDropDownComponent;
+export default LogoutToggleDropDownComponent;

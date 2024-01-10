@@ -69,7 +69,7 @@
     │   │   │
     │   │   ├───headerUserMenu
     │   │   │   ├───UserModalComponent.tsx
-    │   │   │   └───UserToggleDropDownComponent.tsx
+    │   │   │   └───LoginToggleDropDownComponent.tsx
     │   │   │
     │   │   ├───HeaderBottomComponent.tsx
     │   │   ├───HeaderComponent.tsx

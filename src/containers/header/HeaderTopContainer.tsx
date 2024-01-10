@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import HeaderTopComponent from "@/components/header/HeaderTopComponent";
 import BookingModalComponent from "@/components/header/headerBookingMenu/BookingModalComponent";
-import UserToggleDropDownComponent from "@/components/header/headerUserMenu/UserToggleDropDownComponent";
+import LoginToggleDropDownComponent from "@/components/header/headerUserMenu/LoginToggleDropDownComponent";
+import LogoutToggleDropDownComponent from "@/components/header/headerUserMenu/LogoutToggleDropDownComponent";
 import UserModalComponent from "@/components/header/headerUserMenu/UserModalComponent";
 import {
   bookingInformationSelector,
@@ -10,7 +11,6 @@ import {
 import { useRecoilState } from "recoil";
 import { useBookingPageChangeHandler } from "@/recoil/RecoilPageIndex";
 import useGetHotelList from "@/api/getHotelList";
-import axios from "axios";
 
 const HeaderTopContainer = () => {
   const { fetchData } = useGetHotelList();
@@ -97,7 +97,12 @@ const HeaderTopContainer = () => {
       )}
 
       {isUserDataModalOpen && (
-        <UserToggleDropDownComponent
+        // <LoginToggleDropDownComponent
+        //   loginModalHandler={loginModalHandler}
+        //   signupModalHandler={signupModalHandler}
+        //   settingModalHandler={settingModalHandler}
+        // />
+        <LogoutToggleDropDownComponent
           loginModalHandler={loginModalHandler}
           signupModalHandler={signupModalHandler}
           settingModalHandler={settingModalHandler}
