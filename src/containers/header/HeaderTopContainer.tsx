@@ -99,11 +99,9 @@ const HeaderTopContainer = () => {
       {isUserDataModalOpen &&
         (localStorage.getItem("token") ? (
           <LogoutToggleDropDownComponent
-            loginModalHandler={loginModalHandler}
-            signupModalHandler={signupModalHandler}
             settingModalHandler={settingModalHandler}
-            isUserDataModalOpen={isUserDataModalOpen}
-            setIsBookingModalOpen={setIsBookingModalOpen}
+            toggleUserDataModal={toggleUserDataModal}
+            setIsUserDataModalOpen={setIsUserDataModalOpen}
           />
         ) : (
           <LoginToggleDropDownComponent

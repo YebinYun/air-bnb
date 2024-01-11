@@ -2,19 +2,15 @@ import { Button, Stack } from "@mui/material";
 import React from "react";
 
 type props = {
-  loginModalHandler: () => void;
-  signupModalHandler: () => void;
   settingModalHandler: () => void;
-  setIsBookingModalOpen: (isUserDataModalOpen: boolean) => void;
-  isUserDataModalOpen: boolean;
+  toggleUserDataModal: () => void;
+  setIsUserDataModalOpen: (boolean: boolean) => void;
 };
 
 const LogoutToggleDropDownComponent = ({
-  loginModalHandler,
-  signupModalHandler,
   settingModalHandler,
-  isUserDataModalOpen,
-  setIsBookingModalOpen,
+  toggleUserDataModal,
+  setIsUserDataModalOpen,
 }: props) => {
   return (
     <Stack
@@ -44,7 +40,7 @@ const LogoutToggleDropDownComponent = ({
       <Button
         onClick={() => {
           window.localStorage.clear();
-          setTimeout(() => setIsBookingModalOpen(false), 500);
+          setIsUserDataModalOpen(false);
         }}
         sx={{
           color: "black",

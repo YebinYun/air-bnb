@@ -119,7 +119,10 @@ const UserModalComponent = ({
           </Stack>
         )}
         <ButtonContainer
-          onClick={onSubmitHandler}
+          onClick={() => {
+            onSubmitHandler();
+            closeModalHandler();
+          }}
           sx={{ background: "lightblue" }}
         >
           {userChoice}
