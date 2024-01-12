@@ -3,6 +3,7 @@ import MainCardTextComponent from "@/components/main/MainCardTextComponent";
 import hotelDummyList from "@/utils/hotelDummyList.json";
 import { Box, CircularProgress, Pagination } from "@mui/material";
 import React, { Suspense, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 type props = {
   handleOnClickLike: (userId: string, hotelId: string) => void;
@@ -11,9 +12,22 @@ type props = {
 };
 
 const MainCardComponent = ({ handleOnClickLike, data, hotelData }: props) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const onPageChange = (e: React.ChangeEvent<unknown>, page: number) => {
-    setCurrentPage(page);
+  const navigate = useNavigate();
+
+  const [page, setPage] = useState(1);
+  const onPageChange = (
+    event: React.ChangeEvent<unknown>,
+    value: number
+  ): void => {
+    setPage(value);
+    console.log(value); // 현재 페이지 출력
+
+    const limit = 10; // 화면에 보여줄 데이터 갯수
+    const offset = (page - 1) * limit; // 데이터 시작점
+
+    const queryString = `limit=${limit}&offset=${offset}`;
+
+    navigate(`?${queryString}`);
   };
 
   return (
@@ -45,19 +59,18 @@ const MainCardComponent = ({ handleOnClickLike, data, hotelData }: props) => {
               hotelID={value?._id}
             />
             <MainCardTextComponent
-              hotelName={value.name} //
-              score={value?.review_scores?.review_scores_rating} //
-              location={value.address.country} //
+              hotelName={value.name}
+              score={value?.review_scores?.review_scores_rating}
+              location={value.address.country}
               price={value.price.$numberDecimal}
             />
           </Box>
         ))}
       </Box>
       <Pagination
-        page={currentPage}
+        page={page}
         onChange={onPageChange}
         sx={{ my: "5rem", display: "flex", justifyContent: "center" }}
-        count={10}
         size="large"
       />
     </Suspense>
