@@ -4,6 +4,20 @@ import MainCardComponent from "@/components/main/MainCardComponent";
 
 const MainCardContainer = () => {
   const [data, setData] = useState([]);
+  const [hotelData, setHotelData] = useState([]);
+
+  const getHotelList = async () => {
+    await axios
+      .get("http://localhost:8000/hotelList")
+      .then((res) => {
+        setHotelData(res?.data);
+      })
+      .catch((err) => {
+        console.log("err===>", err);
+      });
+  };
+
+  getHotelList();
 
   const handleOnClickLike = (userId: any, hotelId: any) => {
     if (!userId || !hotelId) alert("없어유..");
@@ -27,7 +41,11 @@ const MainCardContainer = () => {
   };
   return (
     <Suspense fallback={<div>loading...</div>}>
-      <MainCardComponent handleOnClickLike={handleOnClickLike} data={data} />
+      <MainCardComponent
+        handleOnClickLike={handleOnClickLike}
+        data={data}
+        hotelData={hotelData}
+      />
     </Suspense>
   );
 };

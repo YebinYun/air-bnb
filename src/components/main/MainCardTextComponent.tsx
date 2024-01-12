@@ -5,15 +5,13 @@ type props = {
   location: string;
   score: string;
   hotelName: string;
-  day: string;
-  price: number;
+  price: any;
 };
 
 const MainCardTextComponent = ({
   location,
   score,
   hotelName,
-  day,
   price,
 }: props) => {
   return (
@@ -27,18 +25,17 @@ const MainCardTextComponent = ({
       </SpacingStack>
 
       <SpacingStack spacing={1} direction={"row"} alignItems={"center"}>
-        <Text> {day} </Text>
         <Box>
           <Text> {`★`} </Text>
-          <BoldText>{score}</BoldText>
-          <Text> {`/ 10`} </Text>
+          {score ? <BoldText>{score}</BoldText> : <BoldText>-</BoldText>}
+          <Text> {`/ 100`} </Text>
         </Box>
       </SpacingStack>
 
       <SpacingStack>
         <Box>
           <Text> {`￦`} </Text>
-          <BoldText>{Math.trunc(price).toLocaleString()}</BoldText>
+          <BoldText>{Math.trunc(price * 1313.94).toLocaleString()}</BoldText>
           <Text> {`/ 1 Day `} </Text>
         </Box>
       </SpacingStack>

@@ -20,7 +20,15 @@ const MainCardImgComponent = ({
   return (
     <Card sx={{ position: "relative" }}>
       <ImageBox>
-        <Image src={img} fill alt="hotel_photo" style={{ background: "red" }} />
+        {
+          <Image
+            width={1000}
+            height={1000}
+            src={img}
+            alt="hotel_photo"
+            style={{ width: "100%", height: "100%" }}
+          />
+        }
       </ImageBox>
       <Box
         sx={{
@@ -29,7 +37,7 @@ const MainCardImgComponent = ({
           right: "1rem",
         }}
         onClick={() => {
-          handleOnClickLike("659b665a1bdb5203f3591748", hotelID);
+          handleOnClickLike("659f4687ca9f14ff579da75b", hotelID);
         }}
       >
         {data.likes?.includes(hotelID) ? (
