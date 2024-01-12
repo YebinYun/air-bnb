@@ -2,8 +2,7 @@ import MainCardImgComponent from "@/components/main/MainCardImgComponent";
 import MainCardTextComponent from "@/components/main/MainCardTextComponent";
 import usePagination from "@/utils/Pagination";
 import { Box, CircularProgress, Pagination } from "@mui/material";
-import React, { Suspense, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { Suspense, useEffect, useState } from "react";
 
 type props = {
   handleOnClickLike: (userId: string, hotelId: string) => void;
@@ -13,7 +12,7 @@ type props = {
 
 const MainCardComponent = ({ handleOnClickLike, data, hotelData }: props) => {
   let [page, setPage] = useState(1);
-  const PER_PAGE = 24;
+  const PER_PAGE = 10;
 
   const count = Math.ceil(hotelData.length / PER_PAGE);
   const _DATA = usePagination(hotelData, PER_PAGE);
