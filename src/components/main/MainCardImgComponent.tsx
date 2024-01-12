@@ -24,7 +24,7 @@ const MainCardImgComponent = ({
           <Image
             width={1000}
             height={1000}
-            src={img}
+            src={img ? img : "public/images/noImage.jpg"}
             alt="hotel_photo"
             style={{ width: "100%", height: "100%" }}
           />
