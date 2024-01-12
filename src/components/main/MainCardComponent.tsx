@@ -1,9 +1,9 @@
 import MainCardImgComponent from "@/components/main/MainCardImgComponent";
 import MainCardTextComponent from "@/components/main/MainCardTextComponent";
-import hotelDummyList from "@/utils/hotelDummyList.json";
+import usePagination from "@/utils/Pagination";
 import { Box, CircularProgress, Pagination } from "@mui/material";
 import React, { Suspense, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 type props = {
   handleOnClickLike: (userId: string, hotelId: string) => void;
@@ -12,22 +12,15 @@ type props = {
 };
 
 const MainCardComponent = ({ handleOnClickLike, data, hotelData }: props) => {
-  const navigate = useNavigate();
+  let [page, setPage] = useState(1);
+  const PER_PAGE = 24;
 
-  const [page, setPage] = useState(1);
-  const onPageChange = (
-    event: React.ChangeEvent<unknown>,
-    value: number
-  ): void => {
-    setPage(value);
-    console.log(value); // 현재 페이지 출력
+  const count = Math.ceil(hotelData.length / PER_PAGE);
+  const _DATA = usePagination(hotelData, PER_PAGE);
 
-    const limit = 10; // 화면에 보여줄 데이터 갯수
-    const offset = (page - 1) * limit; // 데이터 시작점
-
-    const queryString = `limit=${limit}&offset=${offset}`;
-
-    navigate(`?${queryString}`);
+  const handleChange = (e: any, p: any) => {
+    setPage(p);
+    _DATA.jump(p);
   };
 
   return (
@@ -42,7 +35,7 @@ const MainCardComponent = ({ handleOnClickLike, data, hotelData }: props) => {
           cursor: "pointer",
         }}
       >
-        {hotelData?.map((value: any, index: React.Key) => (
+        {_DATA.currentData().map((value: any, index: React.Key) => (
           <Box
             key={index}
             sx={{
@@ -68,8 +61,9 @@ const MainCardComponent = ({ handleOnClickLike, data, hotelData }: props) => {
         ))}
       </Box>
       <Pagination
+        count={count}
         page={page}
-        onChange={onPageChange}
+        onChange={handleChange}
         sx={{ my: "5rem", display: "flex", justifyContent: "center" }}
         size="large"
       />
