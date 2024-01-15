@@ -1,27 +1,25 @@
 import MainCardImgComponent from "@/components/main/MainCardImgComponent";
 import MainCardTextComponent from "@/components/main/MainCardTextComponent";
-import usePagination from "@/utils/Pagination";
 import { Box, CircularProgress, Pagination } from "@mui/material";
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense } from "react";
 
 type props = {
   handleOnClickLike: (userId: string, hotelId: string) => void;
   data: any;
-  hotelData: any;
+  _DATA: any;
+  count: any;
+  page: any;
+  handleChange: any;
 };
 
-const MainCardComponent = ({ handleOnClickLike, data, hotelData }: props) => {
-  let [page, setPage] = useState(1);
-  const PER_PAGE = 10;
-
-  const count = Math.ceil(hotelData.length / PER_PAGE);
-  const _DATA = usePagination(hotelData, PER_PAGE);
-
-  const handleChange = (e: any, p: any) => {
-    setPage(p);
-    _DATA.jump(p);
-  };
-
+const MainCardComponent = ({
+  handleOnClickLike,
+  data,
+  _DATA,
+  count,
+  page,
+  handleChange,
+}: props) => {
   return (
     <Suspense fallback={<CircularProgress />}>
       <Box
