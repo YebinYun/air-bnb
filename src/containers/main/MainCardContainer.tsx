@@ -1,7 +1,6 @@
 import React, { Suspense, useState } from "react";
 import axios from "axios";
 import MainCardComponent from "@/components/main/MainCardComponent";
-import { CircularProgress } from "@mui/material";
 import usePagination from "@/utils/Pagination";
 
 const MainCardContainer = () => {
@@ -52,7 +51,7 @@ const MainCardContainer = () => {
     return postLike();
   };
   return (
-    <Suspense fallback={<CircularProgress />}>
+    <>
       <MainCardComponent
         handleOnClickLike={handleOnClickLike}
         data={data}
@@ -61,7 +60,7 @@ const MainCardContainer = () => {
         page={page}
         handleChange={handleChange}
       />
-    </Suspense>
+    </>
   );
 };
 
