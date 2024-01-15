@@ -19,7 +19,7 @@ const MainCardContainer = () => {
 
   const getHotelList = async () => {
     await axios
-      .get("http://localhost:8000/hotelList")
+      .get(`${process.env.NEXT_PUBLIC_IP_API_KEY}/hotelList`)
       .then((res) => {
         setHotelData(res?.data);
       })
@@ -40,7 +40,7 @@ const MainCardContainer = () => {
     const postLike = async () => {
       await axios
         .get(
-          `http://localhost:8000/likes?userId=${userId}&hotelId=${hotelId}`,
+          `${process.env.NEXT_PUBLIC_IP_API_KEY}/likes?userId=${userId}&hotelId=${hotelId}`,
           {
             headers,
           }

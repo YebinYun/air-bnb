@@ -50,7 +50,7 @@ export const useDataAlert = ({ isLogin, isSetting }: props) => {
 
   const registerUser = async () => {
     await axios
-      .post("http://localhost:8000/user", userAlertData)
+      .post(`${process.env.NEXT_PUBLIC_IP_API_KEY}/user`, userAlertData)
       .then((res) => {
         if (res.data.resultCode === 200) {
           alert("회원가입에 성공하였습니다.");
@@ -62,7 +62,7 @@ export const useDataAlert = ({ isLogin, isSetting }: props) => {
 
   const loginUser = async () => {
     await axios
-      .post("http://localhost:8000/login", userAlertData, {
+      .post(`${process.env.NEXT_PUBLIC_IP_API_KEY}/login`, userAlertData, {
         headers: {
           token: localStorage.getItem("token"),
         },

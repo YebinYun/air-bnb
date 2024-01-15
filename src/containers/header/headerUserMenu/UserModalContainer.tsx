@@ -19,7 +19,7 @@ const UserModalContainer = ({
 }: props) => {
   const getData = async () => {
     await axios
-      .get("http://localhost:8000/user")
+      .get(`${process.env.NEXT_PUBLIC_IP_API_KEY}/user`)
       .then((res) => {
         console.log("res", res?.data);
       })
