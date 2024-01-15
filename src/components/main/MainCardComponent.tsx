@@ -32,7 +32,7 @@ const MainCardComponent = ({
           cursor: "pointer",
         }}
       >
-        {_DATA.currentData().map((value: any, index: React.Key) => (
+        {_DATA.pageData().map((value: any, index: React.Key) => (
           <Box
             key={index}
             sx={{

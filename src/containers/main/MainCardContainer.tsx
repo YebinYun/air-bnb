@@ -1,7 +1,7 @@
 import React, { Suspense, useState } from "react";
 import axios from "axios";
 import MainCardComponent from "@/components/main/MainCardComponent";
-import usePagination from "@/hooks/usePagination";
+import usePagination from "../../hooks/usePagination";
 
 const MainCardContainer = () => {
   const [data, setData] = useState([]);
