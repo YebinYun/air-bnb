@@ -2,12 +2,13 @@ import React, { useState } from "react";
 
 function usePagination(data: any, itemsPerPage: any) {
   const [Page, setPage] = useState(1);
-  const maxPage = Math.ceil(data.length / itemsPerPage);
+  const maxPage = Math.ceil(data?.length / itemsPerPage);
 
   function pageData() {
+    const post = data.post;
     const begin = (Page - 1) * itemsPerPage;
     const end = begin + itemsPerPage;
-    return data.slice(begin, end);
+    return post?.slice(begin, end);
   }
 
   function next() {

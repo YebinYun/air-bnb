@@ -1,7 +1,8 @@
 import MainCardImgComponent from "@/components/main/MainCardImgComponent";
 import MainCardTextComponent from "@/components/main/MainCardTextComponent";
-import { Box, CircularProgress, Pagination } from "@mui/material";
+import { Box, Pagination } from "@mui/material";
 import React, { Suspense } from "react";
+import NoImage from "public/images/noImage.jpg";
 
 type props = {
   handleOnClickLike: (userId: string, hotelId: string) => void;
@@ -20,8 +21,10 @@ const MainCardComponent = ({
   page,
   handleChange,
 }: props) => {
+  console.log("_DATA========>", _DATA);
+
   return (
-    <Suspense fallback={<CircularProgress />}>
+    <>
       <Box
         sx={{
           padding: "2rem 5rem",
@@ -32,7 +35,7 @@ const MainCardComponent = ({
           cursor: "pointer",
         }}
       >
-        {_DATA.pageData().map((value: any, index: React.Key) => (
+        {_DATA?.map((value: any, index: React.Key) => (
           <Box
             key={index}
             sx={{
@@ -64,7 +67,7 @@ const MainCardComponent = ({
         sx={{ my: "5rem", display: "flex", justifyContent: "center" }}
         size="large"
       />
-    </Suspense>
+    </>
   );
 };
 

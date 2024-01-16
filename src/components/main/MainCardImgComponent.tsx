@@ -24,9 +24,10 @@ const MainCardImgComponent = ({
           <Image
             width={1000}
             height={1000}
-            src={img ? img : "public/images/noImage.jpg"}
+            src={img}
             alt="hotel_photo"
             style={{ width: "100%", height: "100%" }}
+            // onError="public/images/noImage.jpg"
           />
         }
       </ImageBox>
