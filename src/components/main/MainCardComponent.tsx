@@ -1,13 +1,12 @@
 import MainCardImgComponent from "@/components/main/MainCardImgComponent";
 import MainCardTextComponent from "@/components/main/MainCardTextComponent";
 import { Box, Pagination } from "@mui/material";
-import React, { Suspense } from "react";
-import NoImage from "public/images/noImage.jpg";
+import React from "react";
 
 type props = {
   handleOnClickLike: (userId: string, hotelId: string) => void;
   data: any;
-  _DATA: any;
+  post: any;
   count: any;
   page: any;
   handleChange: any;
@@ -16,12 +15,12 @@ type props = {
 const MainCardComponent = ({
   handleOnClickLike,
   data,
-  _DATA,
+  post,
   count,
   page,
   handleChange,
 }: props) => {
-  console.log("_DATA========>", _DATA);
+  console.log("post=====>", post);
 
   return (
     <>
@@ -35,7 +34,7 @@ const MainCardComponent = ({
           cursor: "pointer",
         }}
       >
-        {_DATA?.map((value: any, index: React.Key) => (
+        {post?.map((value: any, index: React.Key) => (
           <Box
             key={index}
             sx={{

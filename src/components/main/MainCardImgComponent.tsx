@@ -39,6 +39,7 @@ const MainCardImgComponent = ({
         }}
         onClick={() => {
           handleOnClickLike("659f4687ca9f14ff579da75b", hotelID);
+          console.log("hotelID====>", hotelID);
         }}
       >
         {data.likes?.includes(hotelID) ? (
