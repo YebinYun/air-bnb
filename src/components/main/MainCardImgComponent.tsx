@@ -9,6 +9,7 @@ type props = {
   data: any;
   img: string;
   hotelID: string;
+  userId: string;
 };
 
 const MainCardImgComponent = ({
@@ -16,6 +17,7 @@ const MainCardImgComponent = ({
   data,
   img,
   hotelID,
+  userId,
 }: props) => {
   return (
     <Card sx={{ position: "relative" }}>
@@ -38,8 +40,8 @@ const MainCardImgComponent = ({
           right: "1rem",
         }}
         onClick={() => {
-          handleOnClickLike("659f4687ca9f14ff579da75b", hotelID);
-          console.log("hotelID====>", hotelID);
+          // handleOnClickLike(data._id, hotelID);
+          handleOnClickLike(userId, hotelID);
         }}
       >
         {data.likes?.includes(hotelID) ? (

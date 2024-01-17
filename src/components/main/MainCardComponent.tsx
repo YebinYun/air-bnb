@@ -20,7 +20,8 @@ const MainCardComponent = ({
   page,
   handleChange,
 }: props) => {
-  console.log("post=====>", post);
+  const token = window.localStorage.getItem("token");
+  const userId = token ? JSON.parse(token)?.userId : null;
 
   return (
     <>
@@ -49,6 +50,7 @@ const MainCardComponent = ({
               data={data}
               img={value?.images.picture_url}
               hotelID={value?._id}
+              userId={userId}
             />
             <MainCardTextComponent
               hotelName={value.name}
