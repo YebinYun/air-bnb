@@ -34,9 +34,11 @@ const MainCardContainer = () => {
 
   const handleOnClickLike = (userId: any, hotelId: any) => {
     if (!userId || !hotelId) alert("없어유..");
-    const token = JSON.parse(localStorage.getItem("token") || "");
+
+    const token = localStorage.getItem("token");
+    const like = token ? JSON.parse(token) : "";
     const headers = {
-      token: token.token,
+      like: like.token,
     };
 
     const postLike = async () => {
