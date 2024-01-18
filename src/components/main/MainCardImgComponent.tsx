@@ -1,6 +1,6 @@
 import { Box, Card, styled } from "@mui/material";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
@@ -19,6 +19,8 @@ const MainCardImgComponent = ({
   hotelID,
   userId,
 }: props) => {
+  const [isImgError, setIsImgError] = useState<boolean>(false);
+
   return (
     <Card sx={{ position: "relative" }}>
       <ImageBox>
@@ -26,9 +28,10 @@ const MainCardImgComponent = ({
           <Image
             width={1000}
             height={1000}
-            src={img}
+            src={isImgError ? "/images/noImage.jpg" : img}
             alt="hotel_photo"
             style={{ width: "100%", height: "100%" }}
+            onError={() => setIsImgError(true)}
           />
         }
       </ImageBox>
