@@ -29,18 +29,17 @@ const MainCardImgComponent = ({
             src={img}
             alt="hotel_photo"
             style={{ width: "100%", height: "100%" }}
-            // onError="public/images/noImage.jpg"
           />
         }
       </ImageBox>
       <Box
+        key={userId}
         sx={{
           position: "absolute",
           top: "1rem",
           right: "1rem",
         }}
         onClick={() => {
-          // handleOnClickLike(data._id, hotelID);
           handleOnClickLike(userId, hotelID);
         }}
       >

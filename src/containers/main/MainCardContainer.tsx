@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import MainCardComponent from "@/components/main/MainCardComponent";
 import LoadingSpinner from "@/common/LoadingSpinner";
+import { useAuthState } from "@/store/auth";
 
 const MainCardContainer = () => {
   const [data, setData] = useState([]);
@@ -31,6 +32,9 @@ const MainCardContainer = () => {
       });
     return setIsLoading(false);
   };
+
+  const { userData, tokenData, token, userId, onClickLikeHandler } =
+    useAuthState();
 
   const handleOnClickLike = (userId: any, hotelId: any) => {
     if (!userId || !hotelId) alert("없어유..");

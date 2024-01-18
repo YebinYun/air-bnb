@@ -27,7 +27,9 @@ const LogoutToggleDropDownComponent = ({
       }}
     >
       <Button
-        onClick={() => {}}
+        onClick={() => {
+          toggleUserDataModal();
+        }}
         sx={{
           color: "black",
           borderBottom: "1px solid lightgray",

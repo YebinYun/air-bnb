@@ -19,7 +19,6 @@ type props = {
   setCoorsValue?: any;
   handleOnBookingInfoChange?: any;
   bookingInfo?: any;
-  fetchData?: any;
 };
 
 const BookingModalComponent = ({
@@ -33,7 +32,6 @@ const BookingModalComponent = ({
   setCoorsValue,
   handleOnBookingInfoChange,
   bookingInfo,
-  fetchData,
 }: props) => {
   return (
     <Box
@@ -131,7 +129,6 @@ const BookingModalComponent = ({
                 return nextPage();
               } else {
                 toggleBookingModal();
-                // fetchData();
               }
             }}
             sx={{ border: "1px solid #767676" }}
