@@ -33,7 +33,8 @@ export const useLoginDataState = () => {
   const token = tokenData ? JSON.parse(tokenData) : "";
 
   if (tokenData) {
-    setIsLoginData({
+    return setIsLoginData({
+      ...isLoginData,
       token: token.token,
       userId: token.userId,
       userName: token.userName,
