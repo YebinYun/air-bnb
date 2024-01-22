@@ -1,7 +1,9 @@
 import MainCardImgComponent from "@/components/main/MainCardImgComponent";
 import MainCardTextComponent from "@/components/main/MainCardTextComponent";
+import { userDataSelector } from "@/store/auth/userdata";
 import { Box, Pagination } from "@mui/material";
 import React from "react";
+import { useRecoilValue } from "recoil";
 
 type props = {
   handleOnClickLike: (userId: string, hotelId: string) => void;
@@ -22,7 +24,7 @@ const MainCardComponent = ({
 }: props) => {
   const token = window.localStorage.getItem("token");
   const userId = token ? JSON.parse(token)?.userId : null;
-
+  const testUserData = useRecoilValue(userDataSelector);
   return (
     <>
       <Box
@@ -46,6 +48,7 @@ const MainCardComponent = ({
             }}
           >
             <MainCardImgComponent
+              likes={testUserData.likes}
               handleOnClickLike={handleOnClickLike}
               data={data}
               img={value?.images.picture_url}

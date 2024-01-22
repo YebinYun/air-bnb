@@ -1,5 +1,7 @@
+import { useLoginDataState, userDataSelector } from "@/store/auth/userdata";
 import axios from "axios";
 import React, { useState } from "react";
+import { useRecoilState } from "recoil";
 
 type props = {
   isLogin: boolean;
@@ -32,6 +34,9 @@ const initUserData = {
 export const useDataAlert = ({ isLogin, isSetting }: props) => {
   const [userAlertData, setUserAlertData] =
     useState<UserDataProps>(initUserData);
+
+  const [userData, setUserData] = useRecoilState(userDataSelector);
+  const { tokenData, isLoginData } = useLoginDataState();
 
   const onChangeHandler = (e: any) => {
     if (e?.target?.type !== "checkbox") {
@@ -69,10 +74,7 @@ export const useDataAlert = ({ isLogin, isSetting }: props) => {
       })
       .then((res) => {
         if (res.data.resultCode === 200) {
-          setUserAlertData({
-            ...userAlertData,
-            loggedIn: true,
-          });
+          setUserData(res.data.data);
           localStorage.setItem("token", JSON.stringify(res.data.data));
           alert("로그인에 성공하였습니다.");
         } else {

@@ -10,11 +10,13 @@ type props = {
   img: string;
   hotelID: string;
   userId: string;
+  likes: string[];
 };
 
 const MainCardImgComponent = ({
   handleOnClickLike,
   data,
+  likes,
   img,
   hotelID,
   userId,
@@ -46,11 +48,7 @@ const MainCardImgComponent = ({
           handleOnClickLike(userId, hotelID);
         }}
       >
-        {data.likes?.includes(hotelID) ? (
-          <FavoriteIcon />
-        ) : (
-          <FavoriteBorderIcon />
-        )}
+        {likes?.includes(hotelID) ? <FavoriteIcon /> : <FavoriteBorderIcon />}
       </Box>
     </Card>
   );

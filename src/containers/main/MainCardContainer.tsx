@@ -3,13 +3,15 @@ import axios from "axios";
 import MainCardComponent from "@/components/main/MainCardComponent";
 import LoadingSpinner from "@/common/LoadingSpinner";
 import { useAuthState } from "@/store/auth";
+import { useSetRecoilState } from "recoil";
+import { userDataSelector } from "@/store/auth/userdata";
 
 const MainCardContainer = () => {
-  const [data, setData] = useState([]);
   const [hotelData, setHotelData] = useState<any>([]);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
-
+  const { data, handleOnClickLike } = useAuthState();
+  const getUserData = useSetRecoilState(userDataSelector);
   const handleChange = (e: any, page: any) => {
     setPage(page);
   };
@@ -18,7 +20,7 @@ const MainCardContainer = () => {
     setIsLoading(true);
     getHotelList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page]);
+  }, []);
 
   const getHotelList = async () => {
     await axios
@@ -31,32 +33,6 @@ const MainCardContainer = () => {
         console.log("err===>", err);
       });
     return setIsLoading(false);
-  };
-
-  const { userData, tokenData, token, userId, onClickLikeHandler } =
-    useAuthState();
-
-  const handleOnClickLike = (userId: any, hotelId: any) => {
-    if (!userId || !hotelId) alert("없어유..");
-
-    const token = localStorage.getItem("token");
-    const like = token ? JSON.parse(token) : "";
-    const headers = {
-      like: like.token,
-    };
-
-    const postLike = async () => {
-      await axios
-        .get(
-          `${process.env.NEXT_PUBLIC_IP_API_KEY}/likes?userId=${userId}&hotelId=${hotelId}`,
-          {
-            headers,
-          }
-        )
-        .then((res) => setData(res?.data.data));
-    };
-
-    return postLike();
   };
 
   return (

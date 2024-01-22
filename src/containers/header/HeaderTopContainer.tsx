@@ -10,11 +10,8 @@ import {
 } from "@/recoil/RecoilHotelList";
 import { useRecoilState } from "recoil";
 import { useBookingPageChangeHandler } from "@/recoil/RecoilPageIndex";
-// import useGetHotelList from "@/api/getHotelList";
 
 const HeaderTopContainer = () => {
-  // const { fetchData } = useGetHotelList();
-
   const [isUserDataModalOpen, setIsUserDataModalOpen] =
     useState<boolean>(false);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState<boolean>(false);

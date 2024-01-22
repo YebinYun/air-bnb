@@ -43,7 +43,7 @@ const LogoutToggleDropDownComponent = ({
         onClick={() => {
           window.localStorage.removeItem("token");
           setIsUserDataModalOpen(false);
-          // window.location.reload();
+          window.location.reload();
         }}
         sx={{
           color: "black",
