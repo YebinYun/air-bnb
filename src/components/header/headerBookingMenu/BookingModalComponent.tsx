@@ -129,6 +129,7 @@ const BookingModalComponent = ({
                 return nextPage();
               } else {
                 toggleBookingModal();
+                alert("stop working..");
               }
             }}
             sx={{ border: "1px solid #767676" }}
