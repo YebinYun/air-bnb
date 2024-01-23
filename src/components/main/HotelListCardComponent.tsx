@@ -9,7 +9,12 @@ type props = {
   img: string;
   hotelId: string;
   userId: string;
+  data: any;
   likes: string[];
+  setIsModalOpen: (prop: boolean) => void;
+  isModalOpen: boolean;
+  getIndex: (prop: number) => void;
+  index: number;
 };
 
 const HotelListCardComponent = ({
@@ -18,9 +23,12 @@ const HotelListCardComponent = ({
   img,
   hotelId,
   userId,
+  setIsModalOpen,
+  isModalOpen,
+  getIndex,
+  index,
 }: props) => {
   const [isImgError, setIsImgError] = useState<boolean>(false);
-
   return (
     <Card sx={{ position: "relative" }}>
       <ImageBox>
@@ -32,6 +40,10 @@ const HotelListCardComponent = ({
             alt="hotel_photo"
             style={{ width: "100%", height: "100%" }}
             onError={() => setIsImgError(true)}
+            onClick={() => {
+              getIndex(index);
+              setIsModalOpen(!isModalOpen);
+            }}
           />
         }
       </ImageBox>

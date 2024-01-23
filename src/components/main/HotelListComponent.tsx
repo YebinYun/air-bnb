@@ -1,7 +1,8 @@
 import HotelListCardComponent from "@/components/main/HotelListCardComponent";
 import HotelListTitleComponent from "@/components/main/HotelListTitleComponent";
 import { Box, Pagination } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
+import HostInfoModal from "./hotelListItem/HostInfoModal";
 
 type props = {
   handleOnClickLike: (userId: any, hotelId: any) => void;
@@ -22,6 +23,10 @@ const HotelListComponent = ({
 }: props) => {
   const token = window.localStorage.getItem("token");
   const userId = token ? JSON.parse(token)?.userId : null;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [idx, getIndex] = useState("null");
+
+  console.log("idx", idx);
 
   return (
     <>
@@ -51,6 +56,11 @@ const HotelListComponent = ({
               img={value?.images.picture_url}
               hotelId={value?._id}
               userId={userId}
+              data={value}
+              setIsModalOpen={setIsModalOpen}
+              isModalOpen={isModalOpen}
+              getIndex={getIndex}
+              index={index}
             />
             <HotelListTitleComponent
               hotelName={value.name}
@@ -68,6 +78,13 @@ const HotelListComponent = ({
         sx={{ my: "5rem", display: "flex", justifyContent: "center" }}
         size="large"
       />
+      {isModalOpen && (
+        <HostInfoModal
+          data={post[idx]}
+          setIsModalOpen={setIsModalOpen}
+          isModalOpen={isModalOpen}
+        />
+      )}
     </>
   );
 };
