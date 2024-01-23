@@ -7,8 +7,11 @@ type TokenInitDataType = {
   likes: string[];
 };
 
+const tokenData = localStorage.getItem("token");
+const token = tokenData ? JSON.parse(tokenData) : "";
+
 const userDataInit = {
-  token: null,
+  token: token.token,
   userId: null,
   userName: null,
   likes: [],
@@ -28,9 +31,6 @@ export const userDataSelector = selector<TokenInitDataType>({
 export const useLoginDataState = () => {
   const [isLoginData, setIsLoginData] =
     useRecoilState<TokenInitDataType>(userDataSelector);
-
-  const tokenData = localStorage.getItem("token");
-  const token = tokenData ? JSON.parse(tokenData) : "";
 
   if (tokenData) {
     return setIsLoginData({

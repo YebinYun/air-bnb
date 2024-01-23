@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RecoilRoot } from "recoil";
 import HeaderContainer from "@/containers/header/HeaderContainer";
-import MainCardContainer from "@/containers/main/MainCardContainer";
+import HotelListContainer from "@/containers/main/HotelListContainer";
 import { BrowserRouter } from "react-router-dom";
 
 const queryClient = new QueryClient();
@@ -18,7 +18,7 @@ const page = () => {
           {/* Header */}
           <HeaderContainer />
           {/* Main */}
-          <MainCardContainer />
+          <HotelListContainer />
         </QueryClientProvider>
       </RecoilRoot>
     </BrowserRouter>

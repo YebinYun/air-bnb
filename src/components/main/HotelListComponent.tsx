@@ -1,5 +1,5 @@
-import MainCardImgComponent from "@/components/main/MainCardImgComponent";
-import MainCardTextComponent from "@/components/main/MainCardTextComponent";
+import HotelListCardComponent from "@/components/main/HotelListCardComponent";
+import HotelListTitleComponent from "@/components/main/HotelListTitleComponent";
 import { Box, Pagination } from "@mui/material";
 import React from "react";
 
@@ -12,7 +12,7 @@ type props = {
   userData: any;
 };
 
-const MainCardComponent = ({
+const HotelListComponent = ({
   handleOnClickLike,
   post,
   count,
@@ -22,6 +22,9 @@ const MainCardComponent = ({
 }: props) => {
   const token = window.localStorage.getItem("token");
   const userId = token ? JSON.parse(token)?.userId : null;
+
+  console.log("userData===?", userData);
+
   return (
     <>
       <Box
@@ -44,14 +47,14 @@ const MainCardComponent = ({
               rowGap: "4",
             }}
           >
-            <MainCardImgComponent
+            <HotelListCardComponent
               likes={userData.likes}
               handleOnClickLike={handleOnClickLike}
               img={value?.images.picture_url}
               hotelId={value?._id}
               userId={userId}
             />
-            <MainCardTextComponent
+            <HotelListTitleComponent
               hotelName={value.name}
               score={value?.review_scores?.review_scores_rating}
               location={value.address.country}
@@ -71,4 +74,4 @@ const MainCardComponent = ({
   );
 };
 
-export default MainCardComponent;
+export default HotelListComponent;

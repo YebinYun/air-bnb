@@ -12,7 +12,7 @@ type props = {
   likes: string[];
 };
 
-const MainCardImgComponent = ({
+const HotelListCardComponent = ({
   handleOnClickLike,
   likes,
   img,
@@ -52,7 +52,7 @@ const MainCardImgComponent = ({
   );
 };
 
-export default MainCardImgComponent;
+export default HotelListCardComponent;
 
 const ImageBox = styled(Box)`
   width: 100%;

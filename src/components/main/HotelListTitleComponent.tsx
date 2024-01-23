@@ -8,7 +8,7 @@ type props = {
   price: any;
 };
 
-const MainCardTextComponent = ({
+const HotelListTitleComponent = ({
   location,
   score,
   hotelName,
@@ -43,7 +43,7 @@ const MainCardTextComponent = ({
   );
 };
 
-export default MainCardTextComponent;
+export default HotelListTitleComponent;
 
 const Text = styled("span")`
   font-size: 0.8rem;

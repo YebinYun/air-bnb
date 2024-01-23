@@ -76,9 +76,9 @@
     │   │   └───HeaderTopComponent.tsx
     │   │
     │   └───main
-    │       ├───MainCardComponent.tsx
-    │       ├───MainCardImgComponent.tsx
-    │       └───MainCardTextComponent.tsx
+    │       ├───HotelListComponent.tsx
+    │       ├───HotelListCardComponent.tsx
+    │       └───HotelListTitleComponent.tsx
     │
     ├───containers
     │   ├───header
@@ -90,7 +90,7 @@
     │   │   └───HeaderTopContainer.tsx
     │   │
     │   └───main
-    │       └───MainCardContainer.tsx
+    │       └───HotelListContainer.tsx
     │
     ├───hooks
     │   └───useDataAlert.tsx

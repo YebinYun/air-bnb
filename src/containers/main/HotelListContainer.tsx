@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import MainCardComponent from "@/components/main/MainCardComponent";
+import HotelListComponent from "@/components/main/HotelListComponent";
 import LoadingSpinner from "@/common/LoadingSpinner";
-import { useUserLikeHandler } from "@/store/userPage";
+import { useUserLikeHandler } from "@/store/userPage/hoteLikes";
 
-const MainCardContainer = () => {
+const HotelListContainer = () => {
   const [hotelData, setHotelData] = useState<any>([]);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -38,7 +38,7 @@ const MainCardContainer = () => {
       {isLoading ? (
         <LoadingSpinner />
       ) : (
-        <MainCardComponent
+        <HotelListComponent
           key={userData.token}
           handleOnClickLike={handleOnClickLike}
           post={hotelData.post}
@@ -52,4 +52,4 @@ const MainCardContainer = () => {
   );
 };
 
-export default MainCardContainer;
+export default HotelListContainer;

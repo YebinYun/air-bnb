@@ -1,4 +1,4 @@
-import { LikeHandlerPropType } from "@/store/userPage";
+import { LikeHandlerPropType } from "@/store/userPage/hoteLikes";
 import axios from "axios";
 
 const BASE_URL = process.env.NEXT_PUBLIC_IP_API_KEY;
@@ -12,7 +12,6 @@ const tokenData =
 const token = tokenData ? JSON.parse(tokenData) : "";
 
 export const likesApi = ({ userId, hotelId }: LikeHandlerPropType) => {
-  console.log(token);
   return axios.get(
     `${USERPAGE_API.likes}?userId=${userId}&hotelId=${hotelId}`,
     {
