@@ -8,13 +8,11 @@ const HeaderContainer = () => {
   const setUserData = useSetRecoilState(userDataSelector);
   const tokenData: any = localStorage.getItem("token");
 
-  // const { isLoginData } = useLoginDataState();
   useEffect(() => {
     const getUserInfo = () => {
       if (tokenData) {
         return setUserData(JSON.parse(tokenData));
       }
-      // isLoginData;
     };
 
     return getUserInfo();

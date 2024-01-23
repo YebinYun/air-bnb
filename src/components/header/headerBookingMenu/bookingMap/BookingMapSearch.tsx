@@ -1,7 +1,7 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import countryCapital from "@/utils/countryCapital.json";
-import { useBookingInfoChangeHandler } from "@/recoil/RecoilHotelList";
+import { useBookingInfoChangeHandler } from "@/store/userPage/bookingHotelListData";
 
 const Map = dynamic(() => import("./Map"), {
   ssr: false,

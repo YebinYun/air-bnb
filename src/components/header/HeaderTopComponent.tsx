@@ -6,13 +6,11 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SearchIcon from "@mui/icons-material/Search";
 
 type props = {
-  setIsUserDataModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   toggleBookingModal: () => void;
   toggleUserDataModal: () => void;
 };
 
 const HeaderTopComponent = ({
-  setIsUserDataModalOpen,
   toggleBookingModal,
   toggleUserDataModal,
 }: props) => {

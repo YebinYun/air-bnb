@@ -7,9 +7,9 @@ import UserModalComponent from "@/components/header/headerUserMenu/UserModalComp
 import {
   bookingInformationSelector,
   useBookingInfoChangeHandler,
-} from "@/recoil/RecoilHotelList";
+} from "@/store/userPage/bookingHotelListData";
 import { useRecoilState } from "recoil";
-import { useBookingPageChangeHandler } from "@/recoil/RecoilPageIndex";
+import { useBookingPageChangeHandler } from "@/store/userPage/bookingPageIndex";
 
 const HeaderTopContainer = () => {
   const [isUserDataModalOpen, setIsUserDataModalOpen] =

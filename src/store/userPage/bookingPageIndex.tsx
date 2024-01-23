@@ -1,5 +1,5 @@
 import { atom, selector, useRecoilState, useRecoilValue } from "recoil";
-import { bookingInformationSelector } from "./RecoilHotelList";
+import { bookingInformationSelector } from "./bookingHotelListData";
 
 export const bookingModalPageAtomState = atom<number>({
   key: "bookingModalPageAtomState",
