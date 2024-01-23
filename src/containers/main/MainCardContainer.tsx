@@ -2,15 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import MainCardComponent from "@/components/main/MainCardComponent";
 import LoadingSpinner from "@/common/LoadingSpinner";
-import { useAuthState } from "@/store/auth";
 import { useUserLikeHandler } from "@/store/userPage";
 
 const MainCardContainer = () => {
   const [hotelData, setHotelData] = useState<any>([]);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
-  const { handleOnClickLike } = useUserLikeHandler();
-  // const { handleOnClickLike } = useAuthState();
+  const { userData, handleOnClickLike } = useUserLikeHandler();
+
   const handleChange = (e: any, page: any) => {
     setPage(page);
   };
@@ -19,7 +18,7 @@ const MainCardContainer = () => {
     setIsLoading(true);
     getHotelList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [page]);
 
   const getHotelList = async () => {
     await axios
@@ -40,11 +39,13 @@ const MainCardContainer = () => {
         <LoadingSpinner />
       ) : (
         <MainCardComponent
+          key={userData.token}
           handleOnClickLike={handleOnClickLike}
           post={hotelData.post}
           count={hotelData?.totalPage}
           page={hotelData?.currentPage}
           handleChange={handleChange}
+          userData={userData}
         />
       )}
     </>

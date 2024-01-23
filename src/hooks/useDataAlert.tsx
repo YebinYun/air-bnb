@@ -76,6 +76,7 @@ export const useDataAlert = ({ isLogin, isSetting }: props) => {
           setUserData(res.data.data);
           localStorage.setItem("token", JSON.stringify(res.data.data));
           alert("로그인에 성공하였습니다.");
+          // window.location.reload();
         } else {
           alert("로그인에 실패하였습니다.");
         }
