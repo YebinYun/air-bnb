@@ -3,15 +3,14 @@ import axios from "axios";
 import MainCardComponent from "@/components/main/MainCardComponent";
 import LoadingSpinner from "@/common/LoadingSpinner";
 import { useAuthState } from "@/store/auth";
-import { useSetRecoilState } from "recoil";
-import { userDataSelector } from "@/store/auth/userData";
+import { useUserLikeHandler } from "@/store/userPage";
 
 const MainCardContainer = () => {
   const [hotelData, setHotelData] = useState<any>([]);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
-  const { data, handleOnClickLike } = useAuthState();
-  const getUserData = useSetRecoilState(userDataSelector);
+  const { handleOnClickLike } = useUserLikeHandler();
+  // const { handleOnClickLike } = useAuthState();
   const handleChange = (e: any, page: any) => {
     setPage(page);
   };
@@ -42,7 +41,6 @@ const MainCardContainer = () => {
       ) : (
         <MainCardComponent
           handleOnClickLike={handleOnClickLike}
-          data={data}
           post={hotelData.post}
           count={hotelData?.totalPage}
           page={hotelData?.currentPage}

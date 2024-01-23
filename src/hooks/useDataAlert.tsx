@@ -82,6 +82,14 @@ export const useDataAlert = ({ isLogin, isSetting }: props) => {
       });
   };
 
+  // console.log(userData);
+
+  // if (token) {
+  //   setUserData(res.data.data);
+  // } else {
+  //   setUserData()
+  // }
+
   const onSubmitHandler = () => {
     if (isLogin) {
       loginUser();

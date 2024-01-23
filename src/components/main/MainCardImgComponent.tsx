@@ -5,20 +5,18 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 type props = {
-  handleOnClickLike: (userId: string, hotelId: string) => void;
-  data: any;
+  handleOnClickLike: (userId: any, hotelId: any) => void;
   img: string;
-  hotelID: string;
+  hotelId: string;
   userId: string;
   likes: string[];
 };
 
 const MainCardImgComponent = ({
   handleOnClickLike,
-  data,
   likes,
   img,
-  hotelID,
+  hotelId,
   userId,
 }: props) => {
   const [isImgError, setIsImgError] = useState<boolean>(false);
@@ -45,10 +43,10 @@ const MainCardImgComponent = ({
           right: "1rem",
         }}
         onClick={() => {
-          handleOnClickLike(userId, hotelID);
+          handleOnClickLike(userId, hotelId);
         }}
       >
-        {likes?.includes(hotelID) ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+        {likes?.includes(hotelId) ? <FavoriteIcon /> : <FavoriteBorderIcon />}
       </Box>
     </Card>
   );
