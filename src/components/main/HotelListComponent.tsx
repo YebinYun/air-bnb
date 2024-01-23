@@ -23,8 +23,6 @@ const HotelListComponent = ({
   const token = window.localStorage.getItem("token");
   const userId = token ? JSON.parse(token)?.userId : null;
 
-  console.log("userData===?", userData);
-
   return (
     <>
       <Box
