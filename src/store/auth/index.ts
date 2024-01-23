@@ -1,6 +1,6 @@
 import axios from "axios";
 import { atom, selector, useRecoilState, useSetRecoilState } from "recoil";
-import { userDataSelector } from "./userdata";
+import { userDataSelector } from "./userData";
 
 const LoginAtomState = atom<boolean>({
   key: "loginState",
@@ -41,5 +41,3 @@ export const useAuthState = () => {
 
   return { data, handleOnClickLike };
 };
-
-// 원하는 곳에서 useRecoilValue 로 userData를 불러서 로그인 여부, 아이디 확인하구, likes리스트에 있는 애들 heart 표시!!\

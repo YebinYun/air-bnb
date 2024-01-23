@@ -4,7 +4,7 @@ import MainCardComponent from "@/components/main/MainCardComponent";
 import LoadingSpinner from "@/common/LoadingSpinner";
 import { useAuthState } from "@/store/auth";
 import { useSetRecoilState } from "recoil";
-import { userDataSelector } from "@/store/auth/userdata";
+import { userDataSelector } from "@/store/auth/userData";
 
 const MainCardContainer = () => {
   const [hotelData, setHotelData] = useState<any>([]);

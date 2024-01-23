@@ -1,4 +1,4 @@
-import { useLoginDataState, userDataSelector } from "@/store/auth/userdata";
+import { useLoginDataState, userDataSelector } from "@/store/auth/userData";
 import axios from "axios";
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
@@ -36,7 +36,6 @@ export const useDataAlert = ({ isLogin, isSetting }: props) => {
     useState<UserDataProps>(initUserData);
 
   const [userData, setUserData] = useRecoilState(userDataSelector);
-  const { tokenData, isLoginData } = useLoginDataState();
 
   const onChangeHandler = (e: any) => {
     if (e?.target?.type !== "checkbox") {

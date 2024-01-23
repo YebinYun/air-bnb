@@ -1,6 +1,6 @@
 import MainCardImgComponent from "@/components/main/MainCardImgComponent";
 import MainCardTextComponent from "@/components/main/MainCardTextComponent";
-import { userDataSelector } from "@/store/auth/userdata";
+import { userDataSelector } from "@/store/auth/userData";
 import { Box, Pagination } from "@mui/material";
 import React from "react";
 import { useRecoilValue } from "recoil";

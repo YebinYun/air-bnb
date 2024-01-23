@@ -34,7 +34,6 @@ export const useLoginDataState = () => {
 
   if (tokenData) {
     return setIsLoginData({
-      ...isLoginData,
       token: token.token,
       userId: token.userId,
       userName: token.userName,
