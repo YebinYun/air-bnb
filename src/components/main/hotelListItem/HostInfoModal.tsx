@@ -1,56 +1,70 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, Stack } from "@mui/material";
 import Image from "next/image";
-import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
+import { styled } from "@mui/system";
 
-const HostInfoModal = ({ data, isModalOpen, setIsModalOpen }: any) => {
+const HostInfoModal = ({
+  data,
+  isModalOpen,
+  setIsModalOpen,
+  isImgError,
+  setIsImgError,
+}: any) => {
   return (
-    <Box
-      sx={{
-        position: "relative",
-        width: "100%",
-        height: "100%",
-        background: "#00000090",
-      }}
-    >
-      <Box
-        sx={{
-          position: "fixed",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: "90%",
-          height: "90%",
-          border: "1px solid red",
-          background: "#00000090",
-          zIndex: 1,
-          display: "flex",
-          placeItems: "center",
-          color: "white",
+    <Container>
+      <Button
+        sx={{ position: "absolute", top: "2rem", right: "2rem" }}
+        onClick={() => {
+          setIsModalOpen(!isModalOpen);
+          setIsImgError(false);
         }}
       >
-        <Button
-          sx={{ position: "absolute", top: "2rem", right: "2rem" }}
-          onClick={() => setIsModalOpen(!isModalOpen)}
-        >
-          <CloseIcon sx={{ color: "white" }} />
-        </Button>
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <div>
-            <Image
-              src={data?.host?.host_picture_url}
-              alt="host_photo"
-              width="100"
-              height="100"
-            />
-          </div>
-          <div>{data?.host?.host_location}</div>
-          <div>{data?.host?.host_about}</div>
-          <div>{data?.host?.host_neiborhood}</div>
-        </Box>
+        <CloseIcon sx={{ color: "white" }} />
+      </Button>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
+      >
+        <Stack direction="row" alignItems="center">
+          <Image
+            src={
+              isImgError ? "/images/noUser.webp" : data?.host?.host_picture_url
+            }
+            alt="host_photo"
+            onError={() => setIsImgError(true)}
+            width="100"
+            height="100"
+            style={{ borderRadius: "50px", marginRight: "1rem" }}
+          />
+          <Stack>
+            <Box
+              sx={{ fontSize: "1.5rem", fontWeight: "bold", mb: "0.5rem" }}
+            >{`${data?.host?.host_name}`}</Box>
+            <Box>{`Location: ${data?.host?.host_location}`}</Box>
+            <Box>{`About me: ${data?.host?.host_about}`}</Box>
+          </Stack>
+        </Stack>
+        <div>{data?.host?.host_neiborhood}</div>
       </Box>
-    </Box>
+    </Container>
   );
 };
 
 export default HostInfoModal;
+
+const Container = styled(Box)`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: #000000dd;
+  z-index: 100;
+  color: white;
+  display: flex;
+  justify-content: center;
+`;

@@ -25,8 +25,7 @@ const HotelListComponent = ({
   const userId = token ? JSON.parse(token)?.userId : null;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [idx, getIndex] = useState("null");
-
-  console.log("idx", idx);
+  const [isImgError, setIsImgError] = useState<boolean>(false);
 
   return (
     <>
@@ -83,6 +82,8 @@ const HotelListComponent = ({
           data={post[idx]}
           setIsModalOpen={setIsModalOpen}
           isModalOpen={isModalOpen}
+          isImgError={isImgError}
+          setIsImgError={setIsImgError}
         />
       )}
     </>
