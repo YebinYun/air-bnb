@@ -28,7 +28,7 @@ const HotelListContainer = () => {
         setHotelData(res?.data);
       })
       .catch((err) => {
-        console.log("err===>", err);
+        throw new Error("Error==>", err);
       });
     return setIsLoading(false);
   };
