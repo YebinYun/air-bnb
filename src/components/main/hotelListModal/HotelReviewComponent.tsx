@@ -5,6 +5,10 @@ import { BlockLayout } from "./HostInfoComponent";
 const HotelReviewComponent = ({ data }: any) => {
   console.log(data?.reviews);
 
+  const review = data?.reviews.map((reviewData: any) => {
+    reviewData;
+  });
+
   return (
     <Box>
       <BlockLayout
@@ -20,7 +24,7 @@ const HotelReviewComponent = ({ data }: any) => {
           {/* <Box>{`value: ${data?.review_scores?.review_scores_value} / 10`}</Box> */}
           <Box>{`rating : ${data?.review_scores?.review_scores_rating} / 100`}</Box>
         </Box>
-        <Box>\</Box>
+        <Box>{review}</Box>
       </BlockLayout>
     </Box>
   );
