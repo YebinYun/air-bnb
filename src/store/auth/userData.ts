@@ -30,7 +30,7 @@ export const useLoginDataState = () => {
     useRecoilState<TokenInitDataType>(userDataSelector);
 
   const tokenData =
-    typeof document !== undefined && localStorage.getItem("token");
+    typeof window !== undefined && localStorage.getItem("token");
   const token = tokenData ? JSON.parse(tokenData) : "";
 
   if (tokenData) {

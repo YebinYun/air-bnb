@@ -94,7 +94,7 @@ const HeaderTopContainer = () => {
       )}
 
       {isUserDataModalOpen &&
-        (typeof document !== undefined && localStorage.getItem("token") ? (
+        (typeof window !== undefined && localStorage.getItem("token") ? (
           <LogoutToggleDropDownComponent
             settingModalHandler={settingModalHandler}
             toggleUserDataModal={toggleUserDataModal}

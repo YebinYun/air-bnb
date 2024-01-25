@@ -8,7 +8,7 @@ const USERPAGE_API = {
   login: `${BASE_URL}/login`,
 };
 const tokenData =
-  typeof document !== "undefined" ? localStorage.getItem("token") : undefined;
+  typeof window !== "undefined" ? localStorage.getItem("token") : undefined;
 const token = tokenData ? JSON.parse(tokenData) : "";
 
 export const likesApi = ({ userId, hotelId }: LikeHandlerPropType) => {

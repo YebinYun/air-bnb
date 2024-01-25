@@ -17,7 +17,7 @@ export const useUserLikeHandler = () => {
       setUserData(res.data.data);
 
       const currentLocalStorage =
-        typeof document !== undefined && localStorage.getItem("token");
+        typeof window !== undefined && localStorage.getItem("token");
       const currentLocalStorageItem = currentLocalStorage
         ? JSON.parse(currentLocalStorage)
         : "";
@@ -25,7 +25,7 @@ export const useUserLikeHandler = () => {
 
       copy.likes = res.data.data.likes;
 
-      typeof document !== undefined &&
+      typeof window !== undefined &&
         localStorage.setItem("token", JSON.stringify(copy));
     });
   };
