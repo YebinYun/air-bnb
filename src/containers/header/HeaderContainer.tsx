@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect } from "react";
 import HeaderTopContainer from "./HeaderTopContainer";
 import HeaderBottomContainer from "./HeaderBottomContainer";

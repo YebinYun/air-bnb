@@ -1,3 +1,4 @@
+"use client";
 import { atom, selector, useRecoilState } from "recoil";
 import { format } from "date-fns";
 

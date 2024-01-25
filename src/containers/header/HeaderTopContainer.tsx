@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import HeaderTopComponent from "@/components/header/HeaderTopComponent";
 import BookingModalComponent from "@/components/header/headerBookingMenu/BookingModalComponent";

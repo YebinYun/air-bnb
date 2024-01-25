@@ -1,3 +1,4 @@
+"use client";
 import HotelListCardComponent from "@/components/main/HotelListCardComponent";
 import HotelListTitleComponent from "@/components/main/HotelListTitleComponent";
 import { Box, Pagination } from "@mui/material";

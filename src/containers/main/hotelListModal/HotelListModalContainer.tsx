@@ -1,8 +1,7 @@
+"use client";
 import React, { useState } from "react";
 import HotelListModalComponent from "@/components/main/hotelListModal/HotelListModalComponent";
-import HostInfoComponent, {
-  BlockLayout,
-} from "@/components/main/hotelListModal/HostInfoComponent";
+import HostInfoComponent from "@/components/main/hotelListModal/HostInfoComponent";
 import HotelInfoComponent from "@/components/main/hotelListModal/HotelInfoComponent";
 import HotelReviewComponent from "@/components/main/hotelListModal/HotelReviewComponent";
 import HotelModalChangeComponent from "@/components/main/hotelListModal/HotelModalChangeComponent";
