@@ -16,7 +16,8 @@ export const useUserLikeHandler = () => {
     return userPageApi.likesApi({ userId, hotelId }).then((res) => {
       setUserData(res.data.data);
 
-      const currentLocalStorage = localStorage.getItem("token");
+      const currentLocalStorage =
+        typeof document !== undefined && localStorage.getItem("token");
       const currentLocalStorageItem = currentLocalStorage
         ? JSON.parse(currentLocalStorage)
         : "";
@@ -24,7 +25,8 @@ export const useUserLikeHandler = () => {
 
       copy.likes = res.data.data.likes;
 
-      localStorage.setItem("token", JSON.stringify(copy));
+      typeof document !== undefined &&
+        localStorage.setItem("token", JSON.stringify(copy));
     });
   };
 

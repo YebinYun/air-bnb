@@ -7,7 +7,8 @@ import { userDataSelector } from "@/store/auth/userData";
 
 const HeaderContainer = () => {
   const setUserData = useSetRecoilState(userDataSelector);
-  const tokenData: any = localStorage.getItem("token");
+  const tokenData: any =
+    typeof document !== undefined && localStorage.getItem("token");
 
   useEffect(() => {
     const getUserInfo = () => {

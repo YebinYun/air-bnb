@@ -44,7 +44,7 @@ const LogoutToggleDropDownComponent = ({
 
       <Button
         onClick={() => {
-          localStorage.removeItem("token");
+          typeof document !== undefined && localStorage.removeItem("token");
           setIsUserDataModalOpen(false);
           router.reload();
         }}
