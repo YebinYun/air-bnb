@@ -5,6 +5,7 @@ import HostInfoComponent, {
 } from "@/components/main/hotelListModal/HostInfoComponent";
 import HotelInfoComponent from "@/components/main/hotelListModal/HotelInfoComponent";
 import HotelReviewComponent from "@/components/main/hotelListModal/HotelReviewComponent";
+import HotelModalChangeComponent from "@/components/main/hotelListModal/HotelModalChangeComponent";
 
 export type ModalOpenProps = {
   data: any;
@@ -32,14 +33,10 @@ const HotelListModalContainer = ({ data, setIsModalOpen }: ModalOpenProps) => {
         <HotelInfoComponent data={data} />
       )}
 
-      <BlockLayout
-        sx={{ cursor: "pointer", justifyContent: "center", mt: "1rem" }}
-        onClick={() => {
-          setIsReview(!isReview);
-        }}
-      >
-        {isReview ? "정보 보러가기" : "리뷰 보러가기"}
-      </BlockLayout>
+      <HotelModalChangeComponent
+        setIsReview={setIsReview}
+        isReview={isReview}
+      />
     </HotelListModalComponent>
   );
 };

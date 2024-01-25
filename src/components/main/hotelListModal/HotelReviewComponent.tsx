@@ -4,8 +4,6 @@ import { BlockLayout } from "./HostInfoComponent";
 import { format } from "date-fns";
 
 const HotelReviewComponent = ({ data }: any) => {
-  console.log(data?.reviews);
-
   return (
     <BlockLayout
       sx={{
