@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import dynamic from "next/dynamic";
 import countryCapital from "@/utils/countryCapital.json";

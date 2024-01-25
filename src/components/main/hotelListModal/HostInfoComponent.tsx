@@ -1,3 +1,4 @@
+"use client";
 import { Box, Stack } from "@mui/material";
 import { styled } from "@mui/system";
 import Image from "next/image";

@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Box, Button, Stack } from "@mui/material";
 import LuggageIcon from "@mui/icons-material/Luggage";

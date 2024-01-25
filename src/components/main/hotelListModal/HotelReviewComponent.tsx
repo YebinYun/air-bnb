@@ -1,3 +1,4 @@
+"use client";
 import { Box, Divider } from "@mui/material";
 import React from "react";
 import { BlockLayout } from "./HostInfoComponent";
