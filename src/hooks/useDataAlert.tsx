@@ -1,5 +1,6 @@
 import { useLoginDataState, userDataSelector } from "@/store/auth/userData";
 import axios from "axios";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 
@@ -34,7 +35,7 @@ const initUserData = {
 export const useDataAlert = ({ isLogin, isSetting }: props) => {
   const [userAlertData, setUserAlertData] =
     useState<UserDataProps>(initUserData);
-
+  const router = useRouter();
   const [userData, setUserData] = useRecoilState(userDataSelector);
 
   const onChangeHandler = (e: any) => {
@@ -76,7 +77,7 @@ export const useDataAlert = ({ isLogin, isSetting }: props) => {
           setUserData(res.data.data);
           localStorage.setItem("token", JSON.stringify(res.data.data));
           alert("로그인에 성공하였습니다.");
-          window.location.reload();
+          router.reload();
         } else {
           alert("로그인에 실패하였습니다.");
         }

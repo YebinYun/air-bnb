@@ -21,7 +21,7 @@ const HotelListComponent = ({
   userData,
   handleChange,
 }: props) => {
-  const token = window.localStorage.getItem("token");
+  const token = localStorage.getItem("token");
   const userId = token ? JSON.parse(token)?.userId : null;
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [idx, getIndex] = useState("null");

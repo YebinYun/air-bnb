@@ -1,4 +1,5 @@
 import { Button, Stack } from "@mui/material";
+import { useRouter } from "next/router";
 import React from "react";
 
 type props = {
@@ -12,6 +13,8 @@ const LogoutToggleDropDownComponent = ({
   toggleUserDataModal,
   setIsUserDataModalOpen,
 }: props) => {
+  const router = useRouter();
+
   return (
     <Stack
       direction={"column"}
@@ -41,9 +44,9 @@ const LogoutToggleDropDownComponent = ({
 
       <Button
         onClick={() => {
-          window.localStorage.removeItem("token");
+          localStorage.removeItem("token");
           setIsUserDataModalOpen(false);
-          window.location.reload();
+          router.reload();
         }}
         sx={{
           color: "black",
