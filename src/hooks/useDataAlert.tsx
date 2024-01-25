@@ -1,7 +1,8 @@
 "use client";
 import { useLoginDataState, userDataSelector } from "@/store/auth/userData";
 import axios from "axios";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 
@@ -78,7 +79,7 @@ export const useDataAlert = ({ isLogin, isSetting }: props) => {
           setUserData(res.data.data);
           localStorage.setItem("token", JSON.stringify(res.data.data));
           alert("로그인에 성공하였습니다.");
-          router.reload();
+          router.refresh();
         } else {
           alert("로그인에 실패하였습니다.");
         }

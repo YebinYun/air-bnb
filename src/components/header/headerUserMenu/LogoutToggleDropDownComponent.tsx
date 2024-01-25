@@ -1,5 +1,8 @@
+"use client";
+
 import { Button, Stack } from "@mui/material";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+// import { useRouter } from "next/router";
 import React from "react";
 
 type props = {
@@ -13,7 +16,7 @@ const LogoutToggleDropDownComponent = ({
   toggleUserDataModal,
   setIsUserDataModalOpen,
 }: props) => {
-  const router = useRouter();
+  const router = useRouter;
 
   return (
     <Stack
@@ -46,7 +49,6 @@ const LogoutToggleDropDownComponent = ({
         onClick={() => {
           typeof document !== undefined && localStorage.removeItem("token");
           setIsUserDataModalOpen(false);
-          router.reload();
         }}
         sx={{
           color: "black",
