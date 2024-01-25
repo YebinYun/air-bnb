@@ -1,4 +1,3 @@
-"use client";
 import { useRecoilState } from "recoil";
 import * as userPageApi from "../../api/userPage";
 import { userDataSelector } from "../auth/userData";

@@ -1,4 +1,3 @@
-"use client";
 import { atom, selector, useRecoilState } from "recoil";
 
 type TokenInitDataType = {
