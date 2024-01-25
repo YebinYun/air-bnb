@@ -1,3 +1,5 @@
+"use client";
+
 import { atom, selector, useRecoilState, useRecoilValue } from "recoil";
 import { bookingInformationSelector } from "./bookingHotelListData";
 
