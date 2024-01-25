@@ -16,7 +16,7 @@ const HotelListModalComponent = ({
   return (
     <Container>
       <Box>
-        <Box sx={{ p: "6rem", position: "relative" }}>{children}</Box>
+        <Box sx={{ p: "5rem", position: "relative" }}>{children}</Box>
       </Box>
       <Box sx={{ position: "relative" }}>
         <CloseButton

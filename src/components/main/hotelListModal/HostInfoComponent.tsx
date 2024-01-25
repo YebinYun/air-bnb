@@ -28,7 +28,7 @@ const HostInfoComponent = ({
         />
         <Stack>
           <Box
-            sx={{ fontSize: "1rem", fontWeight: "bold", mb: "0.2rem" }}
+            sx={{ fontSize: "1.2rem", fontWeight: "bold", mb: "0.2rem" }}
           >{`${data?.host?.host_name}`}</Box>
           <HostText>{`Location : ${data?.host?.host_location}`}</HostText>
           <HostText>{`About me : ${
@@ -55,6 +55,6 @@ export const BlockLayout = styled(Box)`
 `;
 
 const HostText = styled(Box)`
-  font-size: 0.7rem;
+  font-size: 1rem;
   margin: 0 0.1rem;
 `;
