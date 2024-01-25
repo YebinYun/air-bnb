@@ -26,6 +26,11 @@ const HotelListComponent = ({
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [idx, getIndex] = useState("null");
 
+  const onClickHandler = (idx: any) => {
+    getIndex(idx);
+    setIsModalOpen(!isModalOpen);
+  };
+
   return (
     <>
       <Box
@@ -35,7 +40,6 @@ const HotelListComponent = ({
           gridTemplateColumns: "repeat(auto-fill, minmax(15rem, 1fr))",
           rowGap: "2rem",
           columnGap: "2rem",
-          cursor: "pointer",
         }}
       >
         {post?.map((value: any, index: React.Key) => (
@@ -46,10 +50,6 @@ const HotelListComponent = ({
               border: "1px solid lightgray",
               borderRadius: "5px",
               rowGap: "4",
-            }}
-            onClick={() => {
-              getIndex(index);
-              setIsModalOpen(!isModalOpen);
             }}
           >
             <HotelListCardComponent
@@ -65,6 +65,8 @@ const HotelListComponent = ({
               score={value?.review_scores?.review_scores_rating}
               location={value.address.country}
               price={value.price.$numberDecimal}
+              onClickHandler={onClickHandler}
+              idx={index}
             />
           </Box>
         ))}

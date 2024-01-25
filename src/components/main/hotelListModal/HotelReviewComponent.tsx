@@ -73,40 +73,42 @@ const HotelReviewComponent = ({ data }: any) => {
             No Reviews
           </Box>
         ) : (
-          data?.reviews.map((review: any, idx: number) => (
-            <Box key={idx}>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  flexWrap: "wrap",
-                  justifyContent: "flex-end",
-                  my: "1rem",
-                }}
-              >
-                <Box>{review.comments}</Box>
+          data?.reviews
+            .map((review: any, idx: number) => (
+              <Box key={idx}>
                 <Box
                   sx={{
                     display: "flex",
-                    alignItems: "center",
+                    flexDirection: "row",
+                    flexWrap: "wrap",
                     justifyContent: "flex-end",
-                    mt: "1rem",
-                  }}
-                >
-                  <Box sx={{ mr: "1rem" }}>{review.reviewer_name}</Box>
-                  <Box>{format(review.date, "yyyy.MM.dd")}</Box>
-                </Box>
-
-                <Divider
-                  sx={{
-                    width: "100%",
-                    borderTop: "1px solid lightgray",
                     my: "1rem",
                   }}
-                />
+                >
+                  <Box>{review.comments}</Box>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "flex-end",
+                      mt: "1rem",
+                    }}
+                  >
+                    <Box sx={{ mr: "1rem" }}>{review.reviewer_name}</Box>
+                    <Box>{format(review.date, "yyyy.MM.dd")}</Box>
+                  </Box>
+
+                  <Divider
+                    sx={{
+                      width: "100%",
+                      borderTop: "1px solid lightgray",
+                      my: "1rem",
+                    }}
+                  />
+                </Box>
               </Box>
-            </Box>
-          ))
+            ))
+            .reverse()
         )}
       </Box>
     </BlockLayout>

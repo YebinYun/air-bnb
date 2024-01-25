@@ -6,6 +6,8 @@ type props = {
   score: string;
   hotelName: string;
   price: any;
+  onClickHandler: (idx: number) => void;
+  idx: any;
 };
 
 const HotelListTitleComponent = ({
@@ -13,9 +15,14 @@ const HotelListTitleComponent = ({
   score,
   hotelName,
   price,
+  idx,
+  onClickHandler,
 }: props) => {
   return (
-    <Stack sx={{ p: "1rem 0.5rem" }}>
+    <Stack
+      sx={{ p: "1rem 0.5rem", cursor: "pointer" }}
+      onClick={() => onClickHandler(idx)}
+    >
       <SpacingStack>
         <BoldText>{hotelName}</BoldText>
       </SpacingStack>

@@ -41,6 +41,11 @@ const HotelListCardComponent = ({
           position: "absolute",
           top: "1rem",
           right: "1rem",
+          padding: "10px",
+          cursor: "pointer",
+          "&:hover": {
+            color: "red",
+          },
         }}
         onClick={() => {
           handleOnClickLike(userId, hotelId);
