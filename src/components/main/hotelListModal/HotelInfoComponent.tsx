@@ -38,12 +38,9 @@ const HotelInfoComponent = ({ data }: any) => {
 export default HotelInfoComponent;
 
 const AmenitiesBox = styled(Box)`
-  /* width: 75px;
-  height: 25px; */
   font-size: 0.8rem;
   margin: 0.25rem;
   background: #ffffff;
   padding: 0.5rem;
   border-radius: 10px;
-  /* box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.3); */
 `;

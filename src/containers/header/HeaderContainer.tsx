@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import HeaderTopContainer from "./HeaderTopContainer";
 import HeaderBottomContainer from "./HeaderBottomContainer";
 import { useSetRecoilState } from "recoil";
-import { useLoginDataState, userDataSelector } from "@/store/auth/userData";
+import { userDataSelector } from "@/store/auth/userData";
 
 const HeaderContainer = () => {
   const setUserData = useSetRecoilState(userDataSelector);

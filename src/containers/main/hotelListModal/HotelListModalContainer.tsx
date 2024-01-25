@@ -4,7 +4,6 @@ import HostInfoComponent, {
   BlockLayout,
 } from "@/components/main/hotelListModal/HostInfoComponent";
 import HotelInfoComponent from "@/components/main/hotelListModal/HotelInfoComponent";
-import { Box } from "@mui/material";
 import HotelReviewComponent from "@/components/main/hotelListModal/HotelReviewComponent";
 
 export type ModalOpenProps = {

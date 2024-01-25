@@ -71,7 +71,6 @@ const HeaderTopContainer = () => {
   return (
     <>
       <HeaderTopComponent
-        setIsUserDataModalOpen={setIsUserDataModalOpen}
         toggleUserDataModal={toggleUserDataModal}
         toggleBookingModal={toggleBookingModal}
       />

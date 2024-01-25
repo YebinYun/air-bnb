@@ -11,7 +11,6 @@ type props = {
 const BookingModalHeaderComponent = ({
   coordsValue,
   totalQuantity,
-  pageIndex,
   setPageIndex,
 }: props) => {
   return (

@@ -11,7 +11,7 @@ const LoadingSpinner = () => {
           justifyContent: "center",
           alignItems: "center",
           position: "absolute",
-          zIndex: 999999,
+          zIndex: 100,
           width: "100vw",
           height: "calc(100vh - 200px)",
         }}
