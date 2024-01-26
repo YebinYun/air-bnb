@@ -12,6 +12,7 @@ import {
 } from "@/store/userPage/bookingHotelListData";
 import { useRecoilState } from "recoil";
 import { useBookingPageChangeHandler } from "@/store/userPage/bookingPageIndex";
+import { useLoginDataState } from "@/store/auth/userData";
 
 const HeaderTopContainer = () => {
   const [isUserDataModalOpen, setIsUserDataModalOpen] =
@@ -70,6 +71,8 @@ const HeaderTopContainer = () => {
   const { prevPage, nextPage, totalQuantity, pageIndex, setPageIndex } =
     useBookingPageChangeHandler();
 
+  const { token } = useLoginDataState();
+
   return (
     <>
       <HeaderTopComponent
@@ -94,7 +97,7 @@ const HeaderTopContainer = () => {
       )}
 
       {isUserDataModalOpen &&
-        (typeof window !== undefined && localStorage.getItem("token") ? (
+        (token ? (
           <LogoutToggleDropDownComponent
             settingModalHandler={settingModalHandler}
             toggleUserDataModal={toggleUserDataModal}

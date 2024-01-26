@@ -3,14 +3,15 @@ import React, { useEffect, useState } from "react";
 import HeaderTopContainer from "./HeaderTopContainer";
 import HeaderBottomContainer from "./HeaderBottomContainer";
 import { useSetRecoilState } from "recoil";
-import { userDataSelector } from "@/store/auth/userData";
+import { useLoginDataState, userDataSelector } from "@/store/auth/userData";
 
 const HeaderContainer = () => {
   const [tokenData, setTokenData] = useState<any>();
   const setUserData = useSetRecoilState(userDataSelector);
+  const { token } = useLoginDataState();
 
   useEffect(() => {
-    if (typeof window !== undefined) {
+    if (typeof window !== "undefined") {
       const data = localStorage.getItem("token");
       setTokenData(data);
     } else {
@@ -24,7 +25,7 @@ const HeaderContainer = () => {
     };
 
     return getUserInfo();
-  }, [setUserData, tokenData]);
+  }, [token, setUserData, tokenData]);
 
   return (
     <>

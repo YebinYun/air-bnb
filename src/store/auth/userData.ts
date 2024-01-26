@@ -1,10 +1,11 @@
 import { atom, selector, useRecoilState } from "recoil";
 
-type TokenInitDataType = {
-  token: string | null;
-  userId: string | null;
-  userName: string | null;
-  likes: string[];
+export type TokenInitDataType = {
+  token?: string | null;
+  userId?: string | null;
+  userName?: string | null;
+  likes?: string[];
+  password?: null;
 };
 
 const userDataInit = {
@@ -12,6 +13,7 @@ const userDataInit = {
   userId: null,
   userName: null,
   likes: [],
+  password: null,
 };
 
 const userDataState = atom<TokenInitDataType>({
@@ -26,22 +28,10 @@ export const userDataSelector = selector<TokenInitDataType>({
 });
 
 export const useLoginDataState = () => {
-  const [isLoginData, setIsLoginData] =
-    useRecoilState<TokenInitDataType>(userDataSelector);
-  const headerToken = localStorage.getItem("token");
+  const token =
+    typeof window !== "undefined" && localStorage.getItem("token")
+      ? JSON?.parse(localStorage.getItem("token"))
+      : "";
 
-  const tokenData = typeof window !== undefined && headerToken;
-
-  const token = tokenData ? JSON.parse(tokenData) : "";
-
-  if (tokenData) {
-    return setIsLoginData({
-      token: token.token,
-      userId: token.userId,
-      userName: token.userName,
-      likes: token.likes,
-    });
-  }
-
-  return { tokenData, isLoginData, headerToken };
+  return { token };
 };

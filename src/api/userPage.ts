@@ -1,3 +1,4 @@
+"use client";
 import { LikeHandlerPropType } from "@/store/userPage/hoteLikes";
 import axios from "axios";
 
@@ -8,16 +9,7 @@ const USERPAGE_API = {
   login: `${BASE_URL}/login`,
 };
 
-let tokenData;
-
-if (typeof window !== undefined) {
-  const data = localStorage.getItem("token");
-  tokenData = data;
-}
-
-const token = tokenData ? JSON.parse(tokenData) : "";
-
-export const likesApi = ({ userId, hotelId }: LikeHandlerPropType) => {
+export const likesApi = ({ userId, hotelId, token }: LikeHandlerPropType) => {
   return axios.get(
     `${USERPAGE_API.likes}?userId=${userId}&hotelId=${hotelId}`,
     {

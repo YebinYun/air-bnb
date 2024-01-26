@@ -4,6 +4,7 @@ import HotelListTitleComponent from "@/components/main/HotelListTitleComponent";
 import { Box, Pagination } from "@mui/material";
 import React, { useState } from "react";
 import HotelListModalContainer from "@/containers/main/hotelListModal/HotelListModalContainer";
+import { useLoginDataState } from "@/store/auth/userData";
 
 type props = {
   handleOnClickLike: (userId: any, hotelId: any) => void;
@@ -22,8 +23,8 @@ const HotelListComponent = ({
   userData,
   handleChange,
 }: props) => {
-  const token = typeof window !== undefined && localStorage.getItem("token");
-  const userId = token ? JSON.parse(token)?.userId : null;
+  const { token } = useLoginDataState();
+  const userId = token ? token?.userId : null;
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [idx, getIndex] = useState("null");
 
