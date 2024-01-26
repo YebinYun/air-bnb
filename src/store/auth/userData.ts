@@ -30,7 +30,7 @@ export const userDataSelector = selector<TokenInitDataType>({
 export const useLoginDataState = () => {
   const token =
     typeof window !== "undefined" && localStorage.getItem("token")
-      ? JSON?.parse(localStorage.getItem("token"))
+      ? JSON?.parse(<any>localStorage.getItem("token"))
       : "";
 
   return { token };
