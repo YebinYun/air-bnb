@@ -1,5 +1,5 @@
 "use client";
-import { useLoginDataState, userDataSelector } from "@/store/auth/userData";
+import { userDataSelector } from "@/store/auth/userData";
 import axios from "axios";
 // import { useRouter } from "next/router";
 import { useRouter } from "next/navigation";
@@ -66,12 +66,13 @@ export const useDataAlert = ({ isLogin, isSetting }: props) => {
         }
       });
   };
+  const { headerToken }: any = userData;
 
   const loginUser = async () => {
     await axios
       .post(`${process.env.NEXT_PUBLIC_IP_API_KEY}/login`, userAlertData, {
         headers: {
-          token: localStorage.getItem("token"),
+          token: headerToken,
         },
       })
       .then((res) => {
@@ -95,5 +96,5 @@ export const useDataAlert = ({ isLogin, isSetting }: props) => {
     setUserAlertData(initUserData);
   };
 
-  return { userAlertData, onChangeHandler, onSubmitHandler };
+  return { userAlertData, onChangeHandler, onSubmitHandler, headerToken };
 };

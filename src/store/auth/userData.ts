@@ -28,9 +28,10 @@ export const userDataSelector = selector<TokenInitDataType>({
 export const useLoginDataState = () => {
   const [isLoginData, setIsLoginData] =
     useRecoilState<TokenInitDataType>(userDataSelector);
+  const headerToken = localStorage.getItem("token");
 
-  const tokenData =
-    typeof window !== undefined && localStorage.getItem("token");
+  const tokenData = typeof window !== undefined && headerToken;
+
   const token = tokenData ? JSON.parse(tokenData) : "";
 
   if (tokenData) {
@@ -42,5 +43,5 @@ export const useLoginDataState = () => {
     });
   }
 
-  return { tokenData, isLoginData };
+  return { tokenData, isLoginData, headerToken };
 };

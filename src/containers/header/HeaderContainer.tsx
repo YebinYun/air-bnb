@@ -9,9 +9,6 @@ const HeaderContainer = () => {
   const [tokenData, setTokenData] = useState<any>();
   const setUserData = useSetRecoilState(userDataSelector);
 
-  // const tokenData: any =
-  //   typeof window !== undefined && localStorage.getItem("token");
-
   useEffect(() => {
     if (typeof window !== undefined) {
       const data = localStorage.getItem("token");
