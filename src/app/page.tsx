@@ -8,7 +8,8 @@ import { BrowserRouter } from "react-router-dom";
 
 const page = () => {
   return (
-    <BrowserRouter>
+    // <BrowserRouter>
+    <div>
       {/*  Recoil */}
       <RecoilRoot>
         {/* Header */}
@@ -16,7 +17,8 @@ const page = () => {
         {/* Main */}
         <HotelListContainer />
       </RecoilRoot>
-    </BrowserRouter>
+    </div>
+    // </BrowserRouter>
   );
 };
 
