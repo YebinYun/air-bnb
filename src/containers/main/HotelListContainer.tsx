@@ -21,6 +21,8 @@ const HotelListContainer = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
+  console.log("env", process.env.NEXT_PUBLIC_IP_API_KEY);
+
   const getHotelList = async () => {
     await axios
       .get(`${process.env.NEXT_PUBLIC_IP_API_KEY}/hotelList?page=${page}`)
