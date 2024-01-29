@@ -15,7 +15,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      http-equiv="Content-Security-Policy"
+      content="upgrade-insecure-requests"
+    >
       <body className={inter.className}>{children}</body>
     </html>
   );
