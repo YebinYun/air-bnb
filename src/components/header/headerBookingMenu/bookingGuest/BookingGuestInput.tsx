@@ -5,22 +5,13 @@ import React from "react";
 
 type props = {
   guestsInformation: any;
-  setGuestsInformation: any;
+  totalCounterHandler: any;
 };
 
 const BookingGuestInput = ({
   guestsInformation,
-  setGuestsInformation,
+  totalCounterHandler,
 }: props) => {
-  const totalCounterHandler = (guestType: string, value: number) => {
-    const updateList = { ...guestsInformation };
-
-    if (guestType !== "children") updateList.adults_number += value;
-    else updateList.children_number += value;
-
-    return setGuestsInformation(updateList);
-  };
-
   return (
     <Box sx={{ m: "2rem 1rem" }}>
       <Stack direction={"row"} sx={{ py: "1rem" }}>

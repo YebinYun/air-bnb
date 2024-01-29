@@ -20,9 +20,11 @@ type props = {
   setCoorsValue?: any;
   handleOnBookingInfoChange?: any;
   bookingInfo?: any;
+  totalCounterHandler?: any;
 };
 
 const BookingModalComponent = ({
+  totalCounterHandler,
   toggleBookingModal,
   pageIndex,
   setPageIndex,
@@ -30,7 +32,6 @@ const BookingModalComponent = ({
   prevPage,
   nextPage,
   coordsValue,
-  setCoorsValue,
   handleOnBookingInfoChange,
   bookingInfo,
 }: props) => {
@@ -108,7 +109,7 @@ const BookingModalComponent = ({
         {pageIndex === 2 && (
           <BookingGuestInput
             guestsInformation={coordsValue}
-            setGuestsInformation={setCoorsValue}
+            totalCounterHandler={totalCounterHandler}
           />
         )}
 

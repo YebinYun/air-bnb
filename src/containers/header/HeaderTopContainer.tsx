@@ -61,6 +61,15 @@ const HeaderTopContainer = () => {
     }
   };
 
+  const totalCounterHandler = (guestType: string, value: number) => {
+    const updateList = { ...coordsValue };
+
+    if (guestType !== "children") updateList.adults_number += value;
+    else updateList.children_number += value;
+
+    return setCoorsValue(updateList);
+  };
+
   const { handleOnBookingInfoChange, bookingInfo } =
     useBookingInfoChangeHandler();
 
@@ -82,6 +91,7 @@ const HeaderTopContainer = () => {
 
       {isBookingModalOpen && (
         <BookingModalComponent
+          totalCounterHandler={totalCounterHandler}
           isBookingModalOpen={isBookingModalOpen}
           toggleBookingModal={toggleBookingModal}
           pageIndex={pageIndex}
