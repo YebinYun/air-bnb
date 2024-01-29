@@ -1,7 +1,6 @@
 "use client";
 
 import { Button, Stack } from "@mui/material";
-import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 
 type props = {
@@ -15,11 +14,6 @@ const LogoutToggleDropDownComponent = ({
   toggleUserDataModal,
   setIsUserDataModalOpen,
 }: props) => {
-  const pathname = usePathname();
-  const router = useRouter();
-  console.log("pathname====>", pathname);
-  console.log("router====>", router);
-
   return (
     <Stack
       direction={"column"}
