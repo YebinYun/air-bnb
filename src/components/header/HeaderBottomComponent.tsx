@@ -65,6 +65,12 @@ const IconContainer = styled(Tab)`
   padding: 0 1.5rem;
   color: #444;
   cursor: pointer;
+  font-size: 10px;
+  > svg {
+    height: 1.5rem;
+    width: 1.5rem;
+    padding-bottom: 0.1rem;
+  }
 `;
 
 const FilterButton = styled(Stack)`
