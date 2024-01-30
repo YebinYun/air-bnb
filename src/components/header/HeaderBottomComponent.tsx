@@ -6,8 +6,8 @@ import { Box, Stack, Tabs, Tab, tabsClasses } from "@mui/material";
 import FilterListIcon from "@mui/icons-material/FilterList";
 
 type props = {
-  value: number;
-  handleChange?: (event: React.SyntheticEvent, newValue: number) => void;
+  value: string;
+  handleChange?: (event: any, newValue: string) => void;
 };
 
 const HeaderBottomComponent = ({ value, handleChange }: props) => {
@@ -29,11 +29,12 @@ const HeaderBottomComponent = ({ value, handleChange }: props) => {
             },
           }}
         >
-          {iconData.map((value, index) => (
+          {iconData.map((item, index) => (
             <IconContainer
               key={index}
-              label={value.location}
-              icon={value.icon}
+              value={item.location}
+              label={item.location}
+              icon={item.icon}
             />
           ))}
         </Tabs>

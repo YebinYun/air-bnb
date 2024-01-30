@@ -1,15 +1,17 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import HeaderBottomComponent from "@/components/header/HeaderBottomComponent";
+import { useLocationData } from "@/store/location/location";
 
 const HeaderBottomContainer = () => {
-  const [value, setValue] = useState<number>(0);
+  const { location, locatoinHandleChange } = useLocationData();
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
-
-  return <HeaderBottomComponent value={value} handleChange={handleChange} />;
+  return (
+    <HeaderBottomComponent
+      value={location}
+      handleChange={locatoinHandleChange}
+    />
+  );
 };
 
 export default HeaderBottomContainer;

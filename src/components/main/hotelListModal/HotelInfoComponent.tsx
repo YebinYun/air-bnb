@@ -1,14 +1,18 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { BlockLayout } from "./HostInfoComponent";
 import { Box } from "@mui/material";
 import { styled } from "@mui/system";
 
 const HotelInfoComponent = ({ data }: any) => {
   return (
-    <Box sx={{ width: "100%", height: "100%" }}>
+    <Box sx={{ width: "100%", height: "calc(100)" }}>
       <BlockLayout
-        sx={{ mt: "1rem", display: "flex", flexDirection: "column" }}
+        sx={{
+          mt: "1rem",
+          display: "flex",
+          flexDirection: "column",
+        }}
       >
         <Box sx={{ fontSize: "1.5rem", fontWeight: "bold", py: "0.5rem" }}>
           {data?.name}
@@ -26,7 +30,16 @@ const HotelInfoComponent = ({ data }: any) => {
         >
           {data?.summary}
         </Box>
-        <Box sx={{ display: "flex", flexWrap: "wrap", my: "30px" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            my: "30px",
+            border: "1px solid red",
+            height: "150px",
+            overflowY: "auto",
+          }}
+        >
           {data?.amenities.map((amenities: string, idx: number) => (
             <AmenitiesBox key={idx}>{amenities}</AmenitiesBox>
           ))}

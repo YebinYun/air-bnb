@@ -4,12 +4,20 @@ import axios from "axios";
 import HotelListComponent from "@/components/main/HotelListComponent";
 import LoadingSpinner from "@/common/LoadingSpinner";
 import { useUserLikeHandler } from "@/store/userPage/hoteLikes";
+import { useLocationData } from "@/store/location/location";
 
 const HotelListContainer = () => {
   const [hotelData, setHotelData] = useState<any>([]);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const { userData, handleOnClickLike } = useUserLikeHandler();
+  const { location } = useLocationData();
+
+  console.log("location====>", location);
+  console.log(
+    "location====>",
+    `${process.env.NEXT_PUBLIC_IP_API_KEY}/hotelList?location=${location}&page=${page}`
+  );
 
   const handleChange = (e: any, page: any) => {
     setPage(page);
@@ -19,11 +27,13 @@ const HotelListContainer = () => {
     setIsLoading(true);
     getHotelList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page]);
+  }, [page, location]);
 
   const getHotelList = async () => {
     await axios
-      .get(`${process.env.NEXT_PUBLIC_IP_API_KEY}/hotelList?page=${page}`)
+      .get(
+        `${process.env.NEXT_PUBLIC_IP_API_KEY}/hotelList?location=${location}&page=${page}`
+      )
 
       .then((res) => {
         setHotelData(res?.data);
