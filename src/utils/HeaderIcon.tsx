@@ -1,9 +1,18 @@
 import React from "react";
-import CabinIcon from "@mui/icons-material/Cabin";
-import LocationCityIcon from "@mui/icons-material/LocationCity";
-import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
-import AttractionsIcon from "@mui/icons-material/Attractions";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import { TbHomeInfinity } from "react-icons/tb";
+import { MdApartment } from "react-icons/md";
+import { BsFillHouseDoorFill, BsFillHouseUpFill } from "react-icons/bs";
+import { FaHouseSignal, FaHouseUser, FaBowlFood } from "react-icons/fa6";
+import { BiBuildingHouse } from "react-icons/bi";
+import {
+  GiFamilyHouse,
+  GiTreehouse,
+  GiDamagedHouse,
+  GiBlockHouse,
+  GiVillage,
+  GiWoodCabin,
+} from "react-icons/gi";
+import { LiaSynagogueSolid } from "react-icons/lia";
 
 interface IconData {
   icon: React.ReactElement;
@@ -12,83 +21,63 @@ interface IconData {
 
 export const iconData: IconData[] = [
   {
-    icon: <CabinIcon />,
-    location: "캠핑장",
+    icon: <TbHomeInfinity />,
+    location: "All",
   },
   {
-    icon: <LocationCityIcon />,
-    location: "도시",
+    icon: <MdApartment />,
+    location: "Apartment",
   },
   {
-    icon: <LocalFireDepartmentIcon />,
-    location: "인기 급상승",
+    icon: <FaHouseSignal />,
+    location: "Condominium",
   },
   {
-    icon: <AttractionsIcon />,
-    location: "놀이동산",
+    icon: <BsFillHouseDoorFill />,
+    location: "House",
   },
   {
-    icon: <HomeOutlinedIcon />,
-    location: "저택",
+    icon: <BsFillHouseUpFill />,
+    location: "Loft",
   },
   {
-    icon: <CabinIcon />,
-    location: "캠핑장",
+    icon: <BiBuildingHouse />,
+    location: "Serviced apartment",
   },
   {
-    icon: <LocationCityIcon />,
-    location: "도시",
+    icon: <FaHouseUser />,
+    location: "Guesthouse",
   },
   {
-    icon: <LocalFireDepartmentIcon />,
-    location: "인기 급상승",
+    icon: <GiFamilyHouse />,
+    location: "Hostel",
   },
   {
-    icon: <AttractionsIcon />,
-    location: "놀이동산",
+    icon: <FaBowlFood />,
+    location: "Bed and breakfast",
   },
   {
-    icon: <HomeOutlinedIcon />,
-    location: "저택",
+    icon: <GiTreehouse />,
+    location: "Treehouse",
   },
   {
-    icon: <CabinIcon />,
-    location: "캠핑장",
+    icon: <GiBlockHouse />,
+    location: "Bungalow",
   },
   {
-    icon: <LocationCityIcon />,
-    location: "도시",
+    icon: <GiDamagedHouse />,
+    location: "Townhouse",
   },
   {
-    icon: <LocalFireDepartmentIcon />,
-    location: "인기 급상승",
+    icon: <GiVillage />,
+    location: "Villa",
   },
   {
-    icon: <AttractionsIcon />,
-    location: "놀이동산",
+    icon: <LiaSynagogueSolid />,
+    location: "Guest suite",
   },
   {
-    icon: <HomeOutlinedIcon />,
-    location: "저택",
-  },
-  {
-    icon: <CabinIcon />,
-    location: "캠핑장",
-  },
-  {
-    icon: <LocationCityIcon />,
-    location: "도시",
-  },
-  {
-    icon: <LocalFireDepartmentIcon />,
-    location: "인기 급상승",
-  },
-  {
-    icon: <AttractionsIcon />,
-    location: "놀이동산",
-  },
-  {
-    icon: <HomeOutlinedIcon />,
-    location: "저택",
+    icon: <GiWoodCabin />,
+    location: "Cabin",
   },
 ];
