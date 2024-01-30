@@ -2,8 +2,7 @@
 import React from "react";
 import { styled } from "@mui/system";
 import { iconData } from "../../utils/HeaderIcon";
-import { Box, Stack, Tabs, Tab, tabsClasses } from "@mui/material";
-import FilterListIcon from "@mui/icons-material/FilterList";
+import { Stack, Tabs, Tab, tabsClasses, useMediaQuery } from "@mui/material";
 
 type props = {
   value: string;
@@ -11,11 +10,12 @@ type props = {
 };
 
 const HeaderBottomComponent = ({ value, handleChange }: props) => {
+  const match: boolean = useMediaQuery("(min-width:600px)");
   return (
     <Stack
       direction="row"
       boxShadow={"0 1px 5px lightgray;"}
-      sx={{ background: "white", alignItems: "center", px: "5rem" }}
+      sx={{ background: "white", alignItems: "center", px: match ? "5rem" : 0 }}
     >
       <Container>
         <Tabs
@@ -39,11 +39,6 @@ const HeaderBottomComponent = ({ value, handleChange }: props) => {
           ))}
         </Tabs>
       </Container>
-
-      <FilterButton>
-        <FilterListIcon />
-        <Box sx={{ width: "2rem", ml: "0.7rem" }}>필터</Box>
-      </FilterButton>
     </Stack>
   );
 };
@@ -56,7 +51,6 @@ const Container = styled(Stack)`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-right: 2rem;
 `;
 
 const IconContainer = styled(Tab)`
@@ -72,13 +66,4 @@ const IconContainer = styled(Tab)`
     width: 1.5rem;
     padding-bottom: 0.1rem;
   }
-`;
-
-const FilterButton = styled(Stack)`
-  display: flex;
-  flex-direction: row;
-  border: 1px solid lightgray;
-  border-radius: 10px;
-  padding: 0.5rem;
-  cursor: pointer;
 `;
