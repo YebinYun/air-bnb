@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Stack } from "@mui/material";
+import { Box, Button, Stack, useMediaQuery } from "@mui/material";
 import React from "react";
 
 type props = {
@@ -14,14 +14,15 @@ const LogoutToggleDropDownComponent = ({
   toggleUserDataModal,
   setIsUserDataModalOpen,
 }: props) => {
+  const match: boolean = useMediaQuery("(min-width:600px)");
   return (
     <Stack
       direction={"column"}
       sx={{
         position: "absolute",
-        top: 70,
-        right: "5rem",
-        width: "10rem",
+        top: match ? 70 : 40,
+        right: match ? "5rem" : "1.5rem",
+        width: match ? "10rem" : "7.5rem",
         border: "solid 1px lightgray",
         borderRadius: "10px",
         background: "white",
