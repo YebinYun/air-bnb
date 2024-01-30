@@ -13,12 +13,6 @@ const HotelListContainer = () => {
   const { userData, handleOnClickLike } = useUserLikeHandler();
   const { location } = useLocationData();
 
-  console.log("location====>", location);
-  console.log(
-    "location====>",
-    `${process.env.NEXT_PUBLIC_IP_API_KEY}/hotelList?location=${location}&page=${page}`
-  );
-
   const handleChange = (e: any, page: any) => {
     setPage(page);
   };
