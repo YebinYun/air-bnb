@@ -35,8 +35,7 @@ const HotelInfoComponent = ({ data }: any) => {
             display: "flex",
             flexWrap: "wrap",
             my: "30px",
-            border: "1px solid red",
-            height: "150px",
+            maxHeight: "3.5rem",
             overflowY: "auto",
           }}
         >

@@ -58,4 +58,6 @@ export const BlockLayout = styled(Box)`
 const HostText = styled(Box)`
   font-size: 1rem;
   margin: 0 0.1rem;
+  max-height: 1.2rem;
+  overflow-y: auto;
 `;
