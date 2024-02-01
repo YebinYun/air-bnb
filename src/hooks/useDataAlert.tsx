@@ -58,11 +58,12 @@ export const useDataAlert = ({ isLogin, isSetting }: props) => {
     await axios
       .post(`${process.env.NEXT_PUBLIC_IP_API_KEY}/user`, userAlertData)
       .then((res) => {
-        if (res.data.resultCode === 200) {
+        if (res.data.resultCode == 200) {
           alert("회원가입에 성공하였습니다.");
-        } else {
-          alert("회원가입에 실패하였습니다.");
         }
+      })
+      .catch((err) => {
+        alert("회원가입에 실패하였습니다.");
       });
   };
   const { token } = useLoginDataState();
@@ -75,14 +76,16 @@ export const useDataAlert = ({ isLogin, isSetting }: props) => {
         },
       })
       .then((res) => {
-        if (res.data.resultCode === 200) {
+        if (res.data.resultCode !== 200) {
           setUserData(res.data.data);
+        } else {
           localStorage.setItem("token", JSON.stringify(res.data.data));
           alert("로그인에 성공하였습니다.");
           router.refresh();
-        } else {
-          alert("로그인에 실패하였습니다.");
         }
+      })
+      .catch((err) => {
+        alert("로그인에 실패하였습니다.");
       });
   };
 
