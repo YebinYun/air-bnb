@@ -14,7 +14,7 @@ import { useRecoilState } from "recoil";
 import { useBookingPageChangeHandler } from "@/store/userPage/bookingPageIndex";
 import { useLoginDataState } from "@/store/auth/userData";
 
-const HeaderTopContainer = () => {
+const HeaderTopContainer = (props: { match: boolean }) => {
   const [isUserDataModalOpen, setIsUserDataModalOpen] =
     useState<boolean>(false);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState<boolean>(false);
@@ -87,6 +87,7 @@ const HeaderTopContainer = () => {
       <HeaderTopComponent
         toggleUserDataModal={toggleUserDataModal}
         toggleBookingModal={toggleBookingModal}
+        match={props.match}
       />
 
       {isBookingModalOpen && (

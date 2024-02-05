@@ -2,15 +2,15 @@
 import React from "react";
 import { styled } from "@mui/system";
 import { iconData } from "../../utils/HeaderIcon";
-import { Stack, Tabs, Tab, tabsClasses, useMediaQuery } from "@mui/material";
+import { Stack, Tabs, Tab, tabsClasses } from "@mui/material";
 
 type props = {
   value: string;
   handleChange?: (event: any, newValue: string) => void;
+  match: boolean;
 };
 
-const HeaderBottomComponent = ({ value, handleChange }: props) => {
-  const match: boolean = useMediaQuery("(min-width:600px)");
+const HeaderBottomComponent = ({ value, handleChange, match }: props) => {
   return (
     <Stack
       direction="row"

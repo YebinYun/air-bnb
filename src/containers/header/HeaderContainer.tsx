@@ -4,6 +4,7 @@ import HeaderTopContainer from "./HeaderTopContainer";
 import HeaderBottomContainer from "./HeaderBottomContainer";
 import { useSetRecoilState } from "recoil";
 import { useLoginDataState, userDataSelector } from "@/store/auth/userData";
+import { useMediaQuery } from "@mui/material";
 
 const HeaderContainer = () => {
   const [tokenData, setTokenData] = useState<any>();
@@ -27,10 +28,11 @@ const HeaderContainer = () => {
     return getUserInfo();
   }, [token, setUserData, tokenData]);
 
+  const match: boolean = useMediaQuery("(min-width:600px)");
   return (
     <>
-      <HeaderTopContainer />
-      <HeaderBottomContainer />
+      <HeaderTopContainer match={match} />
+      <HeaderBottomContainer match={match} />
     </>
   );
 };

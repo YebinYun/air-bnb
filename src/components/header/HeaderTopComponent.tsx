@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Box, Button, Stack, useMediaQuery } from "@mui/material";
+import { Box, Button, Stack } from "@mui/material";
 import LuggageIcon from "@mui/icons-material/Luggage";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -9,13 +9,14 @@ import SearchIcon from "@mui/icons-material/Search";
 type props = {
   toggleBookingModal: () => void;
   toggleUserDataModal: () => void;
+  match: boolean;
 };
 
 const HeaderTopComponent = ({
   toggleBookingModal,
   toggleUserDataModal,
+  match,
 }: props) => {
-  const match: boolean = useMediaQuery("(min-width:600px)");
   return (
     <Box sx={{ px: "5rem" }}>
       {match ? (
